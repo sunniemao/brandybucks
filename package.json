@@ -4,6 +4,7 @@
   "description": "[![Stories in Ready](https://badge.waffle.io/brandybucks/brandybucks.png?label=ready&title=Ready)](https://waffle.io/brandybucks/brandybucks) # brandybucks",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon server/basic_server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,5 +19,8 @@
   "homepage": "https://github.com/isaachyoon/brandybucks#readme",
   "dependencies": {
     "express": "^4.14.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
   }
 }
