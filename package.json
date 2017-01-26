@@ -1,0 +1,22 @@
+{
+  "name": "brandybucks",
+  "version": "1.0.0",
+  "description": "[![Stories in Ready](https://badge.waffle.io/brandybucks/brandybucks.png?label=ready&title=Ready)](https://waffle.io/brandybucks/brandybucks) # brandybucks",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isaachyoon/brandybucks.git"
+  },
+  "author": "Isaac, Tony, Johnny, Sunny",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/isaachyoon/brandybucks/issues"
+  },
+  "homepage": "https://github.com/isaachyoon/brandybucks#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
