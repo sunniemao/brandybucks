@@ -19,7 +19,7 @@
   text-align: right;
 }
 .nav-link a:hover {
-  color: #ffffff !important; 
+  color: #86779b !important; 
   font-weight: bold;
   text-decoration: none !important;
 }
@@ -47,7 +47,7 @@ ul {
 .side-nav li a:hover,
 .side-nav li a:focus {
     outline: none;
-    background-color: #3c3a4d !important;
+    background-color: #86779b !important;
     color: #ffffff !important;
 }
 .side-nav>ul {
@@ -62,5 +62,5 @@ ul {
   font-size: 20px;
 }
 .side-nav>li>ul>li>a:hover {
-  color: #fff;
+  color: #86779b;
 }
