@@ -1,7 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import {Nav} from './Nav.jsx';
-import {StudentList} from './StudentList.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -34,12 +32,12 @@ class App extends React.Component {
 
   render () {
     return (
-      <div>
+      <div className="container">
         <Nav searchText={this.handleChangeSearch} searchClicked={this.searchClicked} />
-        <StudentList />
+        {this.props.children}
       </div>
     );
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+export default App;
