@@ -32,7 +32,7 @@ class Nav extends React.Component {
               <a><img src="https://t1.rbxcdn.com/52ed596ced6630987d05c5cc688e3af5" width="150" /><br /><br />Student Name</a>
             </li>
             <li>
-              <a href="index.html">Goalssssssssss</a>
+              <a href="index.html">Goals</a>
             </li>
             <li>
               <a href="index.html">IEP</a>
