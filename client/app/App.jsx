@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Nav} from './Nav.jsx'
-import {StudentList} from './StudentList.jsx'
+// import {Nav} from './Nav.jsx';
+// import {StudentList} from './StudentList.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -32,15 +32,11 @@ class App extends React.Component {
     console.log(this.state.searchInput)
   }
 
-
-
-
-
   render () {
     return (
       <div>
-        <StudentList />
         <Nav searchText={this.handleChangeSearch} searchClicked={this.searchClicked} />
+        <StudentList />
       </div>
     );
   }
