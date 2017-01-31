@@ -42,9 +42,9 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/*!**********************************!*\
-  !*** ./src/client/app/index.jsx ***!
-  \**********************************/
+/*!********************************!*\
+  !*** ./src/client/app/App.jsx ***!
+  \********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -61,7 +61,7 @@
 	
 	var _Nav = __webpack_require__(/*! ./Nav.jsx */ 178);
 	
-	var _Nav2 = _interopRequireDefault(_Nav);
+	var _StudentList = __webpack_require__(/*! ./StudentList.jsx */ 179);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -108,6 +108,7 @@
 	
 	    //create handler method for search button clicked
 	    value: function searchClicked(e) {
+	      console.log('search clicked!!');
 	      console.log(this.state.searchInput);
 	    }
 	  }, {
@@ -116,7 +117,8 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement(_Nav2.default, { searchText: this.handleChangeSearch, searchClicked: this.searchClicked })
+	        _react2.default.createElement(_StudentList.StudentList, null),
+	        _react2.default.createElement(_Nav.Nav, { searchText: this.handleChangeSearch, searchClicked: this.searchClicked })
 	      );
 	    }
 	  }]);
@@ -22100,114 +22102,184 @@
 
 	"use strict";
 	
-	var React = __webpack_require__(/*! react */ 1);
-	
-	module.exports = React.createClass({
-	    displayName: "exports",
-	
-	    render: function render() {
-	        return React.createElement(
-	            "div",
-	            { className: "navbar navbar-inverse navbar-fixed-top" },
-	            React.createElement(
-	                "div",
-	                { className: "navbar-header" },
-	                React.createElement(
-	                    "a",
-	                    { className: "navbar-brand", href: "#" },
-	                    "brandybucks"
-	                ),
-	                React.createElement(
-	                    "ul",
-	                    { className: "navbar-nav nav-fill" },
-	                    React.createElement(
-	                        "li",
-	                        { className: "nav-item" },
-	                        React.createElement(
-	                            "a",
-	                            { className: "nav-link", href: "#" },
-	                            "Home"
-	                        )
-	                    ),
-	                    React.createElement(
-	                        "li",
-	                        { className: "nav-item" },
-	                        React.createElement(
-	                            "a",
-	                            { className: "nav-link", href: "#" },
-	                            "Create Log"
-	                        )
-	                    ),
-	                    React.createElement(
-	                        "li",
-	                        { className: "nav-item" },
-	                        React.createElement(
-	                            "a",
-	                            { className: "nav-link disabled", href: "#" },
-	                            "Sign Out"
-	                        )
-	                    )
-	                )
-	            ),
-	            React.createElement(
-	                "div",
-	                { className: "side-nav" },
-	                React.createElement(
-	                    "ul",
-	                    { className: "side-nav" },
-	                    React.createElement(
-	                        "li",
-	                        null,
-	                        React.createElement(
-	                            "a",
-	                            null,
-	                            React.createElement("img", { src: "https://t1.rbxcdn.com/52ed596ced6630987d05c5cc688e3af5", width: "150" }),
-	                            React.createElement("br", null),
-	                            React.createElement("br", null),
-	                            "Student Name"
-	                        )
-	                    ),
-	                    React.createElement(
-	                        "li",
-	                        null,
-	                        React.createElement(
-	                            "a",
-	                            { href: "index.html" },
-	                            "Goals"
-	                        )
-	                    ),
-	                    React.createElement(
-	                        "li",
-	                        null,
-	                        React.createElement(
-	                            "a",
-	                            { href: "index.html" },
-	                            "IEP"
-	                        )
-	                    ),
-	                    React.createElement(
-	                        "li",
-	                        null,
-	                        React.createElement(
-	                            "a",
-	                            { href: "index.html" },
-	                            "Meeting Notes"
-	                        )
-	                    ),
-	                    React.createElement(
-	                        "li",
-	                        null,
-	                        React.createElement(
-	                            "a",
-	                            { href: "index.html" },
-	                            "Updates / Logs"
-	                        )
-	                    )
-	                )
-	            )
-	        );
-	    }
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
 	});
+	exports.Nav = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Nav = function (_React$Component) {
+	  _inherits(Nav, _React$Component);
+	
+	  function Nav(props) {
+	    _classCallCheck(this, Nav);
+	
+	    return _possibleConstructorReturn(this, (Nav.__proto__ || Object.getPrototypeOf(Nav)).call(this, props));
+	  }
+	
+	  _createClass(Nav, [{
+	    key: "render",
+	    value: function render() {
+	      return _react2.default.createElement(
+	        "div",
+	        { className: "navbar navbar-inverse navbar-fixed-top" },
+	        _react2.default.createElement(
+	          "div",
+	          { className: "navbar-header" },
+	          _react2.default.createElement(
+	            "a",
+	            { className: "navbar-brand", href: "#" },
+	            "brandybucks"
+	          ),
+	          _react2.default.createElement(
+	            "ul",
+	            { className: "navbar-nav nav-fill" },
+	            _react2.default.createElement(
+	              "li",
+	              { className: "nav-item" },
+	              _react2.default.createElement(
+	                "a",
+	                { className: "nav-link", href: "#" },
+	                "Home"
+	              )
+	            ),
+	            _react2.default.createElement(
+	              "li",
+	              { className: "nav-item" },
+	              _react2.default.createElement(
+	                "a",
+	                { className: "nav-link", href: "#" },
+	                "Create Log"
+	              )
+	            ),
+	            _react2.default.createElement(
+	              "li",
+	              { className: "nav-item" },
+	              _react2.default.createElement(
+	                "a",
+	                { className: "nav-link disabled", href: "#" },
+	                "Sign Out"
+	              )
+	            ),
+	            _react2.default.createElement(
+	              "li",
+	              { className: "nav-item" },
+	              _react2.default.createElement("input", { type: "text", placeholder: "Search Name", onChange: this.props.searchText }),
+	              _react2.default.createElement(
+	                "button",
+	                { className: "btn search-btn", onClick: this.props.searchClicked },
+	                "Search Student"
+	              )
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          "div",
+	          { className: "side-nav" },
+	          _react2.default.createElement(
+	            "ul",
+	            { className: "side-nav" },
+	            _react2.default.createElement(
+	              "li",
+	              null,
+	              _react2.default.createElement(
+	                "a",
+	                null,
+	                _react2.default.createElement("img", { src: "https://t1.rbxcdn.com/52ed596ced6630987d05c5cc688e3af5", width: "150" }),
+	                _react2.default.createElement("br", null),
+	                _react2.default.createElement("br", null),
+	                "Student Name"
+	              )
+	            ),
+	            _react2.default.createElement(
+	              "li",
+	              null,
+	              _react2.default.createElement(
+	                "a",
+	                { href: "index.html" },
+	                "Goalssssssssss"
+	              )
+	            ),
+	            _react2.default.createElement(
+	              "li",
+	              null,
+	              _react2.default.createElement(
+	                "a",
+	                { href: "index.html" },
+	                "IEP"
+	              )
+	            ),
+	            _react2.default.createElement(
+	              "li",
+	              null,
+	              _react2.default.createElement(
+	                "a",
+	                { href: "index.html" },
+	                "Meeting Notes"
+	              )
+	            ),
+	            _react2.default.createElement(
+	              "li",
+	              null,
+	              _react2.default.createElement(
+	                "a",
+	                { href: "index.html" },
+	                "Updates / Logs"
+	              )
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return Nav;
+	}(_react2.default.Component);
+	
+	exports.Nav = Nav;
+
+/***/ },
+/* 179 */
+/*!****************************************!*\
+  !*** ./src/client/app/StudentList.jsx ***!
+  \****************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.StudentList = undefined;
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var StudentList = function StudentList(props) {
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    'hi!'
+	  );
+	};
+	
+	exports.StudentList = StudentList;
 
 /***/ }
 /******/ ]);

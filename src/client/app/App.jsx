@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Nav from './Nav.jsx'
+import {Nav} from './Nav.jsx'
+import {StudentList} from './StudentList.jsx'
 
 class App extends React.Component {
   constructor(props) {
@@ -20,13 +21,14 @@ class App extends React.Component {
   //create handler method to extract search input box value
   handleChangeSearch (e) {
     this.setState({
-      searchInput: e.target.value
+      searchInput: e.target.value,
     });
     console.log(this.state.searchInput)
   };
 
   //create handler method for search button clicked
   searchClicked (e) {
+    console.log('search clicked!!')
     console.log(this.state.searchInput)
   }
 
@@ -37,6 +39,7 @@ class App extends React.Component {
   render () {
     return (
       <div>
+        <StudentList />
         <Nav searchText={this.handleChangeSearch} searchClicked={this.searchClicked} />
       </div>
     );
