@@ -54,9 +54,9 @@ install local mySql if needed
 
 ```sh
 brew install mysql
+mysql.server start
 mysql -u root -p (hit enter again for no pass)
-create database myapp
-npm start
+create database myapp;
 ```
 
 ### Start server dev
