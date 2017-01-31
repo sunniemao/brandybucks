@@ -2,20 +2,19 @@
   background-color: #3c3a4d;
   border: 0;
   font-size: 20px;
-  color: #ffffff;
 }
 .navbar-brand {
-  padding: 15px 15px 10px 40px;
+  padding: 18px 15px 10px 40px;
   font-size: 20px;
   color: #ffffff !important;
   font-weight: bold;
 }
 .nav-item {
-  padding: 13px 15px 10px 30px;
+  padding: 15px 15px 10px 30px;
   text-align: right;
 }
 .nav-link {
-  padding: 13px 15px 10px 60px;
+  padding: 15px 15px 10px 60px;
   text-align: right;
 }
 .nav-link a:hover {
@@ -29,7 +28,7 @@ ul {
 }
 .side-nav {
     position: fixed;
-    top: 50px;
+    top: 57px;
     left: 200px;
     width: 200px;
     margin-left: -200px;
@@ -64,7 +63,20 @@ ul {
 .side-nav>li>ul>li>a:hover {
   color: #86779b;
 }
-
+input.student-search {
+  color: #999 !important;
+  border: 1 px solid #999 !important;
+  border-radius: 4px !important;
+}
 .search-btn {
   background-color: rgba(134, 119, 156, 0.99) !important;
+  color: #fff !important;
+}
+body {
+    margin-top: 50px;
+    color: #999 !important;
+}
+#wrapper {
+    padding-left: 225px;
+    color: #999 !important;
 }
