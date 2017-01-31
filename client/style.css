@@ -5,7 +5,7 @@
 }
 .navbar-brand {
   padding: 18px 15px 10px 40px;
-  font-size: 20px;
+  font-size: 22px;
   color: #ffffff !important;
   font-weight: bold;
 }
@@ -28,7 +28,7 @@ ul {
 }
 .side-nav {
     position: fixed;
-    top: 57px;
+    top: 59px;
     left: 200px;
     width: 200px;
     margin-left: -200px;
@@ -65,7 +65,8 @@ ul {
 }
 input.student-search {
   color: #999 !important;
-  border: 1 px solid #999 !important;
+  background-color: #fff !important;
+  border: 1px solid #fff !important;
   border-radius: 4px !important;
 }
 .search-btn {

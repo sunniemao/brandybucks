@@ -22277,13 +22277,13 @@
 	    { id: "wrapper" },
 	    _react2.default.createElement(
 	      "div",
-	      { "class": "container-fluid" },
+	      { className: "container-fluid" },
 	      _react2.default.createElement(
 	        "div",
-	        { "class": "row" },
+	        { className: "row" },
 	        _react2.default.createElement(
 	          "div",
-	          { "class": "col-md-12" },
+	          { className: "col-md-12" },
 	          _react2.default.createElement(
 	            "h1",
 	            null,
@@ -22293,10 +22293,10 @@
 	      ),
 	      _react2.default.createElement(
 	        "div",
-	        { "class": "row" },
+	        { className: "row" },
 	        _react2.default.createElement(
 	          "div",
-	          { "class": "col-md-12" },
+	          { className: "col-md-12" },
 	          "Text"
 	        )
 	      )
