@@ -7,11 +7,11 @@
 .navbar-brand {
   padding: 15px 15px 10px 40px;
   font-size: 20px;
-  color: #ffffff !important; 
+  color: #ffffff !important;
   font-weight: bold;
 }
 .nav-item {
-  padding: 13px 15px 10px 60px;
+  padding: 13px 15px 10px 30px;
   text-align: right;
 }
 .nav-link {
@@ -19,7 +19,7 @@
   text-align: right;
 }
 .nav-link a:hover {
-  color: #86779b !important; 
+  color: #86779b !important;
   font-weight: bold;
   text-decoration: none !important;
 }
@@ -63,4 +63,8 @@ ul {
 }
 .side-nav>li>ul>li>a:hover {
   color: #86779b;
+}
+
+.search-btn {
+  background-color: rgba(134, 119, 156, 0.99) !important;
 }

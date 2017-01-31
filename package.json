@@ -33,6 +33,7 @@
     "webpack": "^1.14.0"
   },
   "devDependencies": {
+    "live-server": "^1.2.0",
     "nodemon": "^1.11.0"
   }
 }
