@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import {Nav} from './Nav.jsx';
-// import {StudentList} from './StudentList.jsx';
+import {Nav} from './Nav.jsx';
+import {StudentList} from './StudentList.jsx';
 
 class App extends React.Component {
   constructor(props) {
