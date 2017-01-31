@@ -6,7 +6,6 @@ var bookshelf = require('./config.js')
 var bodyParser = require('body-parser');
 var router = require('./routes.js');
 
-// var User = require('./models/user');
 
 
 // Parse JSON (uniform resource locators)
@@ -21,10 +20,6 @@ app.use('/api', router);
 app.use(express.static(__dirname + '/../client'));
 
 var bookshelf = require('./config.js')
-
-// app.post('api/signup')
-
-
 
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!')
