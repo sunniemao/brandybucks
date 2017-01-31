@@ -1,0 +1,59 @@
+var User = require('../models/user');
+
+module.exports = {
+
+  login: {
+
+    post: function(req, res) {
+      var first_name = req.body.first_name;
+      var password = req.body.password;
+
+      new User({ first_name: first_name })
+        .fetch()
+        .then(function(user) {
+          if (!user) {
+            res.send('no user by that name')
+          } else {
+
+            user.comparePassword(password, function(match) {
+              if (match) {
+                res.send('its a re-hashed match!!')
+              } else {
+                res.send('not the same hash this hash from the past')
+              }
+            });
+          }
+        });
+    }
+  },
+
+  signup: {
+
+    post: function(req, res) {
+      var first_name = req.body.first_name;
+      var password = req.body.password;
+
+      new User({ first_name: first_name })
+        .fetch()
+        .then(function(user) {
+          if (!user) {
+
+            var newUser = new User({
+              first_name: first_name,
+              password: password
+            });
+
+            newUser.save()
+              .then(function(newUser) {
+                // util.createSession(req, res, newUser);
+                res.send('new user created')
+              });
+          } else {
+            res.send('Account already exists');
+            // res.redirect('/signup');
+          }
+        });
+    }
+  }
+}
+
