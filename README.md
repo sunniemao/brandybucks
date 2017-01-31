@@ -29,17 +29,14 @@
 
 ## Requirements
 
-- Node 0.10.x
-- Redis 2.6.x
-- Postgresql 9.1.x
+- Node
 - Express 4.14.0
 - Nodemon 1.11.0
 - React
 - ReactDOM
-- Bookstrap
+- Bookshelf
 - Knex
 _ MySQL
-- Objection
 
 ## Development
 
@@ -48,10 +45,30 @@ _ MySQL
 From within the root directory:
 
 ```sh
-sudo npm install -g bower
 npm install
-bower install
 ```
+
+### Local db setup
+
+install local mySql if needed
+
+```sh
+brew install mysql
+mysql -u root -p (hit enter again for no pass)
+create database myapp
+npm start
+```
+
+### Start server dev
+```sh
+npm start
+```
+
+### Start front-end dev (new terminal tab)
+```sh
+npm dev
+```
+
 
 ### Roadmap
 
