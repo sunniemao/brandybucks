@@ -6,6 +6,8 @@ var router = require('express').Router();
 
 router.post('/login', controller.login.post);
 
+router.post('/signup', controller.signup.post);
+
 // router.get('/users', controller.users.get);
 
 // router.post('/users', controller.users.post);
