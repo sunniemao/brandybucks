@@ -5,7 +5,10 @@ class Nav extends React.Component {
   constructor(props) {
     super(props);
   };
-
+  logout(e) {
+    e.preventDefault();
+    this.props.logout();
+  };
   render () {
     return(
       <div className="navbar navbar-inverse navbar-fixed-top">
@@ -19,7 +22,7 @@ class Nav extends React.Component {
                 <Link to="/createlog" className="nav-link">Create Log</Link>
               </li>
               <li className="nav-item">
-                <Link to="/login" className="nav-link">Login</Link>
+                <a href="#" onClick={this.logout.bind(this)} className="nav-link">Logout</a>
               </li>
               <li className="nav-item">
                 <input className="student-search" type="text" placeholder="Search Name" onChange={this.props.searchText} />

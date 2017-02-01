@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router';
 import axios from 'axios';
-import {login} from './helper/auth.js';
+import {signup} from './helper/auth.js';
  
 module.exports = React.createClass({
   getInitialState: function() {
@@ -25,12 +25,12 @@ module.exports = React.createClass({
      username: this.state.username,
      password: this.state.password
    }
-   login(user)
+   signup(user)
      .then(function(resp) {
-     console.log('logged in');
+     console.log('account created');
      })
      .catch(function(err) {
-       console.log('could not login', err);
+       console.log('could not create account', err);
      })
  },
 
@@ -40,7 +40,7 @@ module.exports = React.createClass({
         <div className="container-fluid">
           <div className="row">
             <div className="col-md-12">
-                  <h1>Login</h1>
+                  <h1>Sign Up</h1>
             </div>
           </div>
           <div className="row">
@@ -53,7 +53,7 @@ module.exports = React.createClass({
                   <input type="submit" className="btn login-btn" value="&nbsp;Login&nbsp;" />
             </form>
             <p />
-              <Link to="/signup">Create an Account &rarr;</Link>
+              <Link to="/login">Already have an account? Login &rarr;</Link>
             <p />
             </div>
           </div>
