@@ -114,9 +114,7 @@
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
-	        { className: 'container' },
-	        _react2.default.createElement(_Nav.Nav, { searchText: this.handleChangeSearch, searchClicked: this.searchClicked }),
-	        this.props.children
+
 	      );
 	    }
 	  }]);
@@ -9580,6 +9578,7 @@
 	      prevLocation = currentLocation;
 	
 	      listener(currentLocation);
+
 	    }
 	  };
 	
@@ -9587,7 +9586,7 @@
 	  var path = getHashPath();
 	  var encodedPath = pathCoder.encodePath(path);
 	
-	  if (path !== encodedPath) replaceHashPath(encodedPath);
+
 	
 	  (0, _DOMUtils.addEventListener)(window, HashChangeEvent, handleHashChange);
 	
@@ -9611,6 +9610,7 @@
 	  prevLocation = location;
 	
 	  updateHash(path);
+	
 	};
 	
 	var pushLocation = exports.pushLocation = function pushLocation(location, pathCoder, queryKey) {

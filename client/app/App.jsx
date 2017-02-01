@@ -35,6 +35,7 @@ class App extends React.Component {
       <div className="container">
         <Nav searchText={this.handleChangeSearch} searchClicked={this.searchClicked} />
         {this.props.children}
+      
       </div>
     );
   }

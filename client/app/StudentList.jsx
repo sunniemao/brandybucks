@@ -19,6 +19,7 @@ class StudentList extends React.Component {
       </div>
     );
   }
+
 }
 
 export {StudentList};
