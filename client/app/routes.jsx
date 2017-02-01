@@ -3,8 +3,8 @@ import { Route, IndexRoute } from 'react-router';
 
 import App from './App.jsx';
 import {StudentList} from './StudentList.jsx';
-import {Login} from './Login.jsx';
-import {Signup} from './Signup.jsx';
+import Login from './Login.jsx';
+import Signup from './Signup.jsx';
 import {CreateLog} from './CreateLog.jsx';
 import {Goals} from './Goals.jsx';
 import {IEP} from './IEP.jsx';
