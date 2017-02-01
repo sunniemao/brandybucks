@@ -21,7 +21,7 @@ class Nav extends React.Component {
                 <a className="nav-link disabled" href="#">Sign Out</a>
               </li>
               <li className="nav-item">
-                <input type="text" placeholder="Search Name"onChange={this.props.searchText} />
+                <input className="student-search" type="text" placeholder="Search Name" onChange={this.props.searchText} />
                 <button className="btn search-btn" onClick={this.props.searchClicked} >Search Student</button>
               </li>
             </ul>

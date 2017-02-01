@@ -117,8 +117,8 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement(_StudentList.StudentList, null),
-	        _react2.default.createElement(_Nav.Nav, { searchText: this.handleChangeSearch, searchClicked: this.searchClicked })
+	        _react2.default.createElement(_Nav.Nav, { searchText: this.handleChangeSearch, searchClicked: this.searchClicked }),
+	        _react2.default.createElement(_StudentList.StudentList, null)
 	      );
 	    }
 	  }]);
@@ -22177,7 +22177,7 @@
 	            _react2.default.createElement(
 	              "li",
 	              { className: "nav-item" },
-	              _react2.default.createElement("input", { type: "text", placeholder: "Search Name", onChange: this.props.searchText }),
+	              _react2.default.createElement("input", { className: "student-search", type: "text", placeholder: "Search Name", onChange: this.props.searchText }),
 	              _react2.default.createElement(
 	                "button",
 	                { className: "btn search-btn", onClick: this.props.searchClicked },
@@ -22258,7 +22258,7 @@
   \************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -22273,9 +22273,34 @@
 	
 	var StudentList = function StudentList(props) {
 	  return _react2.default.createElement(
-	    'div',
-	    null,
-	    'hi!'
+	    "div",
+	    { id: "wrapper" },
+	    _react2.default.createElement(
+	      "div",
+	      { className: "container-fluid" },
+	      _react2.default.createElement(
+	        "div",
+	        { className: "row" },
+	        _react2.default.createElement(
+	          "div",
+	          { className: "col-md-12" },
+	          _react2.default.createElement(
+	            "h1",
+	            null,
+	            "Students "
+	          )
+	        )
+	      ),
+	      _react2.default.createElement(
+	        "div",
+	        { className: "row" },
+	        _react2.default.createElement(
+	          "div",
+	          { className: "col-md-12" },
+	          "Text"
+	        )
+	      )
+	    )
 	  );
 	};
 	
