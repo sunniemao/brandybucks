@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router';
 
 class Nav extends React.Component {
   constructor(props) {
@@ -9,16 +10,16 @@ class Nav extends React.Component {
     return(
       <div className="navbar navbar-inverse navbar-fixed-top">
         <div className="navbar-header">
-          <a className="navbar-brand" href="#">brandybucks</a>
+          <Link to="/" className="navbar-brand">brandybucks</Link>
             <ul className="navbar-nav nav-fill">
               <li className="nav-item">
-                <a className="nav-link" href="#">Home</a>
+                <Link to="/" className="nav-link">Home</Link>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#">Create Log</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link disabled" href="#">Sign Out</a>
+                <Link to="/login" className="nav-link">Login</Link>
               </li>
               <li className="nav-item">
                 <input className="student-search" type="text" placeholder="Search Name" onChange={this.props.searchText} />
