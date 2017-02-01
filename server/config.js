@@ -18,13 +18,13 @@ var bookshelf = require('bookshelf')(knex);
 
 //source: bookshelfjs.org
 
-var Users = bookshelf.Model.extend({
-  tableName: 'users'
-})
+// var Users = bookshelf.Model.extend({
+//   tableName: 'users'
+// })
 
-var Student = bookshelf.Model.extend({
-  tableName: 'students'
-});
+// var Student = bookshelf.Model.extend({
+//   tableName: 'students'
+// });
 //user schemas:
 
 //checks for a table's existence by tableName, resolving with a boolean to signal if the table exists
@@ -58,6 +58,19 @@ bookshelf.knex.schema.hasTable('users').then(function(exists) {
 
     }).then(function (table) {
     console.log('Created Table', table);
+    });
+  }
+});
+
+bookshelf.knex.schema.hasTable('users_students').then(function(exists) {
+  if (!exists) {
+    return knex.schema.createTable('users_students', function(table) {
+      table.integer('student_id').unsigned();
+      table.foreign('student_id').references('students.id');
+      table.integer('user_id').unsigned();
+      table.foreign('user_id').references('users.id');
+    }).then(function (table) {
+    console.log('Created Table3', table);
     });
   }
 });
