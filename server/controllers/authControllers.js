@@ -3,23 +3,7 @@ var knex = require('../config.js').knex;
 var Student = require('../models/student');
 
 
-
 module.exports = {
-
-
-  testGetTopSecretInfo: {
-    get: function(req, res) {
-
-
-      if (req.session.level === 'loggedIn') {
-        res.send('top Secret');
-      } else {
-        res.send('nice try');
-      }
-
-
-    }
-  },
 
   login: {
 
@@ -37,27 +21,13 @@ module.exports = {
             user.comparePassword(password, function(match) {
               if (match) {
 
-                console.log('in login')
-
-
                 // set the permissions level
                 req.session.level = 'loggedIn'
 
-                console.log('req.session in POST login', req.session)
-
-
-                // add a session period
-                // app.use(session(this.sess))
-
-
-
-
-                // res.send('its a re-hashed match!!')
                 res.redirect('/')
 
-                // change the session level
               } else {
-                res.send('not the same hash this hash from the past')
+                res.redirect('/')
               }
             });
           }
@@ -83,78 +53,29 @@ module.exports = {
 
             newUser.save()
               .then(function(newUser) {
-                // util.createSession(req, res, newUser);
-                res.send('new user created')
+
+                // TODO: this would really trigger an email to an admin
+                // who would grant access
+
+                // set the permissions level (for now)
+                req.session.level = 'loggedIn'
+
+                res.redirect('/');
               });
           } else {
-            res.send('Account already exists');
-            // res.redirect('/signup');
+            // res.send('Account already exists');
+            res.redirect('/signup');
           }
         });
     }
   },
 
   logout: {
+
     get: function(req, res) {
 
-      console.log('from LOGOUT ==> ', req.session)
       req.session.destroy(function(err) {
-        // cannot access session here
-        console.log('session destroyed')
-      })
-
-      res.send('digging');
-
-    }
-  },
-
-  query: {
-
-    post: function(req, res) {
-      var queryString = req.body.name;
-      knex('students').where({
-        first_name: queryString})
-        .select('*').then(function(data){
-          res.send(data);
-        })
-    }
-  },
-
-  studentInfo: {
-
-    post: function(req, res) {
-      var first_name = req.body.first_name;
-      var last_name = req.body.last_name;
-      var grade = req.body.grade;
-      var IEP = req.body.IEP;
-      var pic = req.body.pic;
-
-      new Student({first_name: first_name})
-      .fetch()
-      .then(function(student) {
-        if (!student) {
-          var newStudent = new Student ({
-            first_name: first_name,
-            last_name: last_name,
-            grade: grade,
-            IEP: IEP,
-            pic: pic
-          })
-          newStudent.save()
-              .then(function(newUser) {
-                // util.createSession(req, res, newUser);
-                res.send('new student created')
-              });
-          } else {
-            res.send('Account already exists');
-            // res.redirect('/signup');
-        }
-      })
-    },
-
-    get: function(req, res) {
-      knex('students').select('*').then(function(data){
-        res.send(data);
+        res.redirect('/');
       })
     }
   }

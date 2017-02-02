@@ -9,16 +9,5 @@ router.post('/signup', controller.signup.post);
 
 router.get('/logout', controller.logout.get);
 
-// router.get('/students/name', controller.query.get);
-
-router.post('/students/name', controller.query.post);
-
-router.get('/students/getAll', controller.studentInfo.get);
-
-router.post('/students', controller.studentInfo.post);
-
-// router.get('/testGetTopSecretInfo', controller.testGetTopSecretInfo.get);
-
-
 module.exports = router;
 

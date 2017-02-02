@@ -1,0 +1,14 @@
+var controller = require('./controllers/dataControllers');
+var router = require('express').Router();
+
+
+
+router.post('/students/name', controller.query.post);
+
+router.get('/students/getAll', controller.studentInfo.get);
+
+router.post('/students', controller.studentInfo.post);
+
+
+module.exports = router;
+
