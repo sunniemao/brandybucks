@@ -13,7 +13,7 @@ class Nav extends React.Component {
     return(
       <div className="navbar navbar-inverse navbar-fixed-top">
         <div className="navbar-header">
-          <Link to="/" className="navbar-brand">brandybucks</Link>
+          <Link to="/" className="navbar-brand">llama</Link>
             <ul className="navbar-nav nav-fill">
               <li className="nav-item">
                 <Link to="/" className="nav-link">Home</Link>
@@ -25,15 +25,15 @@ class Nav extends React.Component {
                 <a href="#" onClick={this.logout.bind(this)} className="nav-link">Logout</a>
               </li>
               <li className="nav-item">
-                <input className="student-search" type="text" placeholder="Search Name" onChange={this.props.searchText} />
-                <button className="btn search-btn" onClick={this.props.searchClicked} >Search Student</button>
+                <input className="student-search" type="text" placeholder="&nbsp;Search Student" onChange={this.props.searchText} />&nbsp;
+                <button className="btn search-btn" onClick={this.props.searchClicked} >Find</button>
               </li>
             </ul>
         </div>
         <div className="side-nav">
           <ul className="side-nav">
             <li className="studentInfo">
-              <img src="https://t1.rbxcdn.com/52ed596ced6630987d05c5cc688e3af5" width="150" /><br /><br />Student Name
+              <img src="../llama.png" width="150" /><br /><br />Student Name
             </li>
             <li>
               <Link to="/goals">Goals</Link>

@@ -27431,7 +27431,7 @@
 	          _react2.default.createElement(
 	            _reactRouter.Link,
 	            { to: '/', className: 'navbar-brand' },
-	            'brandybucks'
+	            'llama'
 	          ),
 	          _react2.default.createElement(
 	            'ul',
@@ -27466,11 +27466,12 @@
 	            _react2.default.createElement(
 	              'li',
 	              { className: 'nav-item' },
-	              _react2.default.createElement('input', { className: 'student-search', type: 'text', placeholder: 'Search Name', onChange: this.props.searchText }),
+	              _react2.default.createElement('input', { className: 'student-search', type: 'text', placeholder: '\xA0Search Student', onChange: this.props.searchText }),
+	              '\xA0',
 	              _react2.default.createElement(
 	                'button',
 	                { className: 'btn search-btn', onClick: this.props.searchClicked },
-	                'Search Student'
+	                'Find'
 	              )
 	            )
 	          )
@@ -27484,7 +27485,7 @@
 	            _react2.default.createElement(
 	              'li',
 	              { className: 'studentInfo' },
-	              _react2.default.createElement('img', { src: 'https://t1.rbxcdn.com/52ed596ced6630987d05c5cc688e3af5', width: '150' }),
+	              _react2.default.createElement('img', { src: '../llama.png', width: '150' }),
 	              _react2.default.createElement('br', null),
 	              _react2.default.createElement('br', null),
 	              'Student Name'
