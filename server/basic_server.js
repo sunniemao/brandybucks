@@ -8,13 +8,23 @@ var session = require('express-session')
 var bookshelf = require('./config.js');
 
 var bodyParser = require('body-parser');
-var router = require('./routes.js');
+var authRouter = require('./authRoutes.js');
+var dataRouter = require('./dataRoutes.js');
 
 
+var authRedirectMiddleware = function(req, res, next){
+  if(req.session.level === undefined) {
+    res.redirect('/login');
+  } else if (req.session.level !== 'loggedIn') {
+    res.redirect('/login');
+  } else if(req.session.level === 'loggedIn') {
+    next();
+  }
+};
 
-//////
+////
 // express-sessions
-//////
+////
 
 var sess = {
   secret: 'bbucsecRit',
@@ -23,16 +33,21 @@ var sess = {
   saveUninitialized: true,
 }
 
-if (app.get('env') === 'production') {
+// if (app.get('env') === 'production') {
   // app.set('trust proxy', 1) // trust first proxy
-  sess.cookie.secure = true // serve secure cookies
-}
+  // has to be https, for now we are not
+  // sess.cookie.secure = true // serve secure cookies
+// }
+
+
+// the first thing that actually happens
+// is a session is created
 
 app.use(session(sess))
 
-/////
+///
 // end express-sessions
-/////
+///
 
 
 
@@ -42,24 +57,51 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
+
+app.get('/login', function(req, res) {
+  // console.log('req.session from /login', req.session)
+  res.sendFile(path.join(__dirname, './authViews', 'login.html'));
+});
+
+app.get('/signup', function(req, res) {
+  res.sendFile(path.join(__dirname, './authViews', 'signup.html'));
+});
+
+// Set up our login/logout api routes
+app.use('/authApi', authRouter);
+
+
+////////
+// this is the auth cutoff point
+////////
+
+// console.log('process.env.NODE_ENV: ', process.env.NODE_ENV)
+console.log('process.env.SKIP_AUTH: ', process.env.SKIP_AUTH)
+
+if (process.env.SKIP_AUTH !== 'skip') {
+
+  app.use(authRedirectMiddleware);
+}
+
+
+/////////
+
+
+
 // catch anything named correctly in /../client
 app.use(express.static(__dirname + '/../client'));
 
-// Set up our api routes
-app.use('/api', router);
+// Set up our data api routes
+app.use('/api', dataRouter);
+
+
 
 // catch any other urls and send to index.html in /../client
 app.get('*', function(req, res) {
-  var sess = req.session
-  // sess.rights = 'user'
 
   console.log('from wildcard route!! ', req.session)
   res.sendFile(path.join(__dirname, '../client', 'index.html'));
 });
 
-
-// app.listen(3000, function () {
-//   console.log('Example app listening on port 3000!')
-// })
 
 module.exports = app;
