@@ -10,6 +10,7 @@ import {Goals} from './Goals.jsx';
 import {IEP} from './IEP.jsx';
 import {MeetingNotes} from './MeetingNotes.jsx';
 import {ViewLogs} from './ViewLogs.jsx';
+import {StudentForm} from './StudentForm.jsx';
 
 export default (
   <Route path="/" component={App}>
@@ -21,5 +22,6 @@ export default (
     <Route path="iep" component={IEP} />
     <Route path="meetingnotes" component={MeetingNotes} />
     <Route path="viewlogs" component={ViewLogs} />
+    <Route path="addstudent" component={StudentForm} />
   </Route>
 )

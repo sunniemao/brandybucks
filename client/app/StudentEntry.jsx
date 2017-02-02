@@ -9,7 +9,8 @@ class StudentEntry extends React.Component {
     console.log(this.props.eachStudent)
     return (
       <div>
-        {this.props.eachStudent.pic}&nbsp;
+        <img src=
+        {this.props.eachStudent.pic} />
         {this.props.eachStudent.first_name}&nbsp;
         {this.props.eachStudent.last_name}&nbsp;
         {this.props.eachStudent.grade}&nbsp;

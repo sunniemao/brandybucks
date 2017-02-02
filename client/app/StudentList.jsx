@@ -8,30 +8,32 @@ class StudentList extends React.Component {
     super(props);
 
     this.state = {
-      students: [
-      {
-        first_name: 'Johnny',
-        last_name: 'Kwong',
-        grade: 'F',
-        IEP: 'Very bad student',
-        pic: 'no pics'
-      },
-      {
-        first_name: 'Isaac',
-        last_name: 'Yoon',
-        grade: 'D',
-        IEP: 'Very lazy student',
-        pic: 'no pics'
-      }
-      ]
+      students: []
+      // [
+      // {
+      //   first_name: 'Johnny',
+      //   last_name: 'Kwong',
+      //   grade: 'F',
+      //   IEP: 'Very bad student',
+      //   pic: 'no pics'
+      // },
+      // {
+      //   first_name: 'Isaac',
+      //   last_name: 'Yoon',
+      //   grade: 'D',
+      //   IEP: 'Very lazy student',
+      //   pic: 'no pics'
+      // }
+      // ]
     };
   }
 
   componentWillMount() {
     getAllStudents()
     .then((resp) => {
+      console.log('data returning', resp.data)
       this.setState({
-        student: resp.data,
+        students: resp.data,
       });
     })
     .catch((err) => {

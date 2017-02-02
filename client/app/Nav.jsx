@@ -73,6 +73,9 @@ class Nav extends React.Component {
             <li>
               <Link to="/viewlogs">Updates / Logs</Link>
             </li>
+            <li>
+              <Link to="/addstudent">Add Student</Link>
+            </li>
           </ul>
         </div>
       </div>
