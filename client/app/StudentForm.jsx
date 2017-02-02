@@ -78,29 +78,43 @@ class StudentForm extends React.Component{
 
   render() {
     return(
+      <div className="formWidth">
       <form onSubmit={this.submitClick}>
+        <div className="form-group">
         <label>
         First Name:
-        <input type="text" onChange={this.handleFirstName} />
         </label>
+        <input type="text" className="form-control" onChange={this.handleFirstName} />
+        </div>
+        <div className="form-group">
         <label>
         Last Name:
-        <input type="text" onChange={this.handleLastName} />
         </label>
+        <input type="text" className="form-control" onChange={this.handleLastName} />
+        </div>
+        <div className="form-group">
         <label>
         Grade:
-        <input type="text" onChange={this.handleGrade} />
         </label>
+        <input type="text" className="form-control" onChange={this.handleGrade} />
+        </div>
+        <div className="form-group">
         <label>
         IEP:
-        <input type="text" onChange={this.handleIEP} />
         </label>
+        <input type="text" className="form-control" onChange={this.handleIEP} />
+        </div>
+        <div className="form-group">
         <label>
-        Picture:
-        <input type="text" onChange={this.handlePic} />
+        Photo:
         </label>
-        <button className="btn add-btn">Add a student</button>
+        <input type="text" className="form-control" onChange={this.handlePic} />
+        </div>
+        <div className="form-group">
+        <button className="btn search-btn">Add a student</button>
+        </div>
       </form>
+      </div>
     )
   }
 }

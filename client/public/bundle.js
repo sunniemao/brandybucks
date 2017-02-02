@@ -27490,8 +27490,8 @@
 	              { className: 'studentInfo' },
 	              _react2.default.createElement('img', { src: '../llama.png', width: '150' }),
 	              _react2.default.createElement('br', null),
-	              _react2.default.createElement('br', null),
-	              'Student Name'
+	              'Student Name',
+	              _react2.default.createElement('br', null)
 	            ),
 	            _react2.default.createElement(
 	              'li',
@@ -27527,15 +27527,6 @@
 	                _reactRouter.Link,
 	                { to: '/viewlogs' },
 	                'Updates / Logs'
-	              )
-	            ),
-	            _react2.default.createElement(
-	              'li',
-	              null,
-	              _react2.default.createElement(
-	                _reactRouter.Link,
-	                { to: '/addstudent' },
-	                'Add Student'
 	              )
 	            )
 	          )
@@ -27577,6 +27568,8 @@
 	
 	var _StudentEntry = __webpack_require__(/*! ./StudentEntry.jsx */ 270);
 	
+	var _reactRouter = __webpack_require__(/*! react-router */ 178);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -27595,22 +27588,6 @@
 	
 	    _this.state = {
 	      students: []
-	      // [
-	      // {
-	      //   first_name: 'Johnny',
-	      //   last_name: 'Kwong',
-	      //   grade: 'F',
-	      //   IEP: 'Very bad student',
-	      //   pic: 'no pics'
-	      // },
-	      // {
-	      //   first_name: 'Isaac',
-	      //   last_name: 'Yoon',
-	      //   grade: 'D',
-	      //   IEP: 'Very lazy student',
-	      //   pic: 'no pics'
-	      // }
-	      // ]
 	    };
 	    return _this;
 	  }
@@ -27645,26 +27622,67 @@
 	              'div',
 	              { className: 'col-md-12' },
 	              _react2.default.createElement(
-	                'h1',
-	                null,
-	                'View Student List'
+	                'p',
+	                { className: 'alignleft' },
+	                _react2.default.createElement(
+	                  'h1',
+	                  null,
+	                  'View Students'
+	                )
 	              ),
 	              _react2.default.createElement(
-	                'div',
-	                null,
-	                this.state.students.map(function (student, index) {
-	                  return _react2.default.createElement(_StudentEntry.StudentEntry, { eachStudent: student, key: index });
-	                })
+	                'p',
+	                { className: 'alignright' },
+	                _react2.default.createElement(
+	                  'h3',
+	                  null,
+	                  _react2.default.createElement(
+	                    _reactRouter.Link,
+	                    { to: '/addstudent' },
+	                    _react2.default.createElement('img', { src: 'add.png', height: '25px' }),
+	                    'Student'
+	                  )
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'table',
+	                { className: 'table table-hover' },
+	                _react2.default.createElement(
+	                  'thead',
+	                  null,
+	                  _react2.default.createElement(
+	                    'tr',
+	                    null,
+	                    _react2.default.createElement(
+	                      'th',
+	                      { className: 'col-md-4' },
+	                      'Photo'
+	                    ),
+	                    _react2.default.createElement(
+	                      'th',
+	                      { className: 'col-md-3' },
+	                      'First Name'
+	                    ),
+	                    _react2.default.createElement(
+	                      'th',
+	                      { className: 'col-md-3' },
+	                      'Last Name'
+	                    ),
+	                    _react2.default.createElement(
+	                      'th',
+	                      { className: 'col-md-2' },
+	                      'Grade'
+	                    )
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  'tbody',
+	                  null,
+	                  this.state.students.map(function (student, index) {
+	                    return _react2.default.createElement(_StudentEntry.StudentEntry, { eachStudent: student, key: index });
+	                  })
+	                )
 	              )
-	            )
-	          ),
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'row' },
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'col-md-12' },
-	              'Text'
 	            )
 	          )
 	        )
@@ -29455,7 +29473,7 @@
 	              ' \xA0',
 	              _react2.default.createElement('input', { id: 'password', type: 'password', name: 'password', value: this.state.name, onChange: this.handleInputChange }),
 	              ' \xA0',
-	              _react2.default.createElement('input', { type: 'submit', className: 'btn login-btn', value: '\xA0Login\xA0' })
+	              _react2.default.createElement('input', { type: 'submit', className: 'btn login-btn', value: '\xA0Sign Up\xA0' })
 	            ),
 	            _react2.default.createElement('p', null),
 	            _react2.default.createElement(
@@ -29902,11 +29920,11 @@
 	
 	exports.getAllStudents = function () {
 	  console.log('getAllStudent called');
-	  return _axios2.default.get('http://localhost:3000/api/students/getAll');
+	  return _axios2.default.get('api/students/getAll');
 	};
 	
 	exports.getStudentByName = function (name) {
-	  return _axios2.default.get('http://localhost:3000/api/students/name', {
+	  return _axios2.default.get('api/students/name', {
 	    params: {
 	      name: name
 	    }
@@ -29916,7 +29934,7 @@
 	exports.addStudent = function (student) {
 	  return (0, _axios2.default)({
 	    method: 'POST',
-	    url: 'http://localhost:3000/api/students',
+	    url: 'api/students',
 	    data: student
 	  });
 	};
@@ -29928,7 +29946,7 @@
   \*************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -29959,20 +29977,32 @@
 	  }
 	
 	  _createClass(StudentEntry, [{
-	    key: 'render',
+	    key: "render",
 	    value: function render() {
 	      console.log(this.props.eachStudent);
 	      return _react2.default.createElement(
-	        'div',
+	        "tr",
 	        null,
-	        _react2.default.createElement('img', { src: this.props.eachStudent.pic }),
-	        this.props.eachStudent.first_name,
-	        '\xA0',
-	        this.props.eachStudent.last_name,
-	        '\xA0',
-	        this.props.eachStudent.grade,
-	        '\xA0',
-	        this.props.eachStudent.IEP
+	        _react2.default.createElement(
+	          "td",
+	          null,
+	          _react2.default.createElement("img", { src: this.props.eachStudent.pic, width: "40%" })
+	        ),
+	        _react2.default.createElement(
+	          "td",
+	          null,
+	          this.props.eachStudent.first_name
+	        ),
+	        _react2.default.createElement(
+	          "td",
+	          null,
+	          this.props.eachStudent.last_name
+	        ),
+	        _react2.default.createElement(
+	          "td",
+	          null,
+	          this.props.eachStudent.grade
+	        )
 	      );
 	    }
 	  }]);
@@ -30103,42 +30133,70 @@
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
-	        'form',
-	        { onSubmit: this.submitClick },
+	        'div',
+	        { className: 'formWidth' },
 	        _react2.default.createElement(
-	          'label',
-	          null,
-	          'First Name:',
-	          _react2.default.createElement('input', { type: 'text', onChange: this.handleFirstName })
-	        ),
-	        _react2.default.createElement(
-	          'label',
-	          null,
-	          'Last Name:',
-	          _react2.default.createElement('input', { type: 'text', onChange: this.handleLastName })
-	        ),
-	        _react2.default.createElement(
-	          'label',
-	          null,
-	          'Grade:',
-	          _react2.default.createElement('input', { type: 'text', onChange: this.handleGrade })
-	        ),
-	        _react2.default.createElement(
-	          'label',
-	          null,
-	          'IEP:',
-	          _react2.default.createElement('input', { type: 'text', onChange: this.handleIEP })
-	        ),
-	        _react2.default.createElement(
-	          'label',
-	          null,
-	          'Picture:',
-	          _react2.default.createElement('input', { type: 'text', onChange: this.handlePic })
-	        ),
-	        _react2.default.createElement(
-	          'button',
-	          { className: 'btn add-btn' },
-	          'Add a student'
+	          'form',
+	          { onSubmit: this.submitClick },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'form-group' },
+	            _react2.default.createElement(
+	              'label',
+	              null,
+	              'First Name:'
+	            ),
+	            _react2.default.createElement('input', { type: 'text', className: 'form-control', onChange: this.handleFirstName })
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'form-group' },
+	            _react2.default.createElement(
+	              'label',
+	              null,
+	              'Last Name:'
+	            ),
+	            _react2.default.createElement('input', { type: 'text', className: 'form-control', onChange: this.handleLastName })
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'form-group' },
+	            _react2.default.createElement(
+	              'label',
+	              null,
+	              'Grade:'
+	            ),
+	            _react2.default.createElement('input', { type: 'text', className: 'form-control', onChange: this.handleGrade })
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'form-group' },
+	            _react2.default.createElement(
+	              'label',
+	              null,
+	              'IEP:'
+	            ),
+	            _react2.default.createElement('input', { type: 'text', className: 'form-control', onChange: this.handleIEP })
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'form-group' },
+	            _react2.default.createElement(
+	              'label',
+	              null,
+	              'Photo:'
+	            ),
+	            _react2.default.createElement('input', { type: 'text', className: 'form-control', onChange: this.handlePic })
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'form-group' },
+	            _react2.default.createElement(
+	              'button',
+	              { className: 'btn search-btn' },
+	              'Add a student'
+	            )
+	          )
 	        )
 	      );
 	    }

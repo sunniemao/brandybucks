@@ -8,14 +8,13 @@ class StudentEntry extends React.Component {
   render() {
     console.log(this.props.eachStudent)
     return (
-      <div>
-        <img src=
-        {this.props.eachStudent.pic} />
-        {this.props.eachStudent.first_name}&nbsp;
-        {this.props.eachStudent.last_name}&nbsp;
-        {this.props.eachStudent.grade}&nbsp;
-        {this.props.eachStudent.IEP}
-      </div>
+      <tr>
+        <td><img src=
+        {this.props.eachStudent.pic} width="40%" /></td>
+        <td>{this.props.eachStudent.first_name}</td>
+        <td>{this.props.eachStudent.last_name}</td>
+        <td>{this.props.eachStudent.grade}</td>
+      </tr>
     )
   }
 }

@@ -35,7 +35,7 @@ ul {
 }
 .side-nav {
     position: fixed;
-    top: 58px;
+    top: 56px;
     left: 200px;
     width: 200px;
     margin-left: -200px;
@@ -111,4 +111,26 @@ a {
 object { 
   width: 97%; 
   height: 100%; 
+}
+.table {
+  width: 95%;
+}
+.table > tbody > tr > td {
+  vertical-align: middle;
+  text-align: center;
+}
+.table > thead > tr > th {
+  text-align: center;
+}
+.alignleft {
+  float: left;
+}
+.alignright {
+  float: right;
+  padding-right: 60px;
+  padding-top: 10px;
+}
+.formWidth {
+  padding-top: 10px;
+  width: 50%;
 }

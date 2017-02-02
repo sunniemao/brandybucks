@@ -18,11 +18,11 @@ exports.signup = (user) => {
 
 exports.getAllStudents = () => {
   console.log('getAllStudent called')
-  return axios.get('http://localhost:3000/api/students/getAll')
+  return axios.get('api/students/getAll')
 };
 
 exports.getStudentByName = (name) => {
-  return axios.get('http://localhost:3000/api/students/name', {
+  return axios.get('api/students/name', {
     params: {
     name: name
     }
@@ -32,7 +32,7 @@ exports.getStudentByName = (name) => {
 exports.addStudent = (student) => {
   return axios({
     method: 'POST',
-    url: 'http://localhost:3000/api/students',
+    url: 'api/students',
     data: student
   });
 };

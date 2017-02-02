@@ -50,7 +50,7 @@ module.exports = React.createClass({
                   <input id="username" type="text" name="username" value={this.state.name} onChange={this.handleInputChange} /> &nbsp;
                   <b>Password:</b> &nbsp;
                   <input id="password" type="password" name="password" value={this.state.name} onChange={this.handleInputChange} /> &nbsp;
-                  <input type="submit" className="btn login-btn" value="&nbsp;Login&nbsp;" />
+                  <input type="submit" className="btn login-btn" value="&nbsp;Sign Up&nbsp;" />
             </form>
             <p />
               <Link to="/login">Already have an account? Login &rarr;</Link>
