@@ -85,14 +85,15 @@ bookshelf.knex.schema.hasTable('users_students').then(function(exists) {
 });
 
 
-bookshelf.knex.schema.hasTable('messages').then(function(exists) {
+bookshelf.knex.schema.hasTable('logs').then(function(exists) {
   if (!exists) {
-    return knex.schema.createTable('messages', function(table) {
+    return knex.schema.createTable('logs', function(table) {
       table.increments('id').primary();
-      table.text('message');
+      table.text('log');
       table.integer('user_id').unsigned();
       table.foreign('user_id').references('user_id');
-      table.integer('student_id').usigned();
+      table.string('user',100);
+      table.integer('student_id').unsigned();
       table.foreign('student_id').references('student_id')
     }).then(function (table) {
     console.log('Created Table4', table);

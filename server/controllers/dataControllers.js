@@ -2,6 +2,7 @@ var User = require('../models/user');
 var knex = require('../config.js').knex;
 
 var Student = require('../models/student');
+var Log = require('../models/log')
 
 
 
@@ -21,7 +22,7 @@ module.exports = {
   },
 
   studentInfo: {
-
+//
     post: function(req, res) {
       var first_name = req.body.first_name;
       var last_name = req.body.last_name;
@@ -41,7 +42,7 @@ module.exports = {
             pic: pic
           })
           newStudent.save()
-              .then(function(newUser) {
+              .then(function(student) {
                 // util.createSession(req, res, newUser);
                 res.send('new student created')
               });
@@ -56,6 +57,25 @@ module.exports = {
       knex('students').select('*').then(function(data){
         res.send(data);
       })
+    }
+  },
+
+  logs: {
+
+    post: function(req,res) {
+      var author = req.body.author
+      var student_id = req.body.id
+      var log = req.body.log
+
+      var newLog = new Log({
+        log: log,
+        user: author,
+        student_id: student_id
+      })
+      newLog.save()
+        .then(function() {
+          res.send('log saved')
+      });
     }
   }
 }
