@@ -16,7 +16,6 @@ class StudentList extends React.Component {
   componentWillMount() {
     getAllStudents()
     .then((resp) => {
-      console.log('data returning', resp.data)
       this.setState({
         students: resp.data,
       });
@@ -32,8 +31,8 @@ class StudentList extends React.Component {
         <div className="container-fluid">
           <div className="row">
             <div className="col-md-12">
-                <p className="alignleft"><h1>View Students</h1></p>
-                <p className="alignright"><h3><Link to="/addstudent"><img src="add.png" height="25px" />Student</Link></h3></p>
+                <h1 className="alignleft">View Students</h1>
+                <h3 className="alignright"><Link to="/addstudent"><img src="add.png" height="25px" />Student</Link></h3>
                   <table className="table table-hover" >
                     <thead>
                       <tr>

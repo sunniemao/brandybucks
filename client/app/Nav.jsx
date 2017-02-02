@@ -21,7 +21,6 @@ class Nav extends React.Component {
     this.setState({
       searchInput: e.target.value,
     });
-    console.log(this.state.searchInput)
   };
 
   //create handler method for search button clicked
@@ -40,7 +39,9 @@ class Nav extends React.Component {
       <div className="navbar navbar-inverse navbar-fixed-top">
         <div className="navbar-header">
           <Link to="/" className="navbar-brand">llama</Link>
-            <ul className="navbar-nav nav-fill">
+          </div>
+          <div className="collapse navbar-collapse">
+            <ul className="navbar-nav navbar-right">
               <li className="nav-item">
                 <Link to="/" className="nav-link">Home</Link>
               </li>
