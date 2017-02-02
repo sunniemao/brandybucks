@@ -59,7 +59,7 @@ class Nav extends React.Component {
         <div className="side-nav">
           <ul className="side-nav">
             <li className="studentInfo">
-              <img src="../llama.png" width="150" /><br /><br />Student Name
+              <img src="../llama.png" width="150" /><br />Student Name<br />
             </li>
             <li>
               <Link to="/goals">Goals</Link>
@@ -72,9 +72,6 @@ class Nav extends React.Component {
             </li>
             <li>
               <Link to="/viewlogs">Updates / Logs</Link>
-            </li>
-            <li>
-              <Link to="/addstudent">Add Student</Link>
             </li>
           </ul>
         </div>
