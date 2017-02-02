@@ -1,6 +1,8 @@
 var User = require('../models/user');
 var knex = require('../config.js').knex;
 
+var Student = require('../models/student');
+
 
 
 module.exports = {
@@ -40,6 +42,15 @@ module.exports = {
           })
         }
       })
+      newStudent.save()
+        .then(function(newUser) {
+          // util.createSession(req, res, newUser);
+          res.send('new student created')
+        });
+      } else {
+        res.send('Account already exists');
+        // res.redirect('/signup');
+
     },
 
     get: function(req, res) {
