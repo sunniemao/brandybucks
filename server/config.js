@@ -28,7 +28,7 @@ var bookshelf = require('bookshelf')(knex);
 //user schemas:
 
 //checks for a table's existence by tableName, resolving with a boolean to signal if the table exists
-knex.schema.dropTableIfExists('students');
+// knex.schema.dropTableIfExists('students');
 bookshelf.knex.schema.hasTable('students').then(function(exists) {
   if (!exists) {
     return knex.schema.createTable('students', function(student) {
@@ -44,7 +44,7 @@ bookshelf.knex.schema.hasTable('students').then(function(exists) {
   }
 });
 
-knex.schema.dropTableIfExists('users');
+// knex.schema.dropTableIfExists('users');
 bookshelf.knex.schema.hasTable('users').then(function(exists) {
   if (!exists) {
     return knex.schema.createTable('users', function(user) {

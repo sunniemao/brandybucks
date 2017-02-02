@@ -1,5 +1,4 @@
 var User = require('../models/user');
-var Student = require
 var knex = require('../config.js').knex;
 // var Student = require('../models/students');
 
