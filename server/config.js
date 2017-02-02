@@ -92,6 +92,8 @@ bookshelf.knex.schema.hasTable('messages').then(function(exists) {
       table.text('message');
       table.integer('user_id').unsigned();
       table.foreign('user_id').references('user_id');
+      table.integer('student_id').usigned();
+      table.foreign('student_id').references('student_id')
     }).then(function (table) {
     console.log('Created Table4', table);
     });
