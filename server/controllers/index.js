@@ -1,4 +1,5 @@
 var User = require('../models/user');
+var knex = require('../config.js').knex;
 
 module.exports = {
 
@@ -87,6 +88,19 @@ module.exports = {
       })
 
       res.send('digging');
+
+    }
+  },
+
+  query: {
+
+    post: function(req, res) {
+      var queryString = req.body.name;
+      knex('students').where({
+        first_name: queryString})
+        .select('*').then(function(data){
+          res.send(data);
+        })
 
     }
   }
