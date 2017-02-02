@@ -27252,25 +27252,19 @@
 	
 	var _StudentList = __webpack_require__(/*! ./StudentList.jsx */ 236);
 	
-	var _Login = __webpack_require__(/*! ./Login.jsx */ 264);
+	var _CreateLog = __webpack_require__(/*! ./CreateLog.jsx */ 264);
 	
-	var _Login2 = _interopRequireDefault(_Login);
+	var _CreateLog2 = _interopRequireDefault(_CreateLog);
 	
-	var _Signup = __webpack_require__(/*! ./Signup.jsx */ 265);
+	var _Goals = __webpack_require__(/*! ./Goals.jsx */ 265);
 	
-	var _Signup2 = _interopRequireDefault(_Signup);
+	var _IEP = __webpack_require__(/*! ./IEP.jsx */ 266);
 	
-	var _CreateLog = __webpack_require__(/*! ./CreateLog.jsx */ 266);
+	var _MeetingNotes = __webpack_require__(/*! ./MeetingNotes.jsx */ 267);
 	
-	var _Goals = __webpack_require__(/*! ./Goals.jsx */ 267);
+	var _ViewLogs = __webpack_require__(/*! ./ViewLogs.jsx */ 268);
 	
-	var _IEP = __webpack_require__(/*! ./IEP.jsx */ 268);
-	
-	var _MeetingNotes = __webpack_require__(/*! ./MeetingNotes.jsx */ 269);
-	
-	var _ViewLogs = __webpack_require__(/*! ./ViewLogs.jsx */ 270);
-	
-	var _StudentForm = __webpack_require__(/*! ./StudentForm.jsx */ 271);
+	var _StudentForm = __webpack_require__(/*! ./StudentForm.jsx */ 269);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -27278,9 +27272,7 @@
 	  _reactRouter.Route,
 	  { path: '/', component: _App2.default },
 	  _react2.default.createElement(_reactRouter.IndexRoute, { component: _StudentList.StudentList }),
-	  _react2.default.createElement(_reactRouter.Route, { path: '/login', component: _Login2.default }),
-	  _react2.default.createElement(_reactRouter.Route, { path: '/signup', component: _Signup2.default }),
-	  _react2.default.createElement(_reactRouter.Route, { path: 'createlog', component: _CreateLog.CreateLog }),
+	  _react2.default.createElement(_reactRouter.Route, { path: 'createlog', component: _CreateLog2.default }),
 	  _react2.default.createElement(_reactRouter.Route, { path: 'goals', component: _Goals.Goals }),
 	  _react2.default.createElement(_reactRouter.Route, { path: 'iep', component: _IEP.IEP }),
 	  _react2.default.createElement(_reactRouter.Route, { path: 'meetingnotes', component: _MeetingNotes.MeetingNotes }),
@@ -27405,7 +27397,6 @@
 	      this.setState({
 	        searchInput: e.target.value
 	      });
-	      console.log(this.state.searchInput);
 	    }
 	  }, {
 	    key: 'searchClicked',
@@ -27435,10 +27426,14 @@
 	            _reactRouter.Link,
 	            { to: '/', className: 'navbar-brand' },
 	            'llama'
-	          ),
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'collapse navbar-collapse' },
 	          _react2.default.createElement(
 	            'ul',
-	            { className: 'navbar-nav nav-fill' },
+	            { className: 'navbar-nav navbar-right' },
 	            _react2.default.createElement(
 	              'li',
 	              { className: 'nav-item' },
@@ -27598,7 +27593,6 @@
 	      var _this2 = this;
 	
 	      (0, _auth.getAllStudents)().then(function (resp) {
-	        console.log('data returning', resp.data);
 	        _this2.setState({
 	          students: resp.data
 	        });
@@ -27622,26 +27616,18 @@
 	              'div',
 	              { className: 'col-md-12' },
 	              _react2.default.createElement(
-	                'p',
+	                'h1',
 	                { className: 'alignleft' },
-	                _react2.default.createElement(
-	                  'h1',
-	                  null,
-	                  'View Students'
-	                )
+	                'View Students'
 	              ),
 	              _react2.default.createElement(
-	                'p',
+	                'h3',
 	                { className: 'alignright' },
 	                _react2.default.createElement(
-	                  'h3',
-	                  null,
-	                  _react2.default.createElement(
-	                    _reactRouter.Link,
-	                    { to: '/addstudent' },
-	                    _react2.default.createElement('img', { src: 'add.png', height: '25px' }),
-	                    'Student'
-	                  )
+	                  _reactRouter.Link,
+	                  { to: '/addstudent' },
+	                  _react2.default.createElement('img', { src: 'add.png', height: '25px' }),
+	                  'Student'
 	                )
 	              ),
 	              _react2.default.createElement(
@@ -29274,24 +29260,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	exports.login = function (user) {
-	  return (0, _axios2.default)({
-	    method: 'POST',
-	    url: '/api/login',
-	    data: user
-	  });
-	};
-	
-	exports.signup = function (user) {
-	  return (0, _axios2.default)({
-	    method: 'POST',
-	    url: '/api/signup',
-	    data: user
-	  });
-	};
-	
 	exports.getAllStudents = function () {
-	  console.log('getAllStudent called');
 	  return _axios2.default.get('api/students/getAll');
 	};
 	
@@ -29308,6 +29277,14 @@
 	    method: 'POST',
 	    url: 'api/students',
 	    data: student
+	  });
+	};
+	
+	exports.addLog = function (log) {
+	  return (0, _axios2.default)({
+	    method: 'POST',
+	    url: 'api/logs',
+	    data: log
 	  });
 	};
 
@@ -29351,7 +29328,6 @@
 	  _createClass(StudentEntry, [{
 	    key: "render",
 	    value: function render() {
-	      console.log(this.props.eachStudent);
 	      return _react2.default.createElement(
 	        "tr",
 	        null,
@@ -29386,9 +29362,9 @@
 
 /***/ },
 /* 264 */
-/*!******************************!*\
-  !*** ./client/app/Login.jsx ***!
-  \******************************/
+/*!**********************************!*\
+  !*** ./client/app/CreateLog.jsx ***!
+  \**********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29396,8 +29372,6 @@
 	var _react = __webpack_require__(/*! react */ 1);
 	
 	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRouter = __webpack_require__(/*! react-router */ 178);
 	
 	var _axios = __webpack_require__(/*! axios */ 237);
 	
@@ -29412,86 +29386,115 @@
 	
 	  getInitialState: function getInitialState() {
 	    return {
-	      username: "",
-	      password: ""
+	      students: [],
+	      id: '',
+	      author: '',
+	      log: ''
 	    };
 	  },
 	
-	  handleInputChange: function handleInputChange(e) {
-	    e.preventDefault();
-	    var name = e.target.name;
-	    var state = this.state;
-	    state[name] = e.target.value;
-	    this.setState(state);
-	  },
+	  componentWillMount: function componentWillMount() {
+	    var _this = this;
 	
-	  submitClick: function submitClick(e) {
-	    e.preventDefault();
-	    var user = {
-	      username: this.state.username,
-	      password: this.state.password
-	    };
-	    (0, _auth.login)(user).then(function (resp) {
-	      console.log('logged in');
+	    (0, _auth.getAllStudents)().then(function (resp) {
+	      _this.setState({
+	        students: resp.data
+	      });
 	    }).catch(function (err) {
-	      console.log('could not login', err);
+	      console.log(err);
 	    });
 	  },
+	  handleAuthor: function handleAuthor(e) {
+	    this.setState({
+	      author: e.target.value
+	    });
+	  },
+	  handleStudent: function handleStudent(e) {
+	    this.setState({
+	      id: e.target.value
+	    });
+	  },
+	  handleLog: function handleLog(e) {
+	    this.setState({
+	      log: e.target.value
+	    });
+	  },
+	  submitClick: function submitClick(e) {
+	    e.preventDefault();
+	    var log = {
+	      id: this.state.student,
+	      author: this.state.user,
+	      log: this.state.log
+	    };
+	    (0, _auth.addLog)(log).then(function (resp) {
+	      console.log('log added');
+	    }).catch(function (err) {
+	      console.log('could not add log', err);
+	    });
+	  },
+	
 	
 	  render: function render() {
 	    return _react2.default.createElement(
 	      'div',
-	      { id: 'wrapper' },
+	      { className: 'formWidth' },
 	      _react2.default.createElement(
-	        'div',
-	        { className: 'container-fluid' },
+	        'form',
+	        { onSubmit: this.submitClick },
 	        _react2.default.createElement(
 	          'div',
-	          { className: 'row' },
+	          { className: 'form-group' },
 	          _react2.default.createElement(
-	            'div',
-	            { className: 'col-md-12' },
+	            'label',
+	            null,
+	            'Author:'
+	          ),
+	          _react2.default.createElement('input', { type: 'text', className: 'form-control', onChange: this.handleAuthor, required: true })
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'form-group' },
+	          _react2.default.createElement(
+	            'label',
+	            null,
+	            'Student:'
+	          ),
+	          _react2.default.createElement(
+	            'select',
+	            { className: 'form-control custom-select', onChange: this.handleStudent, required: true },
 	            _react2.default.createElement(
-	              'h1',
-	              null,
-	              'Login'
-	            )
+	              'option',
+	              { defaultValue: true },
+	              'Select Student'
+	            ),
+	            this.state.students.map(function (student, index) {
+	              return _react2.default.createElement(
+	                'option',
+	                { value: student.id, key: index },
+	                student.first_name,
+	                ' ',
+	                student.last_name
+	              );
+	            })
 	          )
 	        ),
 	        _react2.default.createElement(
 	          'div',
-	          { className: 'row' },
+	          { className: 'form-group' },
 	          _react2.default.createElement(
-	            'div',
-	            { className: 'col-md-12' },
-	            _react2.default.createElement(
-	              'form',
-	              { onSubmit: this.submitClick, method: 'post' },
-	              _react2.default.createElement(
-	                'b',
-	                null,
-	                'Username:'
-	              ),
-	              ' \xA0',
-	              _react2.default.createElement('input', { id: 'username', type: 'text', name: 'username', value: this.state.name, onChange: this.handleInputChange }),
-	              ' \xA0',
-	              _react2.default.createElement(
-	                'b',
-	                null,
-	                'Password:'
-	              ),
-	              ' \xA0',
-	              _react2.default.createElement('input', { id: 'password', type: 'password', name: 'password', value: this.state.name, onChange: this.handleInputChange }),
-	              ' \xA0',
-	              _react2.default.createElement('input', { type: 'submit', className: 'btn login-btn', value: '\xA0Login\xA0' })
-	            ),
-	            _react2.default.createElement('p', null),
-	            _react2.default.createElement(
-	              _reactRouter.Link,
-	              { to: '/signup' },
-	              'Create an Account \u2192'
-	            ),
-	            _react2.default.createElement('p', null)
+	            'label',
+	            null,
+	            'Update / Log:'
+	          ),
+	          _react2.default.createElement('input', { type: 'text', className: 'form-control', onChange: this.handleLog, required: true })
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'form-group' },
+	          _react2.default.createElement(
+	            'button',
+	            { className: 'btn search-btn' },
+	            'Add log'
 	          )
 	        )
 	      )
@@ -29501,199 +29504,6 @@
 
 /***/ },
 /* 265 */
-/*!*******************************!*\
-  !*** ./client/app/Signup.jsx ***!
-  \*******************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRouter = __webpack_require__(/*! react-router */ 178);
-	
-	var _axios = __webpack_require__(/*! axios */ 237);
-	
-	var _axios2 = _interopRequireDefault(_axios);
-	
-	var _auth = __webpack_require__(/*! ./helper/auth.js */ 262);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	module.exports = _react2.default.createClass({
-	  displayName: 'exports',
-	
-	  getInitialState: function getInitialState() {
-	    return {
-	      username: "",
-	      password: ""
-	    };
-	  },
-	
-	  handleInputChange: function handleInputChange(e) {
-	    e.preventDefault();
-	    var name = e.target.name;
-	    var state = this.state;
-	    state[name] = e.target.value;
-	    this.setState(state);
-	  },
-	
-	  submitClick: function submitClick(e) {
-	    e.preventDefault();
-	    var user = {
-	      username: this.state.username,
-	      password: this.state.password
-	    };
-	    (0, _auth.signup)(user).then(function (resp) {
-	      console.log('account created');
-	    }).catch(function (err) {
-	      console.log('could not create account', err);
-	    });
-	  },
-	
-	  render: function render() {
-	    return _react2.default.createElement(
-	      'div',
-	      { id: 'wrapper' },
-	      _react2.default.createElement(
-	        'div',
-	        { className: 'container-fluid' },
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'row' },
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'col-md-12' },
-	            _react2.default.createElement(
-	              'h1',
-	              null,
-	              'Sign Up'
-	            )
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'row' },
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'col-md-12' },
-	            _react2.default.createElement(
-	              'form',
-	              { onSubmit: this.submitClick, method: 'post' },
-	              _react2.default.createElement(
-	                'b',
-	                null,
-	                'Username:'
-	              ),
-	              ' \xA0',
-	              _react2.default.createElement('input', { id: 'username', type: 'text', name: 'username', value: this.state.name, onChange: this.handleInputChange }),
-	              ' \xA0',
-	              _react2.default.createElement(
-	                'b',
-	                null,
-	                'Password:'
-	              ),
-	              ' \xA0',
-	              _react2.default.createElement('input', { id: 'password', type: 'password', name: 'password', value: this.state.name, onChange: this.handleInputChange }),
-	              ' \xA0',
-	              _react2.default.createElement('input', { type: 'submit', className: 'btn login-btn', value: '\xA0Sign Up\xA0' })
-	            ),
-	            _react2.default.createElement('p', null),
-	            _react2.default.createElement(
-	              _reactRouter.Link,
-	              { to: '/login' },
-	              'Already have an account? Login \u2192'
-	            ),
-	            _react2.default.createElement('p', null)
-	          )
-	        )
-	      )
-	    );
-	  }
-	});
-
-/***/ },
-/* 266 */
-/*!**********************************!*\
-  !*** ./client/app/CreateLog.jsx ***!
-  \**********************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.CreateLog = undefined;
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var CreateLog = function (_React$Component) {
-	  _inherits(CreateLog, _React$Component);
-	
-	  function CreateLog() {
-	    _classCallCheck(this, CreateLog);
-	
-	    return _possibleConstructorReturn(this, (CreateLog.__proto__ || Object.getPrototypeOf(CreateLog)).apply(this, arguments));
-	  }
-	
-	  _createClass(CreateLog, [{
-	    key: "render",
-	    value: function render() {
-	      return _react2.default.createElement(
-	        "div",
-	        { id: "wrapper" },
-	        _react2.default.createElement(
-	          "div",
-	          { className: "container-fluid" },
-	          _react2.default.createElement(
-	            "div",
-	            { className: "row" },
-	            _react2.default.createElement(
-	              "div",
-	              { className: "col-md-12" },
-	              _react2.default.createElement(
-	                "h1",
-	                null,
-	                "Create Log"
-	              )
-	            )
-	          ),
-	          _react2.default.createElement(
-	            "div",
-	            { className: "row" },
-	            _react2.default.createElement(
-	              "div",
-	              { className: "col-md-12" },
-	              "Text"
-	            )
-	          )
-	        )
-	      );
-	    }
-	  }]);
-	
-	  return CreateLog;
-	}(_react2.default.Component);
-	
-	exports.CreateLog = CreateLog;
-
-/***/ },
-/* 267 */
 /*!******************************!*\
   !*** ./client/app/Goals.jsx ***!
   \******************************/
@@ -29771,7 +29581,7 @@
 	exports.Goals = Goals;
 
 /***/ },
-/* 268 */
+/* 266 */
 /*!****************************!*\
   !*** ./client/app/IEP.jsx ***!
   \****************************/
@@ -29857,7 +29667,7 @@
 	exports.IEP = IEP;
 
 /***/ },
-/* 269 */
+/* 267 */
 /*!*************************************!*\
   !*** ./client/app/MeetingNotes.jsx ***!
   \*************************************/
@@ -29935,7 +29745,7 @@
 	exports.MeetingNotes = MeetingNotes;
 
 /***/ },
-/* 270 */
+/* 268 */
 /*!*********************************!*\
   !*** ./client/app/ViewLogs.jsx ***!
   \*********************************/
@@ -30013,7 +29823,7 @@
 	exports.ViewLogs = ViewLogs;
 
 /***/ },
-/* 271 */
+/* 269 */
 /*!************************************!*\
   !*** ./client/app/StudentForm.jsx ***!
   \************************************/
@@ -30059,7 +29869,8 @@
 	      last_name: '',
 	      grade: '',
 	      IEP: '',
-	      pic: ''
+	      pic: '',
+	      message: ''
 	    };
 	
 	    _this.handleFirstName = _this.handleFirstName.bind(_this);
@@ -30079,6 +29890,7 @@
 	  _createClass(StudentForm, [{
 	    key: 'handleFirstName',
 	    value: function handleFirstName(e) {
+	      console.log(e.target.value);
 	      this.setState({
 	        first_name: e.target.value
 	      });
@@ -30086,7 +29898,6 @@
 	  }, {
 	    key: 'handleLastName',
 	    value: function handleLastName(e) {
-	      console.log(e.target.value);
 	      this.setState({
 	        last_name: e.target.value
 	      });
@@ -30094,6 +29905,7 @@
 	  }, {
 	    key: 'handleGrade',
 	    value: function handleGrade(e) {
+	      console.log(e.target.value);
 	      this.setState({
 	        grade: e.target.value
 	      });
@@ -30101,6 +29913,7 @@
 	  }, {
 	    key: 'handleIEP',
 	    value: function handleIEP(e) {
+	      console.log(e.target.value);
 	      this.setState({
 	        IEP: e.target.value
 	      });
@@ -30108,6 +29921,7 @@
 	  }, {
 	    key: 'handlePic',
 	    value: function handlePic(e) {
+	      console.log(e.target.value);
 	      this.setState({
 	        pic: e.target.value
 	      });
@@ -30123,9 +29937,15 @@
 	        IEP: this.state.IEP,
 	        pic: this.state.pic
 	      };
+	      var context = this;
 	      (0, _auth.addStudent)(student).then(function (resp) {
-	        console.log('student added');
+	        context.setState({
+	          message: resp.data
+	        });
 	      }).catch(function (err) {
+	        context.setState({
+	          message: 'Sorry! error occure can not add student!'
+	        });
 	        console.log('could not add student', err);
 	      });
 	    }
@@ -30146,7 +29966,7 @@
 	              null,
 	              'First Name:'
 	            ),
-	            _react2.default.createElement('input', { type: 'text', className: 'form-control', onChange: this.handleFirstName })
+	            _react2.default.createElement('input', { type: 'text', className: 'form-control', onChange: this.handleFirstName, required: true })
 	          ),
 	          _react2.default.createElement(
 	            'div',
@@ -30156,7 +29976,7 @@
 	              null,
 	              'Last Name:'
 	            ),
-	            _react2.default.createElement('input', { type: 'text', className: 'form-control', onChange: this.handleLastName })
+	            _react2.default.createElement('input', { type: 'text', className: 'form-control', onChange: this.handleLastName, required: true })
 	          ),
 	          _react2.default.createElement(
 	            'div',
@@ -30166,7 +29986,7 @@
 	              null,
 	              'Grade:'
 	            ),
-	            _react2.default.createElement('input', { type: 'text', className: 'form-control', onChange: this.handleGrade })
+	            _react2.default.createElement('input', { type: 'text', className: 'form-control', onChange: this.handleGrade, required: true })
 	          ),
 	          _react2.default.createElement(
 	            'div',
@@ -30197,6 +30017,11 @@
 	              'Add a student'
 	            )
 	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          this.state.message
 	        )
 	      );
 	    }
