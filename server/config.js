@@ -84,4 +84,21 @@ bookshelf.knex.schema.hasTable('users_students').then(function(exists) {
   }
 });
 
+
+bookshelf.knex.schema.hasTable('messages').then(function(exists) {
+  if (!exists) {
+    return knex.schema.createTable('messages', function(table) {
+      table.increments('id').primary();
+      table.text('message');
+      table.integer('user_id').unsigned();
+      table.foreign('user_id').references('user_id');
+    }).then(function (table) {
+    console.log('Created Table4', table);
+    });
+  }
+});
+
+
+
+
 module.exports = bookshelf;
