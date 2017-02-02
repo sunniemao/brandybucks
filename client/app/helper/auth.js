@@ -1,23 +1,6 @@
 import axios from 'axios';
 
-exports.login = (user) => {
-  return axios({
-    method: 'POST',
-    url: '/api/login',
-    data: user
-  });
-};
-
-exports.signup = (user) => {
-  return axios({
-    method: 'POST',
-    url: '/api/signup',
-    data: user
-  });
-};
-
 exports.getAllStudents = () => {
-  console.log('getAllStudent called')
   return axios.get('api/students/getAll')
 };
 
@@ -34,5 +17,13 @@ exports.addStudent = (student) => {
     method: 'POST',
     url: 'api/students',
     data: student
+  });
+};
+
+exports.addLog = (log) => {
+  return axios({
+    method: 'POST',
+    url: 'api/logs',
+    data: log
   });
 };

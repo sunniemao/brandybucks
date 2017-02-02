@@ -34,7 +34,6 @@ class StudentForm extends React.Component{
   }
 
   handleLastName(e) {
-    console.log(e.target.value)
     this.setState({
       last_name: e.target.value,
     });
@@ -84,19 +83,19 @@ class StudentForm extends React.Component{
         <label>
         First Name:
         </label>
-        <input type="text" className="form-control" onChange={this.handleFirstName} />
+        <input type="text" className="form-control" onChange={this.handleFirstName} required />
         </div>
         <div className="form-group">
         <label>
         Last Name:
         </label>
-        <input type="text" className="form-control" onChange={this.handleLastName} />
+        <input type="text" className="form-control" onChange={this.handleLastName} required />
         </div>
         <div className="form-group">
         <label>
         Grade:
         </label>
-        <input type="text" className="form-control" onChange={this.handleGrade} />
+        <input type="text" className="form-control" onChange={this.handleGrade} required />
         </div>
         <div className="form-group">
         <label>

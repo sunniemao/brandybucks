@@ -6,7 +6,6 @@ class StudentEntry extends React.Component {
   }
 
   render() {
-    console.log(this.props.eachStudent)
     return (
       <tr>
         <td><img src=
