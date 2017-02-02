@@ -2,13 +2,17 @@ var User = require('../models/user');
 var knex = require('../config.js').knex;
 var Student = require('../models/student');
 
+
+
+
 module.exports = {
+
 
   testGetTopSecretInfo: {
     get: function(req, res) {
 
 
-      if (req.session.level === 'priveledged') {
+      if (req.session.level === 'loggedIn') {
         res.send('top Secret');
       } else {
         res.send('nice try');
@@ -34,8 +38,16 @@ module.exports = {
             user.comparePassword(password, function(match) {
               if (match) {
 
+                console.log('in login')
+
+                console.log('req.session in POST login', req.session)
+
                 // set the permissions level
-                req.session.level = 'priveledged'
+                req.session.level = 'loggedIn'
+
+                // add a session period
+
+
 
                 // res.send('its a re-hashed match!!')
                 res.redirect('/')

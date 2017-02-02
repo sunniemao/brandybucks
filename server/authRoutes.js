@@ -1,4 +1,4 @@
-var controller = require('./controllers');
+var controller = require('./controllers/authControllers');
 var router = require('express').Router();
 
 //Connect controller methods to their corresponding routes
@@ -17,7 +17,7 @@ router.get('/students/getAll', controller.studentInfo.get);
 
 router.post('/students', controller.studentInfo.post);
 
-router.get('/testGetTopSecretInfo', controller.testGetTopSecretInfo.get);
+// router.get('/testGetTopSecretInfo', controller.testGetTopSecretInfo.get);
 
 
 module.exports = router;
