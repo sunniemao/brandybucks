@@ -8,7 +8,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node server/index.js",
-    "serverDev": "nodemon server/devIndex.js",
+    "serverDev": "SKIP_AUTH='skip' nodemon server/devIndex.js",
+    "serverDevTestAuth": "nodemon server/devIndex.js",
     "dev": "webpack -d --watch",
     "build": "webpack -p",
     "test": "mocha --bail --reporter nyan test/ServerSpec.js"

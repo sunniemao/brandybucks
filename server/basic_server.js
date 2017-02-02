@@ -75,7 +75,14 @@ app.use('/authApi', authRouter);
 // this is the auth cutoff point
 ////////
 
-app.use(authRedirectMiddleware);
+// console.log('process.env.NODE_ENV: ', process.env.NODE_ENV)
+console.log('process.env.SKIP_AUTH: ', process.env.SKIP_AUTH)
+
+if (process.env.SKIP_AUTH !== 'skip') {
+
+  app.use(authRedirectMiddleware);
+}
+
 
 /////////
 

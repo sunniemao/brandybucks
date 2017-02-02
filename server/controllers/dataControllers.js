@@ -40,17 +40,16 @@ module.exports = {
             IEP: IEP,
             pic: pic
           })
+          newStudent.save()
+              .then(function(newUser) {
+                // util.createSession(req, res, newUser);
+                res.send('new student created')
+              });
+          } else {
+            res.send('Account already exists');
+            // res.redirect('/signup');
         }
       })
-      newStudent.save()
-        .then(function(newUser) {
-          // util.createSession(req, res, newUser);
-          res.send('new student created')
-        });
-      } else {
-        res.send('Account already exists');
-        // res.redirect('/signup');
-
     },
 
     get: function(req, res) {
