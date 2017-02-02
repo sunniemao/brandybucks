@@ -4,7 +4,6 @@ var Student = require('../models/student');
 
 
 
-
 module.exports = {
 
 
@@ -40,12 +39,16 @@ module.exports = {
 
                 console.log('in login')
 
-                console.log('req.session in POST login', req.session)
 
                 // set the permissions level
                 req.session.level = 'loggedIn'
 
+                console.log('req.session in POST login', req.session)
+
+
                 // add a session period
+                // app.use(session(this.sess))
+
 
 
 

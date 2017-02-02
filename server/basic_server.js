@@ -12,20 +12,12 @@ var authRouter = require('./authRoutes.js');
 
 
 var authRedirectMiddleware = function(req, res, next){
-  if(!req.session) {
-    // console.log('req.session.level in authRedirectMiddleware', req.session)
-
-    console.log('!req.session')
-    app.use(session(sess));
-
-    console.log('req.session in authRedirectMiddleware', req.session)
-
-
-
+  if(req.session.level === undefined) {
     res.redirect('/login');
   } else if (req.session.level !== 'loggedIn') {
-    console.log("req.session.level !== 'loggedIn'")
     res.redirect('/login');
+  } else if(req.session.level === 'loggedIn') {
+    next();
   }
 };
 
@@ -42,10 +34,13 @@ var sess = {
 
 if (app.get('env') === 'production') {
   // app.set('trust proxy', 1) // trust first proxy
+  // has to be https, for now we are not
   sess.cookie.secure = true // serve secure cookies
 }
 
-// app.use(session(sess))
+
+// the first thing that actually happens is a session
+app.use(session(sess))
 
 ///
 // end express-sessions
@@ -74,11 +69,14 @@ app.use('/authApi', authRouter);
 
 
 // if no session token yet, redirect back to auth area
+
+////////
+// this is the auth cutoff point
+////////
+
 app.use(authRedirectMiddleware);
 
-
-
-
+/////////
 
 
 
@@ -101,10 +99,5 @@ app.get('*', function(req, res) {
   // res.sendFile(path.join('./authViews/login.html'));
 });
 
-
-
-// app.listen(3000, function () {
-//   console.log('Example app listening on port 3000!')
-// })
 
 module.exports = app;
