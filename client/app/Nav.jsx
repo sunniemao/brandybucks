@@ -4,11 +4,37 @@ import {Link} from 'react-router';
 class Nav extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      studentList: [],
+      studentPhoto: '',
+      searchInput: ''
+    };
+
+    //binding all the method to this context before pass down to components.
+    this.handleChangeSearch = this.handleChangeSearch.bind(this);
+    this.searchClicked = this.searchClicked.bind(this);
   };
+
+    //create handler method to extract search input box value
+  handleChangeSearch (e) {
+    this.setState({
+      searchInput: e.target.value,
+    });
+    console.log(this.state.searchInput)
+  };
+
+  //create handler method for search button clicked
+  searchClicked (e) {
+    console.log('search clicked!!')
+    console.log(this.state.searchInput)
+  };
+
   logout(e) {
     e.preventDefault();
     this.props.logout();
   };
+
   render () {
     return(
       <div className="navbar navbar-inverse navbar-fixed-top">
@@ -25,8 +51,8 @@ class Nav extends React.Component {
                 <a href="#" onClick={this.logout.bind(this)} className="nav-link">Logout</a>
               </li>
               <li className="nav-item">
-                <input className="student-search" type="text" placeholder="&nbsp;Search Student" onChange={this.props.searchText} />&nbsp;
-                <button className="btn search-btn" onClick={this.props.searchClicked} >Find</button>
+                <input className="student-search" type="text" placeholder="Search Name" onChange={this.handleChangeSearch} />
+                <button className="btn search-btn" onClick={this.searchClicked} >Search Student</button>
               </li>
             </ul>
         </div>
