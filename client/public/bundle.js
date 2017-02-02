@@ -27256,19 +27256,19 @@
 	
 	var _Login2 = _interopRequireDefault(_Login);
 	
-	var _Signup = __webpack_require__(/*! ./Signup.jsx */ 263);
+	var _Signup = __webpack_require__(/*! ./Signup.jsx */ 264);
 	
 	var _Signup2 = _interopRequireDefault(_Signup);
 	
-	var _CreateLog = __webpack_require__(/*! ./CreateLog.jsx */ 264);
+	var _CreateLog = __webpack_require__(/*! ./CreateLog.jsx */ 265);
 	
-	var _Goals = __webpack_require__(/*! ./Goals.jsx */ 265);
+	var _Goals = __webpack_require__(/*! ./Goals.jsx */ 266);
 	
-	var _IEP = __webpack_require__(/*! ./IEP.jsx */ 266);
+	var _IEP = __webpack_require__(/*! ./IEP.jsx */ 267);
 	
-	var _MeetingNotes = __webpack_require__(/*! ./MeetingNotes.jsx */ 267);
+	var _MeetingNotes = __webpack_require__(/*! ./MeetingNotes.jsx */ 268);
 	
-	var _ViewLogs = __webpack_require__(/*! ./ViewLogs.jsx */ 268);
+	var _ViewLogs = __webpack_require__(/*! ./ViewLogs.jsx */ 269);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -27324,47 +27324,16 @@
 	  function App(props) {
 	    _classCallCheck(this, App);
 	
-	    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
-	
-	    _this.state = {
-	      studentList: [],
-	      studentPhoto: '',
-	      searchInput: ''
-	    };
-	
-	    //binding all the method to this context before pass down to components.
-	    _this.handleChangeSearch = _this.handleChangeSearch.bind(_this);
-	    _this.searchClicked = _this.searchClicked.bind(_this);
-	    return _this;
+	    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 	  }
 	
 	  _createClass(App, [{
-	    key: 'handleChangeSearch',
-	
-	
-	    //create handler method to extract search input box value
-	    value: function handleChangeSearch(e) {
-	      this.setState({
-	        searchInput: e.target.value
-	      });
-	      console.log(this.state.searchInput);
-	    }
-	  }, {
-	    key: 'searchClicked',
-	
-	
-	    //create handler method for search button clicked
-	    value: function searchClicked(e) {
-	      console.log('search clicked!!');
-	      console.log(this.state.searchInput);
-	    }
-	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'container' },
-	        _react2.default.createElement(_Nav2.default, { searchText: this.handleChangeSearch, searchClicked: this.searchClicked }),
+	        _react2.default.createElement(_Nav2.default, null),
 	        this.props.children
 	      );
 	    }
@@ -27410,10 +27379,41 @@
 	  function Nav(props) {
 	    _classCallCheck(this, Nav);
 	
-	    return _possibleConstructorReturn(this, (Nav.__proto__ || Object.getPrototypeOf(Nav)).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (Nav.__proto__ || Object.getPrototypeOf(Nav)).call(this, props));
+	
+	    _this.state = {
+	      studentList: [],
+	      studentPhoto: '',
+	      searchInput: ''
+	    };
+	
+	    //binding all the method to this context before pass down to components.
+	    _this.handleChangeSearch = _this.handleChangeSearch.bind(_this);
+	    _this.searchClicked = _this.searchClicked.bind(_this);
+	    return _this;
 	  }
 	
 	  _createClass(Nav, [{
+	    key: 'handleChangeSearch',
+	
+	
+	    //create handler method to extract search input box value
+	    value: function handleChangeSearch(e) {
+	      this.setState({
+	        searchInput: e.target.value
+	      });
+	      console.log(this.state.searchInput);
+	    }
+	  }, {
+	    key: 'searchClicked',
+	
+	
+	    //create handler method for search button clicked
+	    value: function searchClicked(e) {
+	      console.log('search clicked!!');
+	      console.log(this.state.searchInput);
+	    }
+	  }, {
 	    key: 'logout',
 	    value: function logout(e) {
 	      e.preventDefault();
@@ -27466,12 +27466,11 @@
 	            _react2.default.createElement(
 	              'li',
 	              { className: 'nav-item' },
-	              _react2.default.createElement('input', { className: 'student-search', type: 'text', placeholder: '\xA0Search Student', onChange: this.props.searchText }),
-	              '\xA0',
+	              _react2.default.createElement('input', { className: 'student-search', type: 'text', placeholder: 'Search Name', onChange: this.handleChangeSearch }),
 	              _react2.default.createElement(
 	                'button',
-	                { className: 'btn search-btn', onClick: this.props.searchClicked },
-	                'Find'
+	                { className: 'btn search-btn', onClick: this.searchClicked },
+	                'Search Student'
 	              )
 	            )
 	          )
@@ -27634,7 +27633,7 @@
 	
 	var _axios2 = _interopRequireDefault(_axios);
 	
-	var _auth = __webpack_require__(/*! ./helper/auth.js */ 269);
+	var _auth = __webpack_require__(/*! ./helper/auth.js */ 263);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -29296,6 +29295,57 @@
 
 /***/ },
 /* 263 */
+/*!***********************************!*\
+  !*** ./client/app/helper/auth.js ***!
+  \***********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _axios = __webpack_require__(/*! axios */ 238);
+	
+	var _axios2 = _interopRequireDefault(_axios);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.login = function (user) {
+	  return (0, _axios2.default)({
+	    method: 'POST',
+	    url: '/api/login',
+	    data: user
+	  });
+	};
+	
+	exports.signup = function (user) {
+	  return (0, _axios2.default)({
+	    method: 'POST',
+	    url: '/api/signup',
+	    data: user
+	  });
+	};
+	
+	exports.getAllStudents = function () {
+	  return _axios2.default.get('http://localhost:3000/api/students');
+	};
+	
+	exports.getStudentByName = function (name) {
+	  return _axios2.default.get('http://localhost:3000/api/students/name', {
+	    params: {
+	      name: name
+	    }
+	  });
+	};
+	
+	exports.addStudent = function (student) {
+	  return (0, _axios2.default)({
+	    method: 'POST',
+	    url: 'http://localhost:3000/api/students',
+	    data: student
+	  });
+	};
+
+/***/ },
+/* 264 */
 /*!*******************************!*\
   !*** ./client/app/Signup.jsx ***!
   \*******************************/
@@ -29313,7 +29363,7 @@
 	
 	var _axios2 = _interopRequireDefault(_axios);
 	
-	var _auth = __webpack_require__(/*! ./helper/auth.js */ 269);
+	var _auth = __webpack_require__(/*! ./helper/auth.js */ 263);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -29410,7 +29460,7 @@
 	});
 
 /***/ },
-/* 264 */
+/* 265 */
 /*!**********************************!*\
   !*** ./client/app/CreateLog.jsx ***!
   \**********************************/
@@ -29488,7 +29538,7 @@
 	exports.CreateLog = CreateLog;
 
 /***/ },
-/* 265 */
+/* 266 */
 /*!******************************!*\
   !*** ./client/app/Goals.jsx ***!
   \******************************/
@@ -29566,7 +29616,7 @@
 	exports.Goals = Goals;
 
 /***/ },
-/* 266 */
+/* 267 */
 /*!****************************!*\
   !*** ./client/app/IEP.jsx ***!
   \****************************/
@@ -29644,7 +29694,7 @@
 	exports.IEP = IEP;
 
 /***/ },
-/* 267 */
+/* 268 */
 /*!*************************************!*\
   !*** ./client/app/MeetingNotes.jsx ***!
   \*************************************/
@@ -29722,7 +29772,7 @@
 	exports.MeetingNotes = MeetingNotes;
 
 /***/ },
-/* 268 */
+/* 269 */
 /*!*********************************!*\
   !*** ./client/app/ViewLogs.jsx ***!
   \*********************************/
@@ -29798,37 +29848,6 @@
 	}(_react2.default.Component);
 	
 	exports.ViewLogs = ViewLogs;
-
-/***/ },
-/* 269 */
-/*!***********************************!*\
-  !*** ./client/app/helper/auth.js ***!
-  \***********************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var _axios = __webpack_require__(/*! axios */ 238);
-	
-	var _axios2 = _interopRequireDefault(_axios);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	exports.login = function (user) {
-	  return (0, _axios2.default)({
-	    method: 'POST',
-	    url: '/api/login',
-	    data: user
-	  });
-	};
-	
-	exports.signup = function (user) {
-	  return (0, _axios2.default)({
-	    method: 'POST',
-	    url: '/api/signup',
-	    data: user
-	  });
-	};
 
 /***/ }
 /******/ ]);
