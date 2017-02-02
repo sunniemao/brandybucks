@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import {addStudent} from './helper/getStudents.js';
+import {addStudent} from './helper/auth.js';
 
 class StudentForm extends React.Component{
   constructor(props) {
@@ -12,8 +12,20 @@ class StudentForm extends React.Component{
       grade: '',
       IEP: '',
       pic: ''
-    }
-  };
+    };
+
+    this.handleFirstName = this.handleFirstName.bind(this);
+
+    this.handleLastName = this.handleLastName.bind(this);
+
+    this.handleGrade = this.handleGrade.bind(this);
+
+    this.handleIEP = this.handleIEP.bind(this);
+
+    this.handlePic = this.handlePic.bind(this);
+
+    this.submitClick = this.submitClick.bind(this);
+  }
 
   handleFirstName(e) {
     this.setState({
@@ -22,6 +34,7 @@ class StudentForm extends React.Component{
   }
 
   handleLastName(e) {
+    console.log(e.target.value)
     this.setState({
       last_name: e.target.value,
     });
@@ -66,13 +79,30 @@ class StudentForm extends React.Component{
   render() {
     return(
       <form onSubmit={this.submitClick}>
-        <input type="text" placeholder="First name" onChange={this.handleFirstName} />
-        <input type="text" placeholder="Last name" onChange={this.handleLastName} />
-        <input type="text" placeholder="Grade" onChange={this.handleGrade} />
-        <input type="text" placeholder="IEP" onChange={this.handleIEP} />
-        <input type="text" placeholder="pic" onChange={this.handlePic} />
+        <label>
+        First Name:
+        <input type="text" onChange={this.handleFirstName} />
+        </label>
+        <label>
+        Last Name:
+        <input type="text" onChange={this.handleLastName} />
+        </label>
+        <label>
+        Grade:
+        <input type="text" onChange={this.handleGrade} />
+        </label>
+        <label>
+        IEP:
+        <input type="text" onChange={this.handleIEP} />
+        </label>
+        <label>
+        Picture:
+        <input type="text" onChange={this.handlePic} />
+        </label>
         <button className="btn add-btn">Add a student</button>
       </form>
     )
   }
 }
+
+export {StudentForm}

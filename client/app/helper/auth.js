@@ -17,7 +17,8 @@ exports.signup = (user) => {
 };
 
 exports.getAllStudents = () => {
-  return axios.get('http://localhost:3000/api/students')
+  console.log('getAllStudent called')
+  return axios.get('http://localhost:3000/api/students/getAll')
 };
 
 exports.getStudentByName = (name) => {
