@@ -75,6 +75,7 @@ input.student-search {
   background-color: #fff !important;
   border: 1px solid #fff !important;
   border-radius: 4px !important;
+  width: 175px;
 }
 .search-btn {
   background-color: rgba(134, 119, 156, 0.99) !important;
@@ -84,16 +85,16 @@ input.student-search {
 body {
     margin-top: 70px;
     color: #999 !important;
-}
-#wrapper {
-    padding-left: 175px;
-    color: #999 !important;
+    padding-left: 215px;
 }
 .studentInfo {
   padding: 10px 15px 10px 25px;
+  color: #ffffff !important;
+  font-weight: bold;
+  letter-spacing: 1px;
 }
 a {
-    color: #999;
+  color: #999;
 }
 .login-btn {
   background-color: rgba(134, 119, 156, 0.99) !important;
@@ -101,4 +102,13 @@ a {
   height: 25px;
   color: #fff !important;
   padding: 0px;
+}
+#iep {
+  overflow: auto; 
+  -webkit-overflow-scrolling: touch; 
+  height: 500px; 
+}
+object { 
+  width: 97%; 
+  height: 100%; 
 }

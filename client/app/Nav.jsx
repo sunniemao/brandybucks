@@ -51,8 +51,8 @@ class Nav extends React.Component {
                 <a href="#" onClick={this.logout.bind(this)} className="nav-link">Logout</a>
               </li>
               <li className="nav-item">
-                <input className="student-search" type="text" placeholder="Search Name" onChange={this.handleChangeSearch} />
-                <button className="btn search-btn" onClick={this.searchClicked} >Search Student</button>
+                <input className="student-search" type="text" placeholder="&nbsp;Search Student" onChange={this.handleChangeSearch} />&nbsp;
+                <button className="btn search-btn" onClick={this.searchClicked} >Find</button>
               </li>
             </ul>
         </div>
