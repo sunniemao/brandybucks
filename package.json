@@ -2,6 +2,9 @@
   "name": "brandybucks",
   "version": "1.0.0",
   "description": "[![Stories in Ready](https://badge.waffle.io/brandybucks/brandybucks.png?label=ready&title=Ready)](https://waffle.io/brandybucks/brandybucks) # brandybucks",
+  "engines": {
+    "node": "6.9.5"
+  },
   "main": "index.js",
   "scripts": {
     "start": "nodemon server/index.js",
