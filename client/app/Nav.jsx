@@ -1,47 +1,78 @@
 import React from 'react';
+import {Link} from 'react-router';
 
 class Nav extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      studentList: [],
+      studentPhoto: '',
+      searchInput: ''
+    };
+
+    //binding all the method to this context before pass down to components.
+    this.handleChangeSearch = this.handleChangeSearch.bind(this);
+    this.searchClicked = this.searchClicked.bind(this);
+  };
+
+    //create handler method to extract search input box value
+  handleChangeSearch (e) {
+    this.setState({
+      searchInput: e.target.value,
+    });
+  };
+
+  //create handler method for search button clicked
+  searchClicked (e) {
+    console.log('search clicked!!')
+    console.log(this.state.searchInput)
+  };
+
+  logout(e) {
+    e.preventDefault();
+    this.props.logout();
   };
 
   render () {
     return(
       <div className="navbar navbar-inverse navbar-fixed-top">
         <div className="navbar-header">
-          <a className="navbar-brand" href="#">brandybucks</a>
-            <ul className="navbar-nav nav-fill">
+          <Link to="/" className="navbar-brand">llama</Link>
+          </div>
+          <div className="collapse navbar-collapse">
+            <ul className="navbar-nav navbar-right">
               <li className="nav-item">
-                <a className="nav-link" href="#">Home</a>
+                <Link to="/" className="nav-link">Home</Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">Create Log</a>
+                <Link to="/createlog" className="nav-link">Create Log</Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link disabled" href="#">Sign Out</a>
+                <a href="#" onClick={this.logout.bind(this)} className="nav-link">Logout</a>
               </li>
               <li className="nav-item">
-                <input type="text" placeholder="Search Name"onChange={this.props.searchText} />
-                <button className="btn search-btn" onClick={this.props.searchClicked} >Search Student</button>
+                <input className="student-search" type="text" placeholder="&nbsp;Search Student" onChange={this.handleChangeSearch} />&nbsp;
+                <button className="btn search-btn" onClick={this.searchClicked} >Find</button>
               </li>
             </ul>
         </div>
         <div className="side-nav">
           <ul className="side-nav">
-            <li>
-              <a><img src="https://t1.rbxcdn.com/52ed596ced6630987d05c5cc688e3af5" width="150" /><br /><br />Student Name</a>
+            <li className="studentInfo">
+              <img src="../llama.png" width="150" /><br />Student Name<br />
             </li>
             <li>
-              <a href="index.html">Goals</a>
+              <Link to="/goals">Goals</Link>
             </li>
             <li>
-              <a href="index.html">IEP</a>
+              <Link to="/iep">IEP</Link>
             </li>
             <li>
-              <a href="index.html">Meeting Notes</a>
+              <Link to="/meetingnotes">Meeting Notes</Link>
             </li>
             <li>
-              <a href="index.html">Updates / Logs</a>
+              <Link to="/viewlogs">Updates / Logs</Link>
             </li>
           </ul>
         </div>
@@ -50,4 +81,4 @@ class Nav extends React.Component {
   }
 }
 
-export {Nav};
+export default Nav;
