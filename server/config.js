@@ -1,18 +1,25 @@
 var Promise = require('bluebird');
 
-var knex = require('knex') ({
-  client: 'mysql',
-  connection: {
+var connection;
+
+if (process.env.NODE_ENV === 'production') {
+  connection = process.env.CLEARDB_DATABASE_URL;
+} else {
+  connection = {
     host: '127.0.0.1',
     user: 'root',
     password: '',
     database: 'myapp',
     charset: 'utf8'
+  }
+}
 
-  },
+var knex = require('knex') ({
+  client: 'mysql',
+  connection: connection,
   useNullAsDefault: true
-
 });
+
 
 var bookshelf = require('bookshelf')(knex);
 
