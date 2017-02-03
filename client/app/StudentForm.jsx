@@ -11,7 +11,8 @@ class StudentForm extends React.Component{
       last_name: '',
       grade: '',
       IEP: '',
-      pic: ''
+      pic: '',
+      message: ''
     };
 
     this.handleFirstName = this.handleFirstName.bind(this);
@@ -28,6 +29,7 @@ class StudentForm extends React.Component{
   }
 
   handleFirstName(e) {
+    console.log(e.target.value)
     this.setState({
       first_name: e.target.value,
     });
@@ -40,18 +42,21 @@ class StudentForm extends React.Component{
   }
 
   handleGrade(e) {
+    console.log(e.target.value)
     this.setState({
       grade: e.target.value,
     });
   }
 
   handleIEP(e) {
+    console.log(e.target.value)
     this.setState({
       IEP: e.target.value,
     });
   }
 
   handlePic(e) {
+    console.log(e.target.value)
     this.setState({
       pic: e.target.value,
     });
@@ -66,11 +71,17 @@ class StudentForm extends React.Component{
       IEP: this.state.IEP,
       pic: this.state.pic
     }
+    var context = this
     addStudent(student)
       .then(function(resp) {
-      console.log('student added');
+        context.setState({
+          message: resp.data,
+        })
       })
       .catch(function(err) {
+        context.setState({
+          message: 'Sorry! error occure can not add student!'
+        })
         console.log('could not add student', err);
       })
   }
@@ -113,6 +124,9 @@ class StudentForm extends React.Component{
         <button className="btn search-btn">Add a student</button>
         </div>
       </form>
+        <div>
+        {this.state.message}
+        </div>
       </div>
     )
   }
