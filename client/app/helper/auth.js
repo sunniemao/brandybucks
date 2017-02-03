@@ -5,8 +5,6 @@ exports.getAllStudents = () => {
 };
 
 exports.getStudentByName = (name) => {
-  console.log('getStudentByName called!!!!!!')
-  console.log('queryName --->', name)
   return axios.get('api/students/name', {
     params: {
     name: name

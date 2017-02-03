@@ -7,8 +7,8 @@ class Nav extends React.Component {
     super(props);
 
     this.state = {
-      studentList: [],
-      studentPhoto: '',
+      studentName: 'Student Name',
+      studentPic: '../llama.png',
       searchInput: ''
     };
 
@@ -22,7 +22,6 @@ class Nav extends React.Component {
     this.setState({
       searchInput: e.target.value,
     });
-    console.log(this.state.searchInput)
   };
 
   capitalizeName (name) {
@@ -35,11 +34,18 @@ class Nav extends React.Component {
 
   //create handler method for search button clicked
   searchClicked (e) {
-    let queryName = this.capitalizeName(this.state.searchInput)
-    console.log('search clicked!!')
+    let queryName = this.capitalizeName(this.state.searchInput);
+    let context = this;
     getStudentByName(queryName)
     .then((resp) => {
-      console.log(resp.data);
+      if (typeof resp.data === 'string') {
+        alert(resp.data)
+      } else {
+        context.setState({
+          studentName: resp.data.first_name + ' ' + resp.data.last_name,
+          studentPic: resp.data.pic,
+        })
+      }
     })
     .catch((err) => {
       console.log('sorry could not get student');
@@ -77,7 +83,7 @@ class Nav extends React.Component {
         <div className="side-nav">
           <ul className="side-nav">
             <li className="studentInfo">
-              <img src="../llama.png" width="150" /><br />Student Name<br />
+              <img alt="Student Picture"src={this.state.studentPic} width="150" /><br />{this.state.studentName}<br />
             </li>
             <li>
               <Link to="/goals">Goals</Link>
