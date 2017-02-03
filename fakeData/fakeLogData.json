@@ -1,0 +1,58 @@
+[
+  {
+    "log": "Hello! You have scored 25 % on your last midpoint assessment.",
+    "user_id": 5,
+    "user": "Ramos",
+    "student_id": 1,
+    "types": 3,
+    "other": "In Progress"
+  },
+  {
+    "log": "Hello! You have scored 38 % on your last midpoint assessment.",
+    "user_id": 10,
+    "user": "Jenkins",
+    "student_id": 8,
+    "types": 2,
+    "other": "Complete"
+  },
+  {
+    "log": "Hello! You have scored 71 % on your last midpoint assessment.",
+    "user_id": 4,
+    "user": "Savage",
+    "student_id": 1,
+    "types": 3,
+    "other": "Not Started"
+  },
+  {
+    "log": "Hello! You have scored 43 % on your last midpoint assessment.",
+    "user_id": 3,
+    "user": "Skinner",
+    "student_id": 1,
+    "types": 1,
+    "other": "Complete"
+  },
+  {
+    "log": "Hello! You have scored 62 % on your last midpoint assessment.",
+    "user_id": 1,
+    "user": "Russell",
+    "student_id": 1,
+    "types": 2,
+    "other": "Complete"
+  },
+  {
+    "log": "Hello! You have scored 26 % on your last midpoint assessment.",
+    "user_id": 2,
+    "user": "Ryan",
+    "student_id": 2,
+    "types": 1,
+    "other": "Complete"
+  },
+  {
+    "log": "Hello! You have scored 37 % on your last midpoint assessment.",
+    "user_id": 5,
+    "user": "Navarro",
+    "student_id": 4,
+    "types": 2,
+    "other": "Not Started"
+  }
+]
