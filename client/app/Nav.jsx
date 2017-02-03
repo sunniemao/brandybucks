@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router';
+import {getStudentByName} from './helper/auth.js';
 
 class Nav extends React.Component {
   constructor(props) {
@@ -21,12 +22,28 @@ class Nav extends React.Component {
     this.setState({
       searchInput: e.target.value,
     });
+    console.log(this.state.searchInput)
+  };
+
+  capitalizeName (name) {
+    let fullName = name.split(" ");
+    let cappedName = fullName.map((word) => {
+      return word.charAt(0).toUpperCase() + word.slice(1)
+    }).join(" ");
+    return cappedName;
   };
 
   //create handler method for search button clicked
   searchClicked (e) {
+    let queryName = this.capitalizeName(this.state.searchInput)
     console.log('search clicked!!')
-    console.log(this.state.searchInput)
+    getStudentByName(queryName)
+    .then((resp) => {
+      console.log(resp.data);
+    })
+    .catch((err) => {
+      console.log('sorry could not get student');
+    })
   };
 
   logout(e) {
