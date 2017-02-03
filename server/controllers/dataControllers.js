@@ -10,15 +10,20 @@ module.exports = {
 
   query: {
 
-    post: function(req, res) {
-      console.log("query post called", req.body)
-      var queryString = req.body.name;
+    get: function(req, res) {
+      var firstName = req.query.name.split(" ")[0];
+      var lastName = req.query.name.split(" ")[1];
       knex('students').where({
-        first_name: queryString})
-        .select('*').then(function(data){
-          res.send(data);
-        })
-
+        first_name: firstName,
+        last_name: lastName
+      })
+      .select('*')
+      .then(function(data) {
+        res.send(data[0]);
+      })
+      .catch(function(err) {
+        res.send('Could not find such student, please check student name.');
+      })
     }
   },
 

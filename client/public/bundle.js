@@ -27389,8 +27389,8 @@
 	    var _this = _possibleConstructorReturn(this, (Nav.__proto__ || Object.getPrototypeOf(Nav)).call(this, props));
 	
 	    _this.state = {
-	      studentList: [],
-	      studentPhoto: '',
+	      studentName: 'Student Name',
+	      studentPic: '../llama.png',
 	      searchInput: ''
 	    };
 	
@@ -27409,7 +27409,6 @@
 	      this.setState({
 	        searchInput: e.target.value
 	      });
-	      console.log(this.state.searchInput);
 	    }
 	  }, {
 	    key: 'capitalizeName',
@@ -27427,9 +27426,16 @@
 	    //create handler method for search button clicked
 	    value: function searchClicked(e) {
 	      var queryName = this.capitalizeName(this.state.searchInput);
-	      console.log('search clicked!!');
+	      var context = this;
 	      (0, _auth.getStudentByName)(queryName).then(function (resp) {
-	        console.log(resp.data);
+	        if (typeof resp.data === 'string') {
+	          alert(resp.data);
+	        } else {
+	          context.setState({
+	            studentName: resp.data.first_name + ' ' + resp.data.last_name,
+	            studentPic: resp.data.pic
+	          });
+	        }
 	      }).catch(function (err) {
 	        console.log('sorry could not get student');
 	      });
@@ -27510,9 +27516,9 @@
 	            _react2.default.createElement(
 	              'li',
 	              { className: 'studentInfo' },
-	              _react2.default.createElement('img', { src: '../llama.png', width: '150' }),
+	              _react2.default.createElement('img', { alt: 'Student Picture', src: this.state.studentPic, width: '150' }),
 	              _react2.default.createElement('br', null),
-	              'Student Name',
+	              this.state.studentName,
 	              _react2.default.createElement('br', null)
 	            ),
 	            _react2.default.createElement(
@@ -27582,8 +27588,6 @@
 	};
 	
 	exports.getStudentByName = function (name) {
-	  console.log('getStudentByName called!!!!!!');
-	  console.log('queryName --->', name);
 	  return _axios2.default.get('api/students/name', {
 	    params: {
 	      name: name

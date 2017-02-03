@@ -3,7 +3,7 @@ var router = require('express').Router();
 
 
 
-router.post('/students/name', controller.query.post);
+router.get('/students/name', controller.query.get);
 
 router.get('/students/getAll', controller.studentInfo.get);
 
