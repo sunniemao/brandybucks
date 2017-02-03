@@ -9,7 +9,8 @@ module.exports = React.createClass({
       students: [],
       id: '',
       author: '',
-      log: ''
+      log: '',
+      type: 3
     }  
   },
 
@@ -46,9 +47,10 @@ module.exports = React.createClass({
   submitClick(e) {
     e.preventDefault();
     let log = {
-      id: this.state.student,
+      id: this.state.id,
       author: this.state.user,
-      log: this.state.log
+      log: this.state.log,
+      type: this.state.type
     }
     addLog(log)
       .then(function(resp) {

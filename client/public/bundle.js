@@ -29389,7 +29389,8 @@
 	      students: [],
 	      id: '',
 	      author: '',
-	      log: ''
+	      log: '',
+	      type: 3
 	    };
 	  },
 	
@@ -29422,9 +29423,10 @@
 	  submitClick: function submitClick(e) {
 	    e.preventDefault();
 	    var log = {
-	      id: this.state.student,
+	      id: this.state.id,
 	      author: this.state.user,
-	      log: this.state.log
+	      log: this.state.log,
+	      type: this.state.type
 	    };
 	    (0, _auth.addLog)(log).then(function (resp) {
 	      console.log('log added');
@@ -29890,7 +29892,6 @@
 	  _createClass(StudentForm, [{
 	    key: 'handleFirstName',
 	    value: function handleFirstName(e) {
-	      console.log(e.target.value);
 	      this.setState({
 	        first_name: e.target.value
 	      });
@@ -29905,7 +29906,6 @@
 	  }, {
 	    key: 'handleGrade',
 	    value: function handleGrade(e) {
-	      console.log(e.target.value);
 	      this.setState({
 	        grade: e.target.value
 	      });
@@ -29913,7 +29913,6 @@
 	  }, {
 	    key: 'handleIEP',
 	    value: function handleIEP(e) {
-	      console.log(e.target.value);
 	      this.setState({
 	        IEP: e.target.value
 	      });
@@ -29921,7 +29920,6 @@
 	  }, {
 	    key: 'handlePic',
 	    value: function handlePic(e) {
-	      console.log(e.target.value);
 	      this.setState({
 	        pic: e.target.value
 	      });
@@ -29944,7 +29942,7 @@
 	        });
 	      }).catch(function (err) {
 	        context.setState({
-	          message: 'Sorry! error occure can not add student!'
+	          message: 'Sorry! error occured can not add student!'
 	        });
 	        console.log('could not add student', err);
 	      });
