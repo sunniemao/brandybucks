@@ -85,6 +85,7 @@ class StudentForm extends React.Component{
   render() {
     return(
       <div className="formWidth">
+      <h1>Add New Student</h1>
       <form onSubmit={this.submitClick}>
         <div className="form-group">
         <label>
