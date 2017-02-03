@@ -76,6 +76,12 @@ module.exports = {
         .then(function() {
           res.send('log saved')
       });
+    },
+
+    get: function(req, res) {
+      knex('logs').select('*').then(function(data){
+        res.send(data);
+      })
     }
   }
 }
