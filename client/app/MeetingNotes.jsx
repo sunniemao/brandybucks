@@ -16,9 +16,15 @@ class MeetingNotes extends React.Component {
   componentWillMount() {
     getAllLogs()
     .then((resp) => {
-      this.setState({
-        logs: resp.data.filter((log) => {return log.types === 2}),
-      });
+      if (this.props.student_id === '') {
+        this.setState({
+          logs: resp.data.filter((log) => {return log.types === 2}),
+        });
+      } else {
+        this.setState({
+          logs: resp.data.filter((log) => {return log.types === 2 && log.student_id === this.props.student_id}),
+        });
+      }
     })
     .catch((err) => {
       console.log(err);
