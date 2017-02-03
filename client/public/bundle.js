@@ -30131,7 +30131,9 @@
 	        _react2.default.createElement(
 	          'td',
 	          null,
-	          this.props.eachLog.student_id
+	          this.props.eachLog.first_name,
+	          ' ',
+	          this.props.eachLog.last_name
 	        ),
 	        _react2.default.createElement(
 	          'td',
@@ -30354,18 +30356,18 @@
 	                    null,
 	                    _react2.default.createElement(
 	                      'th',
-	                      { className: 'col-md-4' },
+	                      { className: 'col-md-2' },
 	                      'Student'
 	                    ),
 	                    _react2.default.createElement(
 	                      'th',
-	                      { className: 'col-md-4' },
-	                      'Notes'
+	                      { className: 'col-md-2' },
+	                      'Author'
 	                    ),
 	                    _react2.default.createElement(
 	                      'th',
-	                      { className: 'col-md-4' },
-	                      'Author'
+	                      { className: 'col-md-8' },
+	                      'Notes'
 	                    )
 	                  )
 	                ),
@@ -30435,17 +30437,19 @@
 	        _react2.default.createElement(
 	          'td',
 	          null,
-	          this.props.eachLog.student_id
-	        ),
-	        _react2.default.createElement(
-	          'td',
-	          null,
-	          this.props.eachLog.log
+	          this.props.eachLog.first_name,
+	          ' ',
+	          this.props.eachLog.last_name
 	        ),
 	        _react2.default.createElement(
 	          'td',
 	          null,
 	          this.props.eachLog.user
+	        ),
+	        _react2.default.createElement(
+	          'td',
+	          null,
+	          this.props.eachLog.log
 	        )
 	      );
 	    }
@@ -30578,12 +30582,12 @@
 	                    _react2.default.createElement(
 	                      'th',
 	                      { className: 'col-md-4' },
-	                      'Log'
+	                      'Author'
 	                    ),
 	                    _react2.default.createElement(
 	                      'th',
 	                      { className: 'col-md-4' },
-	                      'Author'
+	                      'Log'
 	                    )
 	                  )
 	                ),

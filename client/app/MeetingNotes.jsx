@@ -42,9 +42,9 @@ class MeetingNotes extends React.Component {
                   <table className="table table-hover" >
                     <thead>
                       <tr>
-                        <th className="col-md-4">Student</th>
-                        <th className="col-md-4">Notes</th>
-                        <th className="col-md-4">Author</th>
+                        <th className="col-md-2">Student</th>
+                        <th className="col-md-2">Author</th>
+                        <th className="col-md-8">Notes</th>
                       </tr>
                     </thead>
                     <tbody>

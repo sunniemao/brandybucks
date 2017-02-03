@@ -43,8 +43,8 @@ class ViewLogs extends React.Component {
                     <thead>
                       <tr>
                         <th className="col-md-4">Student</th>
-                        <th className="col-md-4">Log</th>
                         <th className="col-md-4">Author</th>
+                        <th className="col-md-4">Log</th>
                       </tr>
                     </thead>
                     <tbody>
