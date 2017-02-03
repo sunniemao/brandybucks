@@ -84,10 +84,10 @@ module.exports = {
     },
 
     get: function(req, res) {
-      knex('logs').select('*').then(function(data){
-        res.send(data);
+      knex.select('*').from('logs').join('students', {'students.id': 'logs.student_id'})
+      .then(function(data){
+          res.send(data);
       })
     }
   }
 }
-
