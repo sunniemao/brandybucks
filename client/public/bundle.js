@@ -27250,29 +27250,29 @@
 	
 	var _App2 = _interopRequireDefault(_App);
 	
-	var _StudentList = __webpack_require__(/*! ./StudentList.jsx */ 236);
+	var _StudentList = __webpack_require__(/*! ./StudentList.jsx */ 262);
 	
 	var _CreateLog = __webpack_require__(/*! ./CreateLog.jsx */ 264);
 	
 	var _CreateLog2 = _interopRequireDefault(_CreateLog);
 	
-	var _CreateNote = __webpack_require__(/*! ./CreateNote.jsx */ 271);
+	var _CreateNote = __webpack_require__(/*! ./CreateNote.jsx */ 265);
 	
 	var _CreateNote2 = _interopRequireDefault(_CreateNote);
 	
-	var _CreateGoal = __webpack_require__(/*! ./CreateGoal.jsx */ 273);
+	var _CreateGoal = __webpack_require__(/*! ./CreateGoal.jsx */ 266);
 	
 	var _CreateGoal2 = _interopRequireDefault(_CreateGoal);
 	
-	var _Goals = __webpack_require__(/*! ./Goals.jsx */ 265);
+	var _Goals = __webpack_require__(/*! ./Goals.jsx */ 267);
 	
-	var _IEP = __webpack_require__(/*! ./IEP.jsx */ 266);
+	var _IEP = __webpack_require__(/*! ./IEP.jsx */ 269);
 	
-	var _MeetingNotes = __webpack_require__(/*! ./MeetingNotes.jsx */ 267);
+	var _MeetingNotes = __webpack_require__(/*! ./MeetingNotes.jsx */ 270);
 	
-	var _ViewLogs = __webpack_require__(/*! ./ViewLogs.jsx */ 268);
+	var _ViewLogs = __webpack_require__(/*! ./ViewLogs.jsx */ 272);
 	
-	var _StudentForm = __webpack_require__(/*! ./StudentForm.jsx */ 270);
+	var _StudentForm = __webpack_require__(/*! ./StudentForm.jsx */ 273);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -27370,6 +27370,8 @@
 	
 	var _reactRouter = __webpack_require__(/*! react-router */ 178);
 	
+	var _auth = __webpack_require__(/*! ./helper/auth.js */ 236);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -27407,6 +27409,16 @@
 	      this.setState({
 	        searchInput: e.target.value
 	      });
+	      console.log(this.state.searchInput);
+	    }
+	  }, {
+	    key: 'capitalizeName',
+	    value: function capitalizeName(name) {
+	      var fullName = name.split(" ");
+	      var cappedName = fullName.map(function (word) {
+	        return word.charAt(0).toUpperCase() + word.slice(1);
+	      }).join(" ");
+	      return cappedName;
 	    }
 	  }, {
 	    key: 'searchClicked',
@@ -27414,8 +27426,13 @@
 	
 	    //create handler method for search button clicked
 	    value: function searchClicked(e) {
+	      var queryName = this.capitalizeName(this.state.searchInput);
 	      console.log('search clicked!!');
-	      console.log(this.state.searchInput);
+	      (0, _auth.getStudentByName)(queryName).then(function (resp) {
+	        console.log(resp.data);
+	      }).catch(function (err) {
+	        console.log('sorry could not get student');
+	      });
 	    }
 	  }, {
 	    key: 'logout',
@@ -27547,149 +27564,52 @@
 
 /***/ },
 /* 236 */
-/*!************************************!*\
-  !*** ./client/app/StudentList.jsx ***!
-  \************************************/
+/*!***********************************!*\
+  !*** ./client/app/helper/auth.js ***!
+  \***********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.StudentList = undefined;
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
 	
 	var _axios = __webpack_require__(/*! axios */ 237);
 	
 	var _axios2 = _interopRequireDefault(_axios);
 	
-	var _auth = __webpack_require__(/*! ./helper/auth.js */ 262);
-	
-	var _StudentEntry = __webpack_require__(/*! ./StudentEntry.jsx */ 263);
-	
-	var _reactRouter = __webpack_require__(/*! react-router */ 178);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	exports.getAllStudents = function () {
+	  return _axios2.default.get('api/students/getAll');
+	};
 	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var StudentList = function (_React$Component) {
-	  _inherits(StudentList, _React$Component);
-	
-	  function StudentList(props) {
-	    _classCallCheck(this, StudentList);
-	
-	    var _this = _possibleConstructorReturn(this, (StudentList.__proto__ || Object.getPrototypeOf(StudentList)).call(this, props));
-	
-	    _this.state = {
-	      students: []
-	    };
-	    return _this;
-	  }
-	
-	  _createClass(StudentList, [{
-	    key: 'componentWillMount',
-	    value: function componentWillMount() {
-	      var _this2 = this;
-	
-	      (0, _auth.getAllStudents)().then(function (resp) {
-	        _this2.setState({
-	          students: resp.data
-	        });
-	      }).catch(function (err) {
-	        console.log(err);
-	      });
+	exports.getStudentByName = function (name) {
+	  console.log('getStudentByName called!!!!!!');
+	  console.log('queryName --->', name);
+	  return _axios2.default.get('api/students/name', {
+	    params: {
+	      name: name
 	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'div',
-	        { id: 'wrapper' },
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'container-fluid' },
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'row' },
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'col-md-12' },
-	              _react2.default.createElement(
-	                'h1',
-	                { className: 'alignleft' },
-	                'View Students'
-	              ),
-	              _react2.default.createElement(
-	                'h3',
-	                { className: 'alignright' },
-	                _react2.default.createElement(
-	                  _reactRouter.Link,
-	                  { to: '/addstudent' },
-	                  _react2.default.createElement('img', { src: 'add.png', height: '25px' }),
-	                  'Student'
-	                )
-	              ),
-	              _react2.default.createElement(
-	                'table',
-	                { className: 'table table-hover' },
-	                _react2.default.createElement(
-	                  'thead',
-	                  null,
-	                  _react2.default.createElement(
-	                    'tr',
-	                    null,
-	                    _react2.default.createElement(
-	                      'th',
-	                      { className: 'col-md-4' },
-	                      'Photo'
-	                    ),
-	                    _react2.default.createElement(
-	                      'th',
-	                      { className: 'col-md-3' },
-	                      'First Name'
-	                    ),
-	                    _react2.default.createElement(
-	                      'th',
-	                      { className: 'col-md-3' },
-	                      'Last Name'
-	                    ),
-	                    _react2.default.createElement(
-	                      'th',
-	                      { className: 'col-md-2' },
-	                      'Grade'
-	                    )
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'tbody',
-	                  null,
-	                  this.state.students.map(function (student, index) {
-	                    return _react2.default.createElement(_StudentEntry.StudentEntry, { eachStudent: student, key: index });
-	                  })
-	                )
-	              )
-	            )
-	          )
-	        )
-	      );
-	    }
-	  }]);
+	  });
+	};
 	
-	  return StudentList;
-	}(_react2.default.Component);
+	exports.addStudent = function (student) {
+	  return (0, _axios2.default)({
+	    method: 'POST',
+	    url: 'api/students',
+	    data: student
+	  });
+	};
 	
-	exports.StudentList = StudentList;
+	exports.getAllLogs = function () {
+	  return _axios2.default.get('api/logs/getAll');
+	};
+	
+	exports.addLog = function (log) {
+	  return (0, _axios2.default)({
+	    method: 'POST',
+	    url: 'api/logs',
+	    data: log
+	  });
+	};
 
 /***/ },
 /* 237 */
@@ -29257,50 +29177,149 @@
 
 /***/ },
 /* 262 */
-/*!***********************************!*\
-  !*** ./client/app/helper/auth.js ***!
-  \***********************************/
+/*!************************************!*\
+  !*** ./client/app/StudentList.jsx ***!
+  \************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.StudentList = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
 	
 	var _axios = __webpack_require__(/*! axios */ 237);
 	
 	var _axios2 = _interopRequireDefault(_axios);
 	
+	var _auth = __webpack_require__(/*! ./helper/auth.js */ 236);
+	
+	var _StudentEntry = __webpack_require__(/*! ./StudentEntry.jsx */ 263);
+	
+	var _reactRouter = __webpack_require__(/*! react-router */ 178);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	exports.getAllStudents = function () {
-	  return _axios2.default.get('api/students/getAll');
-	};
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
-	exports.getStudentByName = function (name) {
-	  return _axios2.default.get('api/students/name', {
-	    params: {
-	      name: name
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var StudentList = function (_React$Component) {
+	  _inherits(StudentList, _React$Component);
+	
+	  function StudentList(props) {
+	    _classCallCheck(this, StudentList);
+	
+	    var _this = _possibleConstructorReturn(this, (StudentList.__proto__ || Object.getPrototypeOf(StudentList)).call(this, props));
+	
+	    _this.state = {
+	      students: []
+	    };
+	    return _this;
+	  }
+	
+	  _createClass(StudentList, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      var _this2 = this;
+	
+	      (0, _auth.getAllStudents)().then(function (resp) {
+	        _this2.setState({
+	          students: resp.data
+	        });
+	      }).catch(function (err) {
+	        console.log(err);
+	      });
 	    }
-	  });
-	};
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { id: 'wrapper' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'container-fluid' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'row' },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'col-md-12' },
+	              _react2.default.createElement(
+	                'h1',
+	                { className: 'alignleft' },
+	                'View Students'
+	              ),
+	              _react2.default.createElement(
+	                'h3',
+	                { className: 'alignright' },
+	                _react2.default.createElement(
+	                  _reactRouter.Link,
+	                  { to: '/addstudent' },
+	                  _react2.default.createElement('img', { src: 'add.png', height: '25px' }),
+	                  'Student'
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'table',
+	                { className: 'table table-hover' },
+	                _react2.default.createElement(
+	                  'thead',
+	                  null,
+	                  _react2.default.createElement(
+	                    'tr',
+	                    null,
+	                    _react2.default.createElement(
+	                      'th',
+	                      { className: 'col-md-4' },
+	                      'Photo'
+	                    ),
+	                    _react2.default.createElement(
+	                      'th',
+	                      { className: 'col-md-3' },
+	                      'First Name'
+	                    ),
+	                    _react2.default.createElement(
+	                      'th',
+	                      { className: 'col-md-3' },
+	                      'Last Name'
+	                    ),
+	                    _react2.default.createElement(
+	                      'th',
+	                      { className: 'col-md-2' },
+	                      'Grade'
+	                    )
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  'tbody',
+	                  null,
+	                  this.state.students.map(function (student, index) {
+	                    return _react2.default.createElement(_StudentEntry.StudentEntry, { eachStudent: student, key: index });
+	                  })
+	                )
+	              )
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
 	
-	exports.addStudent = function (student) {
-	  return (0, _axios2.default)({
-	    method: 'POST',
-	    url: 'api/students',
-	    data: student
-	  });
-	};
+	  return StudentList;
+	}(_react2.default.Component);
 	
-	exports.getAllLogs = function () {
-	  return _axios2.default.get('api/logs/getAll');
-	};
-	
-	exports.addLog = function (log) {
-	  return (0, _axios2.default)({
-	    method: 'POST',
-	    url: 'api/logs',
-	    data: log
-	  });
-	};
+	exports.StudentList = StudentList;
 
 /***/ },
 /* 263 */
@@ -29391,7 +29410,7 @@
 	
 	var _axios2 = _interopRequireDefault(_axios);
 	
-	var _auth = __webpack_require__(/*! ./helper/auth.js */ 262);
+	var _auth = __webpack_require__(/*! ./helper/auth.js */ 236);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -29541,6 +29560,354 @@
 
 /***/ },
 /* 265 */
+/*!***********************************!*\
+  !*** ./client/app/CreateNote.jsx ***!
+  \***********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _axios = __webpack_require__(/*! axios */ 237);
+	
+	var _axios2 = _interopRequireDefault(_axios);
+	
+	var _auth = __webpack_require__(/*! ./helper/auth.js */ 236);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	module.exports = _react2.default.createClass({
+	  displayName: 'exports',
+	
+	  getInitialState: function getInitialState() {
+	    return {
+	      students: [],
+	      id: '',
+	      author: '',
+	      log: '',
+	      types: 2
+	    };
+	  },
+	
+	  componentWillMount: function componentWillMount() {
+	    var _this = this;
+	
+	    (0, _auth.getAllStudents)().then(function (resp) {
+	      _this.setState({
+	        students: resp.data
+	      });
+	    }).catch(function (err) {
+	      console.log(err);
+	    });
+	  },
+	  handleAuthor: function handleAuthor(e) {
+	    this.setState({
+	      author: e.target.value
+	    });
+	  },
+	  handleStudent: function handleStudent(e) {
+	    this.setState({
+	      id: e.target.value
+	    });
+	  },
+	  handleLog: function handleLog(e) {
+	    this.setState({
+	      log: e.target.value
+	    });
+	  },
+	  submitClick: function submitClick(e) {
+	    e.preventDefault();
+	    var log = {
+	      id: this.state.id,
+	      author: this.state.author,
+	      log: this.state.log,
+	      types: this.state.types
+	    };
+	    (0, _auth.addLog)(log).then(function (resp) {
+	      console.log('log added');
+	    }).catch(function (err) {
+	      console.log('could not add log', err);
+	    });
+	  },
+	
+	
+	  render: function render() {
+	    return _react2.default.createElement(
+	      'div',
+	      { id: 'wrapper' },
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'container-fluid' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'row' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'col-md-12' },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'formWidth' },
+	              _react2.default.createElement(
+	                'h1',
+	                null,
+	                'Add Meeting Notes'
+	              ),
+	              _react2.default.createElement(
+	                'form',
+	                { onSubmit: this.submitClick },
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'form-group' },
+	                  _react2.default.createElement(
+	                    'label',
+	                    null,
+	                    'Author:'
+	                  ),
+	                  _react2.default.createElement('input', { type: 'text', className: 'form-control', onChange: this.handleAuthor, required: true })
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'form-group' },
+	                  _react2.default.createElement(
+	                    'label',
+	                    null,
+	                    'Student:'
+	                  ),
+	                  _react2.default.createElement(
+	                    'select',
+	                    { className: 'form-control custom-select', onChange: this.handleStudent, required: true },
+	                    _react2.default.createElement(
+	                      'option',
+	                      { defaultValue: true },
+	                      'Select Student'
+	                    ),
+	                    this.state.students.map(function (student, index) {
+	                      return _react2.default.createElement(
+	                        'option',
+	                        { value: student.id, key: index },
+	                        student.first_name,
+	                        ' ',
+	                        student.last_name
+	                      );
+	                    })
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'form-group' },
+	                  _react2.default.createElement(
+	                    'label',
+	                    null,
+	                    'Meeting Notes:'
+	                  ),
+	                  _react2.default.createElement('textarea', { type: 'text', className: 'form-control', onChange: this.handleLog, required: true })
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'form-group' },
+	                  _react2.default.createElement(
+	                    'button',
+	                    { className: 'btn search-btn' },
+	                    'Add meeting notes'
+	                  )
+	                )
+	              )
+	            )
+	          )
+	        )
+	      )
+	    );
+	  }
+	});
+
+/***/ },
+/* 266 */
+/*!***********************************!*\
+  !*** ./client/app/CreateGoal.jsx ***!
+  \***********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _axios = __webpack_require__(/*! axios */ 237);
+	
+	var _axios2 = _interopRequireDefault(_axios);
+	
+	var _auth = __webpack_require__(/*! ./helper/auth.js */ 236);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	module.exports = _react2.default.createClass({
+	  displayName: 'exports',
+	
+	  getInitialState: function getInitialState() {
+	    return {
+	      students: [],
+	      id: '',
+	      other: 'Not Started',
+	      log: '',
+	      types: 1
+	    };
+	  },
+	
+	  componentWillMount: function componentWillMount() {
+	    var _this = this;
+	
+	    (0, _auth.getAllStudents)().then(function (resp) {
+	      _this.setState({
+	        students: resp.data
+	      });
+	    }).catch(function (err) {
+	      console.log(err);
+	    });
+	  },
+	  handleOther: function handleOther(e) {
+	    this.setState({
+	      other: e.target.value
+	    });
+	  },
+	  handleStudent: function handleStudent(e) {
+	    this.setState({
+	      id: e.target.value
+	    });
+	  },
+	  handleLog: function handleLog(e) {
+	    this.setState({
+	      log: e.target.value
+	    });
+	  },
+	  submitClick: function submitClick(e) {
+	    e.preventDefault();
+	    var log = {
+	      id: this.state.id,
+	      other: this.state.other,
+	      log: this.state.log,
+	      types: this.state.types
+	    };
+	    (0, _auth.addLog)(log).then(function (resp) {
+	      console.log('log added');
+	    }).catch(function (err) {
+	      console.log('could not add log', err);
+	    });
+	  },
+	
+	
+	  render: function render() {
+	    return _react2.default.createElement(
+	      'div',
+	      { id: 'wrapper' },
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'container-fluid' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'row' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'col-md-12' },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'formWidth' },
+	              _react2.default.createElement(
+	                'h1',
+	                null,
+	                'Add Goal'
+	              ),
+	              _react2.default.createElement(
+	                'form',
+	                { onSubmit: this.submitClick },
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'form-group' },
+	                  _react2.default.createElement(
+	                    'label',
+	                    null,
+	                    'Student:'
+	                  ),
+	                  _react2.default.createElement(
+	                    'select',
+	                    { className: 'form-control custom-select', onChange: this.handleStudent, required: true },
+	                    _react2.default.createElement(
+	                      'option',
+	                      { defaultValue: true },
+	                      'Select Student'
+	                    ),
+	                    this.state.students.map(function (student, index) {
+	                      return _react2.default.createElement(
+	                        'option',
+	                        { value: student.id, key: index },
+	                        student.first_name,
+	                        ' ',
+	                        student.last_name
+	                      );
+	                    })
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'form-group' },
+	                  _react2.default.createElement(
+	                    'label',
+	                    null,
+	                    'Goal:'
+	                  ),
+	                  _react2.default.createElement('input', { type: 'text', className: 'form-control', onChange: this.handleLog, required: true })
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'form-group' },
+	                  _react2.default.createElement(
+	                    'label',
+	                    null,
+	                    'Current Status:'
+	                  ),
+	                  _react2.default.createElement(
+	                    'select',
+	                    { className: 'form-control custom-select', onChange: this.handleOther, required: true },
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: 'Not Started' },
+	                      'Not Started'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: 'In Progress' },
+	                      'In Progress'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: 'Complete' },
+	                      'Complete'
+	                    )
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'form-group' },
+	                  _react2.default.createElement(
+	                    'button',
+	                    { className: 'btn search-btn' },
+	                    'Add goal'
+	                  )
+	                )
+	              )
+	            )
+	          )
+	        )
+	      )
+	    );
+	  }
+	});
+
+/***/ },
+/* 267 */
 /*!******************************!*\
   !*** ./client/app/Goals.jsx ***!
   \******************************/
@@ -29563,9 +29930,9 @@
 	
 	var _axios2 = _interopRequireDefault(_axios);
 	
-	var _auth = __webpack_require__(/*! ./helper/auth.js */ 262);
+	var _auth = __webpack_require__(/*! ./helper/auth.js */ 236);
 	
-	var _GoalEntry = __webpack_require__(/*! ./GoalEntry.jsx */ 272);
+	var _GoalEntry = __webpack_require__(/*! ./GoalEntry.jsx */ 268);
 	
 	var _reactRouter = __webpack_require__(/*! react-router */ 178);
 	
@@ -29683,7 +30050,74 @@
 	exports.Goals = Goals;
 
 /***/ },
-/* 266 */
+/* 268 */
+/*!**********************************!*\
+  !*** ./client/app/GoalEntry.jsx ***!
+  \**********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.GoalEntry = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var GoalEntry = function (_React$Component) {
+	  _inherits(GoalEntry, _React$Component);
+	
+	  function GoalEntry(props) {
+	    _classCallCheck(this, GoalEntry);
+	
+	    return _possibleConstructorReturn(this, (GoalEntry.__proto__ || Object.getPrototypeOf(GoalEntry)).call(this, props));
+	  }
+	
+	  _createClass(GoalEntry, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'tr',
+	        null,
+	        _react2.default.createElement(
+	          'td',
+	          null,
+	          this.props.eachLog.student_id
+	        ),
+	        _react2.default.createElement(
+	          'td',
+	          null,
+	          this.props.eachLog.log
+	        ),
+	        _react2.default.createElement(
+	          'td',
+	          null,
+	          this.props.eachLog.other
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return GoalEntry;
+	}(_react2.default.Component);
+	
+	exports.GoalEntry = GoalEntry;
+
+/***/ },
+/* 269 */
 /*!****************************!*\
   !*** ./client/app/IEP.jsx ***!
   \****************************/
@@ -29769,7 +30203,7 @@
 	exports.IEP = IEP;
 
 /***/ },
-/* 267 */
+/* 270 */
 /*!*************************************!*\
   !*** ./client/app/MeetingNotes.jsx ***!
   \*************************************/
@@ -29792,9 +30226,9 @@
 	
 	var _axios2 = _interopRequireDefault(_axios);
 	
-	var _auth = __webpack_require__(/*! ./helper/auth.js */ 262);
+	var _auth = __webpack_require__(/*! ./helper/auth.js */ 236);
 	
-	var _LogEntry = __webpack_require__(/*! ./LogEntry.jsx */ 269);
+	var _LogEntry = __webpack_require__(/*! ./LogEntry.jsx */ 271);
 	
 	var _reactRouter = __webpack_require__(/*! react-router */ 178);
 	
@@ -29912,7 +30346,74 @@
 	exports.MeetingNotes = MeetingNotes;
 
 /***/ },
-/* 268 */
+/* 271 */
+/*!*********************************!*\
+  !*** ./client/app/LogEntry.jsx ***!
+  \*********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.LogEntry = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var LogEntry = function (_React$Component) {
+	  _inherits(LogEntry, _React$Component);
+	
+	  function LogEntry(props) {
+	    _classCallCheck(this, LogEntry);
+	
+	    return _possibleConstructorReturn(this, (LogEntry.__proto__ || Object.getPrototypeOf(LogEntry)).call(this, props));
+	  }
+	
+	  _createClass(LogEntry, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'tr',
+	        null,
+	        _react2.default.createElement(
+	          'td',
+	          null,
+	          this.props.eachLog.student_id
+	        ),
+	        _react2.default.createElement(
+	          'td',
+	          null,
+	          this.props.eachLog.log
+	        ),
+	        _react2.default.createElement(
+	          'td',
+	          null,
+	          this.props.eachLog.user
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return LogEntry;
+	}(_react2.default.Component);
+	
+	exports.LogEntry = LogEntry;
+
+/***/ },
+/* 272 */
 /*!*********************************!*\
   !*** ./client/app/ViewLogs.jsx ***!
   \*********************************/
@@ -29935,9 +30436,9 @@
 	
 	var _axios2 = _interopRequireDefault(_axios);
 	
-	var _auth = __webpack_require__(/*! ./helper/auth.js */ 262);
+	var _auth = __webpack_require__(/*! ./helper/auth.js */ 236);
 	
-	var _LogEntry = __webpack_require__(/*! ./LogEntry.jsx */ 269);
+	var _LogEntry = __webpack_require__(/*! ./LogEntry.jsx */ 271);
 	
 	var _reactRouter = __webpack_require__(/*! react-router */ 178);
 	
@@ -30055,74 +30556,7 @@
 	exports.ViewLogs = ViewLogs;
 
 /***/ },
-/* 269 */
-/*!*********************************!*\
-  !*** ./client/app/LogEntry.jsx ***!
-  \*********************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.LogEntry = undefined;
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var LogEntry = function (_React$Component) {
-	  _inherits(LogEntry, _React$Component);
-	
-	  function LogEntry(props) {
-	    _classCallCheck(this, LogEntry);
-	
-	    return _possibleConstructorReturn(this, (LogEntry.__proto__ || Object.getPrototypeOf(LogEntry)).call(this, props));
-	  }
-	
-	  _createClass(LogEntry, [{
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'tr',
-	        null,
-	        _react2.default.createElement(
-	          'td',
-	          null,
-	          this.props.eachLog.student_id
-	        ),
-	        _react2.default.createElement(
-	          'td',
-	          null,
-	          this.props.eachLog.log
-	        ),
-	        _react2.default.createElement(
-	          'td',
-	          null,
-	          this.props.eachLog.user
-	        )
-	      );
-	    }
-	  }]);
-	
-	  return LogEntry;
-	}(_react2.default.Component);
-	
-	exports.LogEntry = LogEntry;
-
-/***/ },
-/* 270 */
+/* 273 */
 /*!************************************!*\
   !*** ./client/app/StudentForm.jsx ***!
   \************************************/
@@ -30145,7 +30579,7 @@
 	
 	var _axios2 = _interopRequireDefault(_axios);
 	
-	var _auth = __webpack_require__(/*! ./helper/auth.js */ 262);
+	var _auth = __webpack_require__(/*! ./helper/auth.js */ 236);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -30331,421 +30765,6 @@
 	}(_react2.default.Component);
 	
 	exports.StudentForm = StudentForm;
-
-/***/ },
-/* 271 */
-/*!***********************************!*\
-  !*** ./client/app/CreateNote.jsx ***!
-  \***********************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _axios = __webpack_require__(/*! axios */ 237);
-	
-	var _axios2 = _interopRequireDefault(_axios);
-	
-	var _auth = __webpack_require__(/*! ./helper/auth.js */ 262);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	module.exports = _react2.default.createClass({
-	  displayName: 'exports',
-	
-	  getInitialState: function getInitialState() {
-	    return {
-	      students: [],
-	      id: '',
-	      author: '',
-	      log: '',
-	      types: 2
-	    };
-	  },
-	
-	  componentWillMount: function componentWillMount() {
-	    var _this = this;
-	
-	    (0, _auth.getAllStudents)().then(function (resp) {
-	      _this.setState({
-	        students: resp.data
-	      });
-	    }).catch(function (err) {
-	      console.log(err);
-	    });
-	  },
-	  handleAuthor: function handleAuthor(e) {
-	    this.setState({
-	      author: e.target.value
-	    });
-	  },
-	  handleStudent: function handleStudent(e) {
-	    this.setState({
-	      id: e.target.value
-	    });
-	  },
-	  handleLog: function handleLog(e) {
-	    this.setState({
-	      log: e.target.value
-	    });
-	  },
-	  submitClick: function submitClick(e) {
-	    e.preventDefault();
-	    var log = {
-	      id: this.state.id,
-	      author: this.state.author,
-	      log: this.state.log,
-	      types: this.state.types
-	    };
-	    (0, _auth.addLog)(log).then(function (resp) {
-	      console.log('log added');
-	    }).catch(function (err) {
-	      console.log('could not add log', err);
-	    });
-	  },
-	
-	
-	  render: function render() {
-	    return _react2.default.createElement(
-	      'div',
-	      { id: 'wrapper' },
-	      _react2.default.createElement(
-	        'div',
-	        { className: 'container-fluid' },
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'row' },
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'col-md-12' },
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'formWidth' },
-	              _react2.default.createElement(
-	                'h1',
-	                null,
-	                'Add Meeting Notes'
-	              ),
-	              _react2.default.createElement(
-	                'form',
-	                { onSubmit: this.submitClick },
-	                _react2.default.createElement(
-	                  'div',
-	                  { className: 'form-group' },
-	                  _react2.default.createElement(
-	                    'label',
-	                    null,
-	                    'Author:'
-	                  ),
-	                  _react2.default.createElement('input', { type: 'text', className: 'form-control', onChange: this.handleAuthor, required: true })
-	                ),
-	                _react2.default.createElement(
-	                  'div',
-	                  { className: 'form-group' },
-	                  _react2.default.createElement(
-	                    'label',
-	                    null,
-	                    'Student:'
-	                  ),
-	                  _react2.default.createElement(
-	                    'select',
-	                    { className: 'form-control custom-select', onChange: this.handleStudent, required: true },
-	                    _react2.default.createElement(
-	                      'option',
-	                      { defaultValue: true },
-	                      'Select Student'
-	                    ),
-	                    this.state.students.map(function (student, index) {
-	                      return _react2.default.createElement(
-	                        'option',
-	                        { value: student.id, key: index },
-	                        student.first_name,
-	                        ' ',
-	                        student.last_name
-	                      );
-	                    })
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'div',
-	                  { className: 'form-group' },
-	                  _react2.default.createElement(
-	                    'label',
-	                    null,
-	                    'Meeting Notes:'
-	                  ),
-	                  _react2.default.createElement('textarea', { type: 'text', className: 'form-control', onChange: this.handleLog, required: true })
-	                ),
-	                _react2.default.createElement(
-	                  'div',
-	                  { className: 'form-group' },
-	                  _react2.default.createElement(
-	                    'button',
-	                    { className: 'btn search-btn' },
-	                    'Add meeting notes'
-	                  )
-	                )
-	              )
-	            )
-	          )
-	        )
-	      )
-	    );
-	  }
-	});
-
-/***/ },
-/* 272 */
-/*!**********************************!*\
-  !*** ./client/app/GoalEntry.jsx ***!
-  \**********************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.GoalEntry = undefined;
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var GoalEntry = function (_React$Component) {
-	  _inherits(GoalEntry, _React$Component);
-	
-	  function GoalEntry(props) {
-	    _classCallCheck(this, GoalEntry);
-	
-	    return _possibleConstructorReturn(this, (GoalEntry.__proto__ || Object.getPrototypeOf(GoalEntry)).call(this, props));
-	  }
-	
-	  _createClass(GoalEntry, [{
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'tr',
-	        null,
-	        _react2.default.createElement(
-	          'td',
-	          null,
-	          this.props.eachLog.student_id
-	        ),
-	        _react2.default.createElement(
-	          'td',
-	          null,
-	          this.props.eachLog.log
-	        ),
-	        _react2.default.createElement(
-	          'td',
-	          null,
-	          this.props.eachLog.other
-	        )
-	      );
-	    }
-	  }]);
-	
-	  return GoalEntry;
-	}(_react2.default.Component);
-	
-	exports.GoalEntry = GoalEntry;
-
-/***/ },
-/* 273 */
-/*!***********************************!*\
-  !*** ./client/app/CreateGoal.jsx ***!
-  \***********************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _axios = __webpack_require__(/*! axios */ 237);
-	
-	var _axios2 = _interopRequireDefault(_axios);
-	
-	var _auth = __webpack_require__(/*! ./helper/auth.js */ 262);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	module.exports = _react2.default.createClass({
-	  displayName: 'exports',
-	
-	  getInitialState: function getInitialState() {
-	    return {
-	      students: [],
-	      id: '',
-	      other: 'Not Started',
-	      log: '',
-	      types: 1
-	    };
-	  },
-	
-	  componentWillMount: function componentWillMount() {
-	    var _this = this;
-	
-	    (0, _auth.getAllStudents)().then(function (resp) {
-	      _this.setState({
-	        students: resp.data
-	      });
-	    }).catch(function (err) {
-	      console.log(err);
-	    });
-	  },
-	  handleOther: function handleOther(e) {
-	    this.setState({
-	      other: e.target.value
-	    });
-	  },
-	  handleStudent: function handleStudent(e) {
-	    this.setState({
-	      id: e.target.value
-	    });
-	  },
-	  handleLog: function handleLog(e) {
-	    this.setState({
-	      log: e.target.value
-	    });
-	  },
-	  submitClick: function submitClick(e) {
-	    e.preventDefault();
-	    var log = {
-	      id: this.state.id,
-	      other: this.state.other,
-	      log: this.state.log,
-	      types: this.state.types
-	    };
-	    (0, _auth.addLog)(log).then(function (resp) {
-	      console.log('log added');
-	    }).catch(function (err) {
-	      console.log('could not add log', err);
-	    });
-	  },
-	
-	
-	  render: function render() {
-	    return _react2.default.createElement(
-	      'div',
-	      { id: 'wrapper' },
-	      _react2.default.createElement(
-	        'div',
-	        { className: 'container-fluid' },
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'row' },
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'col-md-12' },
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'formWidth' },
-	              _react2.default.createElement(
-	                'h1',
-	                null,
-	                'Add Goal'
-	              ),
-	              _react2.default.createElement(
-	                'form',
-	                { onSubmit: this.submitClick },
-	                _react2.default.createElement(
-	                  'div',
-	                  { className: 'form-group' },
-	                  _react2.default.createElement(
-	                    'label',
-	                    null,
-	                    'Student:'
-	                  ),
-	                  _react2.default.createElement(
-	                    'select',
-	                    { className: 'form-control custom-select', onChange: this.handleStudent, required: true },
-	                    _react2.default.createElement(
-	                      'option',
-	                      { defaultValue: true },
-	                      'Select Student'
-	                    ),
-	                    this.state.students.map(function (student, index) {
-	                      return _react2.default.createElement(
-	                        'option',
-	                        { value: student.id, key: index },
-	                        student.first_name,
-	                        ' ',
-	                        student.last_name
-	                      );
-	                    })
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'div',
-	                  { className: 'form-group' },
-	                  _react2.default.createElement(
-	                    'label',
-	                    null,
-	                    'Goal:'
-	                  ),
-	                  _react2.default.createElement('input', { type: 'text', className: 'form-control', onChange: this.handleLog, required: true })
-	                ),
-	                _react2.default.createElement(
-	                  'div',
-	                  { className: 'form-group' },
-	                  _react2.default.createElement(
-	                    'label',
-	                    null,
-	                    'Current Status:'
-	                  ),
-	                  _react2.default.createElement(
-	                    'select',
-	                    { className: 'form-control custom-select', onChange: this.handleOther, required: true },
-	                    _react2.default.createElement(
-	                      'option',
-	                      { value: 'Not Started' },
-	                      'Not Started'
-	                    ),
-	                    _react2.default.createElement(
-	                      'option',
-	                      { value: 'In Progress' },
-	                      'In Progress'
-	                    ),
-	                    _react2.default.createElement(
-	                      'option',
-	                      { value: 'Complete' },
-	                      'Complete'
-	                    )
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'div',
-	                  { className: 'form-group' },
-	                  _react2.default.createElement(
-	                    'button',
-	                    { className: 'btn search-btn' },
-	                    'Add goal'
-	                  )
-	                )
-	              )
-	            )
-	          )
-	        )
-	      )
-	    );
-	  }
-	});
 
 /***/ }
 /******/ ]);

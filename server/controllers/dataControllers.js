@@ -11,6 +11,7 @@ module.exports = {
   query: {
 
     post: function(req, res) {
+      console.log("query post called", req.body)
       var queryString = req.body.name;
       knex('students').where({
         first_name: queryString})
