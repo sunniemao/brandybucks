@@ -63,6 +63,10 @@ module.exports = React.createClass({
 
   render: function() {
     return (
+      <div id="wrapper">
+      <div className="container-fluid">
+      <div className="row">
+      <div className="col-md-12">
       <div className="formWidth">
       <h1>Add Meeting Notes</h1>
       <form onSubmit={this.submitClick}>
@@ -96,6 +100,10 @@ module.exports = React.createClass({
         <button className="btn search-btn">Add meeting notes</button>
         </div>
       </form>
+      </div>
+      </div>
+      </div>
+      </div>
       </div>
     );
   }

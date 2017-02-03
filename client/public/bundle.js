@@ -29453,69 +29453,85 @@
 	  render: function render() {
 	    return _react2.default.createElement(
 	      'div',
-	      { className: 'formWidth' },
+	      { id: 'wrapper' },
 	      _react2.default.createElement(
-	        'h1',
-	        null,
-	        'Add Log'
-	      ),
-	      _react2.default.createElement(
-	        'form',
-	        { onSubmit: this.submitClick },
+	        'div',
+	        { className: 'container-fluid' },
 	        _react2.default.createElement(
 	          'div',
-	          { className: 'form-group' },
+	          { className: 'row' },
 	          _react2.default.createElement(
-	            'label',
-	            null,
-	            'Author:'
-	          ),
-	          _react2.default.createElement('input', { type: 'text', className: 'form-control', onChange: this.handleAuthor, required: true })
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'form-group' },
-	          _react2.default.createElement(
-	            'label',
-	            null,
-	            'Student:'
-	          ),
-	          _react2.default.createElement(
-	            'select',
-	            { className: 'form-control custom-select', onChange: this.handleStudent, required: true },
+	            'div',
+	            { className: 'col-md-12' },
 	            _react2.default.createElement(
-	              'option',
-	              { defaultValue: true },
-	              'Select Student'
-	            ),
-	            this.state.students.map(function (student, index) {
-	              return _react2.default.createElement(
-	                'option',
-	                { value: student.id, key: index },
-	                student.first_name,
-	                ' ',
-	                student.last_name
-	              );
-	            })
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'form-group' },
-	          _react2.default.createElement(
-	            'label',
-	            null,
-	            'Update / Log:'
-	          ),
-	          _react2.default.createElement('input', { type: 'text', className: 'form-control', onChange: this.handleLog, required: true })
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'form-group' },
-	          _react2.default.createElement(
-	            'button',
-	            { className: 'btn search-btn' },
-	            'Add log'
+	              'div',
+	              { className: 'formWidth' },
+	              _react2.default.createElement(
+	                'h1',
+	                null,
+	                'Create Log'
+	              ),
+	              _react2.default.createElement(
+	                'form',
+	                { onSubmit: this.submitClick },
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'form-group' },
+	                  _react2.default.createElement(
+	                    'label',
+	                    null,
+	                    'Author:'
+	                  ),
+	                  _react2.default.createElement('input', { type: 'text', className: 'form-control', onChange: this.handleAuthor, required: true })
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'form-group' },
+	                  _react2.default.createElement(
+	                    'label',
+	                    null,
+	                    'Student:'
+	                  ),
+	                  _react2.default.createElement(
+	                    'select',
+	                    { className: 'form-control custom-select', onChange: this.handleStudent, required: true },
+	                    _react2.default.createElement(
+	                      'option',
+	                      { defaultValue: true },
+	                      'Select Student'
+	                    ),
+	                    this.state.students.map(function (student, index) {
+	                      return _react2.default.createElement(
+	                        'option',
+	                        { value: student.id, key: index },
+	                        student.first_name,
+	                        ' ',
+	                        student.last_name
+	                      );
+	                    })
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'form-group' },
+	                  _react2.default.createElement(
+	                    'label',
+	                    null,
+	                    'Update / Log:'
+	                  ),
+	                  _react2.default.createElement('input', { type: 'text', className: 'form-control', onChange: this.handleLog, required: true })
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'form-group' },
+	                  _react2.default.createElement(
+	                    'button',
+	                    { className: 'btn search-btn' },
+	                    'Add log'
+	                  )
+	                )
+	              )
+	            )
 	          )
 	        )
 	      )
@@ -30395,69 +30411,85 @@
 	  render: function render() {
 	    return _react2.default.createElement(
 	      'div',
-	      { className: 'formWidth' },
+	      { id: 'wrapper' },
 	      _react2.default.createElement(
-	        'h1',
-	        null,
-	        'Add Meeting Notes'
-	      ),
-	      _react2.default.createElement(
-	        'form',
-	        { onSubmit: this.submitClick },
+	        'div',
+	        { className: 'container-fluid' },
 	        _react2.default.createElement(
 	          'div',
-	          { className: 'form-group' },
+	          { className: 'row' },
 	          _react2.default.createElement(
-	            'label',
-	            null,
-	            'Author:'
-	          ),
-	          _react2.default.createElement('input', { type: 'text', className: 'form-control', onChange: this.handleAuthor, required: true })
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'form-group' },
-	          _react2.default.createElement(
-	            'label',
-	            null,
-	            'Student:'
-	          ),
-	          _react2.default.createElement(
-	            'select',
-	            { className: 'form-control custom-select', onChange: this.handleStudent, required: true },
+	            'div',
+	            { className: 'col-md-12' },
 	            _react2.default.createElement(
-	              'option',
-	              { defaultValue: true },
-	              'Select Student'
-	            ),
-	            this.state.students.map(function (student, index) {
-	              return _react2.default.createElement(
-	                'option',
-	                { value: student.id, key: index },
-	                student.first_name,
-	                ' ',
-	                student.last_name
-	              );
-	            })
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'form-group' },
-	          _react2.default.createElement(
-	            'label',
-	            null,
-	            'Meeting Notes:'
-	          ),
-	          _react2.default.createElement('textarea', { type: 'text', className: 'form-control', onChange: this.handleLog, required: true })
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'form-group' },
-	          _react2.default.createElement(
-	            'button',
-	            { className: 'btn search-btn' },
-	            'Add meeting notes'
+	              'div',
+	              { className: 'formWidth' },
+	              _react2.default.createElement(
+	                'h1',
+	                null,
+	                'Add Meeting Notes'
+	              ),
+	              _react2.default.createElement(
+	                'form',
+	                { onSubmit: this.submitClick },
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'form-group' },
+	                  _react2.default.createElement(
+	                    'label',
+	                    null,
+	                    'Author:'
+	                  ),
+	                  _react2.default.createElement('input', { type: 'text', className: 'form-control', onChange: this.handleAuthor, required: true })
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'form-group' },
+	                  _react2.default.createElement(
+	                    'label',
+	                    null,
+	                    'Student:'
+	                  ),
+	                  _react2.default.createElement(
+	                    'select',
+	                    { className: 'form-control custom-select', onChange: this.handleStudent, required: true },
+	                    _react2.default.createElement(
+	                      'option',
+	                      { defaultValue: true },
+	                      'Select Student'
+	                    ),
+	                    this.state.students.map(function (student, index) {
+	                      return _react2.default.createElement(
+	                        'option',
+	                        { value: student.id, key: index },
+	                        student.first_name,
+	                        ' ',
+	                        student.last_name
+	                      );
+	                    })
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'form-group' },
+	                  _react2.default.createElement(
+	                    'label',
+	                    null,
+	                    'Meeting Notes:'
+	                  ),
+	                  _react2.default.createElement('textarea', { type: 'text', className: 'form-control', onChange: this.handleLog, required: true })
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'form-group' },
+	                  _react2.default.createElement(
+	                    'button',
+	                    { className: 'btn search-btn' },
+	                    'Add meeting notes'
+	                  )
+	                )
+	              )
+	            )
 	          )
 	        )
 	      )
@@ -30611,87 +30643,103 @@
 	  render: function render() {
 	    return _react2.default.createElement(
 	      'div',
-	      { className: 'formWidth' },
+	      { id: 'wrapper' },
 	      _react2.default.createElement(
-	        'h1',
-	        null,
-	        'Add Goal'
-	      ),
-	      _react2.default.createElement(
-	        'form',
-	        { onSubmit: this.submitClick },
+	        'div',
+	        { className: 'container-fluid' },
 	        _react2.default.createElement(
 	          'div',
-	          { className: 'form-group' },
+	          { className: 'row' },
 	          _react2.default.createElement(
-	            'label',
-	            null,
-	            'Student:'
-	          ),
-	          _react2.default.createElement(
-	            'select',
-	            { className: 'form-control custom-select', onChange: this.handleStudent, required: true },
+	            'div',
+	            { className: 'col-md-12' },
 	            _react2.default.createElement(
-	              'option',
-	              { defaultValue: true },
-	              'Select Student'
-	            ),
-	            this.state.students.map(function (student, index) {
-	              return _react2.default.createElement(
-	                'option',
-	                { value: student.id, key: index },
-	                student.first_name,
-	                ' ',
-	                student.last_name
-	              );
-	            })
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'form-group' },
-	          _react2.default.createElement(
-	            'label',
-	            null,
-	            'Goal:'
-	          ),
-	          _react2.default.createElement('input', { type: 'text', className: 'form-control', onChange: this.handleLog, required: true })
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'form-group' },
-	          _react2.default.createElement(
-	            'label',
-	            null,
-	            'Current Status:'
-	          ),
-	          _react2.default.createElement(
-	            'select',
-	            { className: 'form-control custom-select', onChange: this.handleOther, required: true },
-	            _react2.default.createElement(
-	              'option',
-	              { value: 'Not Started' },
-	              'Not Started'
-	            ),
-	            _react2.default.createElement(
-	              'option',
-	              { value: 'In Progress' },
-	              'In Progress'
-	            ),
-	            _react2.default.createElement(
-	              'option',
-	              { value: 'Complete' },
-	              'Complete'
+	              'div',
+	              { className: 'formWidth' },
+	              _react2.default.createElement(
+	                'h1',
+	                null,
+	                'Add Goal'
+	              ),
+	              _react2.default.createElement(
+	                'form',
+	                { onSubmit: this.submitClick },
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'form-group' },
+	                  _react2.default.createElement(
+	                    'label',
+	                    null,
+	                    'Student:'
+	                  ),
+	                  _react2.default.createElement(
+	                    'select',
+	                    { className: 'form-control custom-select', onChange: this.handleStudent, required: true },
+	                    _react2.default.createElement(
+	                      'option',
+	                      { defaultValue: true },
+	                      'Select Student'
+	                    ),
+	                    this.state.students.map(function (student, index) {
+	                      return _react2.default.createElement(
+	                        'option',
+	                        { value: student.id, key: index },
+	                        student.first_name,
+	                        ' ',
+	                        student.last_name
+	                      );
+	                    })
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'form-group' },
+	                  _react2.default.createElement(
+	                    'label',
+	                    null,
+	                    'Goal:'
+	                  ),
+	                  _react2.default.createElement('input', { type: 'text', className: 'form-control', onChange: this.handleLog, required: true })
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'form-group' },
+	                  _react2.default.createElement(
+	                    'label',
+	                    null,
+	                    'Current Status:'
+	                  ),
+	                  _react2.default.createElement(
+	                    'select',
+	                    { className: 'form-control custom-select', onChange: this.handleOther, required: true },
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: 'Not Started' },
+	                      'Not Started'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: 'In Progress' },
+	                      'In Progress'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: 'Complete' },
+	                      'Complete'
+	                    )
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'form-group' },
+	                  _react2.default.createElement(
+	                    'button',
+	                    { className: 'btn search-btn' },
+	                    'Add goal'
+	                  )
+	                )
+	              )
 	            )
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'form-group' },
-	          _react2.default.createElement(
-	            'button',
-	            { className: 'btn search-btn' },
-	            'Add goal'
 	          )
 	        )
 	      )
