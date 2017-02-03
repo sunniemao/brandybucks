@@ -58,6 +58,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 
+
 app.get('/login', function(req, res) {
   // console.log('req.session from /login', req.session)
   res.sendFile(path.join(__dirname, './authViews', 'login.html'));
@@ -65,6 +66,11 @@ app.get('/login', function(req, res) {
 
 app.get('/signup', function(req, res) {
   res.sendFile(path.join(__dirname, './authViews', 'signup.html'));
+});
+
+app.get('/llama.png', function(req, res) {
+  // console.log('req.session from /login', req.session)
+  res.sendFile(path.join(__dirname, './authViews', 'llama.png'));
 });
 
 // Set up our login/logout api routes
@@ -75,8 +81,7 @@ app.use('/authApi', authRouter);
 // this is the auth cutoff point
 ////////
 
-// console.log('process.env.NODE_ENV: ', process.env.NODE_ENV)
-console.log('process.env.SKIP_AUTH: ', process.env.SKIP_AUTH)
+
 
 if (process.env.SKIP_AUTH !== 'skip') {
 
