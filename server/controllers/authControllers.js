@@ -8,14 +8,15 @@ module.exports = {
   login: {
 
     post: function(req, res) {
-      var first_name = req.body.first_name;
+      var username = req.body.username;
       var password = req.body.password;
 
-      new User({ first_name: first_name })
+      new User({ username: username })
         .fetch()
         .then(function(user) {
           if (!user) {
-            res.send('no user by that name')
+            // res.send('no user by that name')
+            res.redirect('/')
           } else {
 
             user.comparePassword(password, function(match) {
@@ -38,16 +39,16 @@ module.exports = {
   signup: {
 
     post: function(req, res) {
-      var first_name = req.body.first_name;
+      var username = req.body.username;
       var password = req.body.password;
 
-      new User({ first_name: first_name })
+      new User({ username: username })
         .fetch()
         .then(function(user) {
           if (!user) {
 
             var newUser = new User({
-              first_name: first_name,
+              username: username,
               password: password
             });
 
