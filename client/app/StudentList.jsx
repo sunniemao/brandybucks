@@ -9,10 +9,14 @@ class StudentList extends React.Component {
     super(props);
 
     this.state = {
-      students: []
+      students: [],
+      clickedStudent: {}
     };
+
+    this.clickedStudent = this.clickedStudent.bind(this);
   }
 
+  //method to retrieve student from database once page load.
   componentWillMount() {
     getAllStudents()
     .then((resp) => {
@@ -25,6 +29,22 @@ class StudentList extends React.Component {
     });
   }
 
+  shouldComponentUpdate(nextState) {
+    if (this.state.clickedStudent !== nextState) {
+      return true;
+    }
+    return false
+  }
+
+  //method to handle click on student
+  clickedStudent(e) {
+    //console.log("student clicked", e.eachStudent);
+    this.setState({
+      clickedStudent: e.eachStudent
+    });
+    console.log("student clicked", this.state.clickedStudent);
+  }
+
   render () {
     return (
       <div id="wrapper">
@@ -33,7 +53,7 @@ class StudentList extends React.Component {
             <div className="col-md-12">
                 <h1 className="alignleft">View Students</h1>
                 <h3 className="alignright"><Link to="/addstudent"><img src="add.png" height="25px" />Student</Link></h3>
-                  <table className="table table-hover" >
+                  <table className="table table-hover table-striped" >
                     <thead>
                       <tr>
                         <th className="col-md-4">Photo</th>
@@ -45,7 +65,7 @@ class StudentList extends React.Component {
                     <tbody>
                       {this.state.students.map((student, index) => {
                           return (
-                            <StudentEntry eachStudent={student} key={index} />
+                            <StudentEntry clickedStudent={this.clickedStudent} eachStudent={student} key={index} />
                           )
                         })
                       }
