@@ -15,17 +15,19 @@ class Nav extends React.Component {
 
     //binding all the method to this context before pass down to components.
     this.handleChangeSearch = this.handleChangeSearch.bind(this);
+    this.searchStudent = this.searchStudent.bind(this);
     this.searchClicked = this.searchClicked.bind(this);
     this.logOut = this.logOut.bind(this);
   };
 
-    //create handler method to extract search input box value
+  //create handler method to extract search input box value.
   handleChangeSearch (e) {
     this.setState({
       searchInput: e.target.value,
     });
   };
 
+  //method to capitalize input name before sent to query search.
   capitalizeName (name) {
     let fullName = name.split(" ");
     let cappedName = fullName.map((word) => {
@@ -34,11 +36,10 @@ class Nav extends React.Component {
     return cappedName;
   };
 
-  //create handler method for search button clicked
-  searchClicked (e) {
-    let queryName = this.capitalizeName(this.state.searchInput);
+  //axios call to server to search student by name.
+  searchStudent (name) {
     let context = this;
-    getStudentByName(queryName)
+    getStudentByName(name)
     .then((resp) => {
       if (typeof resp.data === 'string') {
         alert(resp.data)
@@ -53,6 +54,24 @@ class Nav extends React.Component {
     .catch((err) => {
       console.log('sorry could not get student');
     })
+  };
+
+  //create handler method for search if actived by key press or by button clicked.
+  searchClicked (e) {
+    let queryName = this.capitalizeName(this.state.searchInput);
+
+    if (e.key === "Enter") {
+      this.searchStudent(queryName);
+      this.setState({
+        searchInput: '',
+      })
+    } else if (e.button === 0) {
+      this.searchStudent(queryName);
+      this.setState({
+        searchInput: '',
+      })
+    }
+
   };
 
   logOut() {
@@ -83,7 +102,7 @@ class Nav extends React.Component {
                 <a href="/login" onClick={this.logOut} className="nav-link">Logout</a>
               </li>
               <li className="nav-item">
-                <input className="student-search" type="text" placeholder="&nbsp;Search Student" onChange={this.handleChangeSearch} />&nbsp;
+                <input className="student-search" type="text" placeholder="&nbsp;Search Student" value={this.state.searchInput} onKeyPress={this.searchClicked} onChange={this.handleChangeSearch} />&nbsp;
                 <button className="btn search-btn" onClick={this.searchClicked} >Find</button>
               </li>
             </ul>

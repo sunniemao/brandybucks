@@ -11,7 +11,7 @@ module.exports = React.createClass({
       author: '',
       log: '',
       types: 3
-    }  
+    }
   },
 
   componentWillMount() {
@@ -59,6 +59,10 @@ module.exports = React.createClass({
       .catch(function(err) {
         console.log('could not add log', err);
       });
+    this.setState({
+      author: '',
+      log: ''
+    })
   },
 
   render: function() {
@@ -74,14 +78,14 @@ module.exports = React.createClass({
         <label>
         Author:
         </label>
-        <input type="text" className="form-control" onChange={this.handleAuthor} required />
+        <input type="text" className="form-control" value={this.state.author} onChange={this.handleAuthor} required />
         </div>
         <div className="form-group">
         <label>
         Student:
         </label>
         <select className="form-control custom-select" onChange={this.handleStudent} required>
-          <option defaultValue>Select Student</option>
+          <option defaultValue >Select Student</option>
           {this.state.students.map((student, index) => {
             return (
               <option value={student.id} key={index}>{student.first_name} {student.last_name}</option>
@@ -94,7 +98,7 @@ module.exports = React.createClass({
         <label>
         Update / Log:
         </label>
-        <input type="text" className="form-control" onChange={this.handleLog} required/>
+        <input type="text" className="form-control" value={this.state.log} onChange={this.handleLog} required/>
         </div>
         <div className="form-group">
         <button className="btn search-btn">Add log</button>

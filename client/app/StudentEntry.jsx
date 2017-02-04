@@ -7,7 +7,7 @@ class StudentEntry extends React.Component {
 
   render() {
     return (
-      <tr>
+      <tr onClick={()=>this.props.clickedStudent(this.props)}>
         <td><img src=
         {this.props.eachStudent.pic} width="40%" /></td>
         <td>{this.props.eachStudent.first_name}</td>

@@ -27250,7 +27250,7 @@
 	
 	var _App2 = _interopRequireDefault(_App);
 	
-	var _StudentList = __webpack_require__(/*! ./StudentList.jsx */ 236);
+	var _StudentList = __webpack_require__(/*! ./StudentList.jsx */ 262);
 	
 	var _CreateLog = __webpack_require__(/*! ./CreateLog.jsx */ 264);
 	
@@ -27383,7 +27383,7 @@
 	
 	var _reactRouter = __webpack_require__(/*! react-router */ 178);
 	
-	var _auth = __webpack_require__(/*! ./helper/auth.js */ 262);
+	var _auth = __webpack_require__(/*! ./helper/auth.js */ 236);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -27409,6 +27409,7 @@
 	
 	    //binding all the method to this context before pass down to components.
 	    _this.handleChangeSearch = _this.handleChangeSearch.bind(_this);
+	    _this.searchStudent = _this.searchStudent.bind(_this);
 	    _this.searchClicked = _this.searchClicked.bind(_this);
 	    _this.logOut = _this.logOut.bind(_this);
 	    return _this;
@@ -27418,7 +27419,7 @@
 	    key: 'handleChangeSearch',
 	
 	
-	    //create handler method to extract search input box value
+	    //create handler method to extract search input box value.
 	    value: function handleChangeSearch(e) {
 	      this.setState({
 	        searchInput: e.target.value
@@ -27426,6 +27427,9 @@
 	    }
 	  }, {
 	    key: 'capitalizeName',
+	
+	
+	    //method to capitalize input name before sent to query search.
 	    value: function capitalizeName(name) {
 	      var fullName = name.split(" ");
 	      var cappedName = fullName.map(function (word) {
@@ -27434,16 +27438,15 @@
 	      return cappedName;
 	    }
 	  }, {
-	    key: 'searchClicked',
+	    key: 'searchStudent',
 	
 	
-	    //create handler method for search button clicked
-	    value: function searchClicked(e) {
+	    //axios call to server to search student by name.
+	    value: function searchStudent(name) {
 	      var _this2 = this;
 	
-	      var queryName = this.capitalizeName(this.state.searchInput);
 	      var context = this;
-	      (0, _auth.getStudentByName)(queryName).then(function (resp) {
+	      (0, _auth.getStudentByName)(name).then(function (resp) {
 	        if (typeof resp.data === 'string') {
 	          alert(resp.data);
 	        } else {
@@ -27456,6 +27459,26 @@
 	      }).catch(function (err) {
 	        console.log('sorry could not get student');
 	      });
+	    }
+	  }, {
+	    key: 'searchClicked',
+	
+	
+	    //create handler method for search if actived by key press or by button clicked.
+	    value: function searchClicked(e) {
+	      var queryName = this.capitalizeName(this.state.searchInput);
+	
+	      if (e.key === "Enter") {
+	        this.searchStudent(queryName);
+	        this.setState({
+	          searchInput: ''
+	        });
+	      } else if (e.button === 0) {
+	        this.searchStudent(queryName);
+	        this.setState({
+	          searchInput: ''
+	        });
+	      }
 	    }
 	  }, {
 	    key: 'logOut',
@@ -27517,7 +27540,7 @@
 	            _react2.default.createElement(
 	              'li',
 	              { className: 'nav-item' },
-	              _react2.default.createElement('input', { className: 'student-search', type: 'text', placeholder: '\xA0Search Student', onChange: this.handleChangeSearch }),
+	              _react2.default.createElement('input', { className: 'student-search', type: 'text', placeholder: '\xA0Search Student', value: this.state.searchInput, onKeyPress: this.searchClicked, onChange: this.handleChangeSearch }),
 	              '\xA0',
 	              _react2.default.createElement(
 	                'button',
@@ -27590,149 +27613,54 @@
 
 /***/ },
 /* 236 */
-/*!************************************!*\
-  !*** ./client/app/StudentList.jsx ***!
-  \************************************/
+/*!***********************************!*\
+  !*** ./client/app/helper/auth.js ***!
+  \***********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.StudentList = undefined;
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
 	
 	var _axios = __webpack_require__(/*! axios */ 237);
 	
 	var _axios2 = _interopRequireDefault(_axios);
 	
-	var _auth = __webpack_require__(/*! ./helper/auth.js */ 262);
-	
-	var _StudentEntry = __webpack_require__(/*! ./StudentEntry.jsx */ 263);
-	
-	var _reactRouter = __webpack_require__(/*! react-router */ 178);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	exports.getAllStudents = function () {
+	  return _axios2.default.get('api/students/getAll');
+	};
 	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var StudentList = function (_React$Component) {
-	  _inherits(StudentList, _React$Component);
-	
-	  function StudentList(props) {
-	    _classCallCheck(this, StudentList);
-	
-	    var _this = _possibleConstructorReturn(this, (StudentList.__proto__ || Object.getPrototypeOf(StudentList)).call(this, props));
-	
-	    _this.state = {
-	      students: []
-	    };
-	    return _this;
-	  }
-	
-	  _createClass(StudentList, [{
-	    key: 'componentWillMount',
-	    value: function componentWillMount() {
-	      var _this2 = this;
-	
-	      (0, _auth.getAllStudents)().then(function (resp) {
-	        _this2.setState({
-	          students: resp.data
-	        });
-	      }).catch(function (err) {
-	        console.log(err);
-	      });
+	exports.getStudentByName = function (name) {
+	  return _axios2.default.get('api/students/name', {
+	    params: {
+	      name: name
 	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'div',
-	        { id: 'wrapper' },
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'container-fluid' },
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'row' },
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'col-md-12' },
-	              _react2.default.createElement(
-	                'h1',
-	                { className: 'alignleft' },
-	                'View Students'
-	              ),
-	              _react2.default.createElement(
-	                'h3',
-	                { className: 'alignright' },
-	                _react2.default.createElement(
-	                  _reactRouter.Link,
-	                  { to: '/addstudent' },
-	                  _react2.default.createElement('img', { src: 'add.png', height: '25px' }),
-	                  'Student'
-	                )
-	              ),
-	              _react2.default.createElement(
-	                'table',
-	                { className: 'table table-hover' },
-	                _react2.default.createElement(
-	                  'thead',
-	                  null,
-	                  _react2.default.createElement(
-	                    'tr',
-	                    null,
-	                    _react2.default.createElement(
-	                      'th',
-	                      { className: 'col-md-4' },
-	                      'Photo'
-	                    ),
-	                    _react2.default.createElement(
-	                      'th',
-	                      { className: 'col-md-3' },
-	                      'First Name'
-	                    ),
-	                    _react2.default.createElement(
-	                      'th',
-	                      { className: 'col-md-3' },
-	                      'Last Name'
-	                    ),
-	                    _react2.default.createElement(
-	                      'th',
-	                      { className: 'col-md-2' },
-	                      'Grade'
-	                    )
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'tbody',
-	                  null,
-	                  this.state.students.map(function (student, index) {
-	                    return _react2.default.createElement(_StudentEntry.StudentEntry, { eachStudent: student, key: index });
-	                  })
-	                )
-	              )
-	            )
-	          )
-	        )
-	      );
-	    }
-	  }]);
+	  });
+	};
 	
-	  return StudentList;
-	}(_react2.default.Component);
+	exports.addStudent = function (student) {
+	  return (0, _axios2.default)({
+	    method: 'POST',
+	    url: 'api/students',
+	    data: student
+	  });
+	};
 	
-	exports.StudentList = StudentList;
+	exports.getAllLogs = function () {
+	  return _axios2.default.get('api/logs/getAll');
+	};
+	
+	exports.addLog = function (log) {
+	  return (0, _axios2.default)({
+	    method: 'POST',
+	    url: 'api/logs',
+	    data: log
+	  });
+	};
+	
+	exports.logout = function () {
+	  return _axios2.default.get('authApi/logout');
+	};
 
 /***/ },
 /* 237 */
@@ -29300,54 +29228,177 @@
 
 /***/ },
 /* 262 */
-/*!***********************************!*\
-  !*** ./client/app/helper/auth.js ***!
-  \***********************************/
+/*!************************************!*\
+  !*** ./client/app/StudentList.jsx ***!
+  \************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.StudentList = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
 	
 	var _axios = __webpack_require__(/*! axios */ 237);
 	
 	var _axios2 = _interopRequireDefault(_axios);
 	
+	var _auth = __webpack_require__(/*! ./helper/auth.js */ 236);
+	
+	var _StudentEntry = __webpack_require__(/*! ./StudentEntry.jsx */ 263);
+	
+	var _reactRouter = __webpack_require__(/*! react-router */ 178);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	exports.getAllStudents = function () {
-	  return _axios2.default.get('api/students/getAll');
-	};
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
-	exports.getStudentByName = function (name) {
-	  return _axios2.default.get('api/students/name', {
-	    params: {
-	      name: name
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var StudentList = function (_React$Component) {
+	  _inherits(StudentList, _React$Component);
+	
+	  function StudentList(props) {
+	    _classCallCheck(this, StudentList);
+	
+	    var _this = _possibleConstructorReturn(this, (StudentList.__proto__ || Object.getPrototypeOf(StudentList)).call(this, props));
+	
+	    _this.state = {
+	      students: [],
+	      clickedStudent: {}
+	    };
+	
+	    _this.clickedStudent = _this.clickedStudent.bind(_this);
+	    return _this;
+	  }
+	
+	  //method to retrieve student from database once page load.
+	
+	
+	  _createClass(StudentList, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      var _this2 = this;
+	
+	      (0, _auth.getAllStudents)().then(function (resp) {
+	        _this2.setState({
+	          students: resp.data
+	        });
+	      }).catch(function (err) {
+	        console.log(err);
+	      });
 	    }
-	  });
-	};
+	  }, {
+	    key: 'shouldComponentUpdate',
+	    value: function shouldComponentUpdate(nextState) {
+	      if (this.state.clickedStudent !== nextState) {
+	        return true;
+	      }
+	      return false;
+	    }
 	
-	exports.addStudent = function (student) {
-	  return (0, _axios2.default)({
-	    method: 'POST',
-	    url: 'api/students',
-	    data: student
-	  });
-	};
+	    //method to handle click on student
 	
-	exports.getAllLogs = function () {
-	  return _axios2.default.get('api/logs/getAll');
-	};
+	  }, {
+	    key: 'clickedStudent',
+	    value: function clickedStudent(e) {
+	      //console.log("student clicked", e.eachStudent);
+	      this.setState({
+	        clickedStudent: e.eachStudent
+	      });
+	      console.log("student clicked", this.state.clickedStudent);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _this3 = this;
 	
-	exports.addLog = function (log) {
-	  return (0, _axios2.default)({
-	    method: 'POST',
-	    url: 'api/logs',
-	    data: log
-	  });
-	};
+	      return _react2.default.createElement(
+	        'div',
+	        { id: 'wrapper' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'container-fluid' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'row' },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'col-md-12' },
+	              _react2.default.createElement(
+	                'h1',
+	                { className: 'alignleft' },
+	                'View Students'
+	              ),
+	              _react2.default.createElement(
+	                'h3',
+	                { className: 'alignright' },
+	                _react2.default.createElement(
+	                  _reactRouter.Link,
+	                  { to: '/addstudent' },
+	                  _react2.default.createElement('img', { src: 'add.png', height: '25px' }),
+	                  'Student'
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'table',
+	                { className: 'table table-hover table-striped' },
+	                _react2.default.createElement(
+	                  'thead',
+	                  null,
+	                  _react2.default.createElement(
+	                    'tr',
+	                    null,
+	                    _react2.default.createElement(
+	                      'th',
+	                      { className: 'col-md-4' },
+	                      'Photo'
+	                    ),
+	                    _react2.default.createElement(
+	                      'th',
+	                      { className: 'col-md-3' },
+	                      'First Name'
+	                    ),
+	                    _react2.default.createElement(
+	                      'th',
+	                      { className: 'col-md-3' },
+	                      'Last Name'
+	                    ),
+	                    _react2.default.createElement(
+	                      'th',
+	                      { className: 'col-md-2' },
+	                      'Grade'
+	                    )
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  'tbody',
+	                  null,
+	                  this.state.students.map(function (student, index) {
+	                    return _react2.default.createElement(_StudentEntry.StudentEntry, { clickedStudent: _this3.clickedStudent, eachStudent: student, key: index });
+	                  })
+	                )
+	              )
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
 	
-	exports.logout = function () {
-	  return _axios2.default.get('authApi/logout');
-	};
+	  return StudentList;
+	}(_react2.default.Component);
+	
+	exports.StudentList = StudentList;
 
 /***/ },
 /* 263 */
@@ -29389,9 +29440,13 @@
 	  _createClass(StudentEntry, [{
 	    key: "render",
 	    value: function render() {
+	      var _this2 = this;
+	
 	      return _react2.default.createElement(
 	        "tr",
-	        null,
+	        { onClick: function onClick() {
+	            return _this2.props.clickedStudent(_this2.props);
+	          } },
 	        _react2.default.createElement(
 	          "td",
 	          null,
@@ -29438,7 +29493,7 @@
 	
 	var _axios2 = _interopRequireDefault(_axios);
 	
-	var _auth = __webpack_require__(/*! ./helper/auth.js */ 262);
+	var _auth = __webpack_require__(/*! ./helper/auth.js */ 236);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -29494,6 +29549,10 @@
 	    }).catch(function (err) {
 	      console.log('could not add log', err);
 	    });
+	    this.setState({
+	      author: '',
+	      log: ''
+	    });
 	  },
 	
 	
@@ -29529,7 +29588,7 @@
 	                    null,
 	                    'Author:'
 	                  ),
-	                  _react2.default.createElement('input', { type: 'text', className: 'form-control', onChange: this.handleAuthor, required: true })
+	                  _react2.default.createElement('input', { type: 'text', className: 'form-control', value: this.state.author, onChange: this.handleAuthor, required: true })
 	                ),
 	                _react2.default.createElement(
 	                  'div',
@@ -29566,7 +29625,7 @@
 	                    null,
 	                    'Update / Log:'
 	                  ),
-	                  _react2.default.createElement('input', { type: 'text', className: 'form-control', onChange: this.handleLog, required: true })
+	                  _react2.default.createElement('input', { type: 'text', className: 'form-control', value: this.state.log, onChange: this.handleLog, required: true })
 	                ),
 	                _react2.default.createElement(
 	                  'div',
@@ -29603,7 +29662,7 @@
 	
 	var _axios2 = _interopRequireDefault(_axios);
 	
-	var _auth = __webpack_require__(/*! ./helper/auth.js */ 262);
+	var _auth = __webpack_require__(/*! ./helper/auth.js */ 236);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -29768,7 +29827,7 @@
 	
 	var _axios2 = _interopRequireDefault(_axios);
 	
-	var _auth = __webpack_require__(/*! ./helper/auth.js */ 262);
+	var _auth = __webpack_require__(/*! ./helper/auth.js */ 236);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -29958,7 +30017,7 @@
 	
 	var _axios2 = _interopRequireDefault(_axios);
 	
-	var _auth = __webpack_require__(/*! ./helper/auth.js */ 262);
+	var _auth = __webpack_require__(/*! ./helper/auth.js */ 236);
 	
 	var _GoalEntry = __webpack_require__(/*! ./GoalEntry.jsx */ 268);
 	
@@ -30264,7 +30323,7 @@
 	
 	var _axios2 = _interopRequireDefault(_axios);
 	
-	var _auth = __webpack_require__(/*! ./helper/auth.js */ 262);
+	var _auth = __webpack_require__(/*! ./helper/auth.js */ 236);
 	
 	var _LogEntry = __webpack_require__(/*! ./LogEntry.jsx */ 271);
 	
@@ -30484,7 +30543,7 @@
 	
 	var _axios2 = _interopRequireDefault(_axios);
 	
-	var _auth = __webpack_require__(/*! ./helper/auth.js */ 262);
+	var _auth = __webpack_require__(/*! ./helper/auth.js */ 236);
 	
 	var _LogEntry = __webpack_require__(/*! ./LogEntry.jsx */ 271);
 	
@@ -30635,7 +30694,7 @@
 	
 	var _axios2 = _interopRequireDefault(_axios);
 	
-	var _auth = __webpack_require__(/*! ./helper/auth.js */ 262);
+	var _auth = __webpack_require__(/*! ./helper/auth.js */ 236);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -30662,6 +30721,7 @@
 	      message: ''
 	    };
 	
+	    //bind all method to current context prior passing it down to render.
 	    _this.handleFirstName = _this.handleFirstName.bind(_this);
 	
 	    _this.handleLastName = _this.handleLastName.bind(_this);
@@ -30675,6 +30735,9 @@
 	    _this.submitClick = _this.submitClick.bind(_this);
 	    return _this;
 	  }
+	
+	  //methods to capture input from each input box.
+	
 	
 	  _createClass(StudentForm, [{
 	    key: 'handleFirstName',
@@ -30711,13 +30774,25 @@
 	        pic: e.target.value
 	      });
 	    }
+	
+	    //method to capitalize first letter of name input.
+	
+	  }, {
+	    key: 'capitalizeName',
+	    value: function capitalizeName(name) {
+	      var cappedName = name.charAt(0).toUpperCase() + name.slice(1);
+	      return cappedName;
+	    }
 	  }, {
 	    key: 'submitClick',
+	
+	
+	    //method to create a student data object base on the inputs, then made an axios call to server  to add student to database.
 	    value: function submitClick(e) {
 	      e.preventDefault();
 	      var student = {
-	        first_name: this.state.first_name,
-	        last_name: this.state.last_name,
+	        first_name: this.capitalizeName(this.state.first_name),
+	        last_name: this.capitalizeName(this.state.last_name),
 	        grade: this.state.grade,
 	        IEP: this.state.IEP,
 	        pic: this.state.pic
@@ -30732,6 +30807,13 @@
 	          message: 'Sorry! error occured can not add student!'
 	        });
 	        console.log('could not add student', err);
+	      });
+	      this.setState({
+	        first_name: '',
+	        last_name: '',
+	        grade: '',
+	        IEP: '',
+	        pic: ''
 	      });
 	    }
 	  }, {
@@ -30756,7 +30838,7 @@
 	              null,
 	              'First Name:'
 	            ),
-	            _react2.default.createElement('input', { type: 'text', className: 'form-control', onChange: this.handleFirstName, required: true })
+	            _react2.default.createElement('input', { type: 'text', className: 'form-control', value: this.state.first_name, onChange: this.handleFirstName, required: true })
 	          ),
 	          _react2.default.createElement(
 	            'div',
@@ -30766,7 +30848,7 @@
 	              null,
 	              'Last Name:'
 	            ),
-	            _react2.default.createElement('input', { type: 'text', className: 'form-control', onChange: this.handleLastName, required: true })
+	            _react2.default.createElement('input', { type: 'text', className: 'form-control', value: this.state.last_name, onChange: this.handleLastName, required: true })
 	          ),
 	          _react2.default.createElement(
 	            'div',
@@ -30776,7 +30858,7 @@
 	              null,
 	              'Grade:'
 	            ),
-	            _react2.default.createElement('input', { type: 'text', className: 'form-control', onChange: this.handleGrade, required: true })
+	            _react2.default.createElement('input', { type: 'text', className: 'form-control', value: this.state.grade, onChange: this.handleGrade, required: true })
 	          ),
 	          _react2.default.createElement(
 	            'div',
@@ -30786,7 +30868,7 @@
 	              null,
 	              'IEP:'
 	            ),
-	            _react2.default.createElement('input', { type: 'text', className: 'form-control', onChange: this.handleIEP })
+	            _react2.default.createElement('input', { type: 'text', className: 'form-control', value: this.state.IEP, onChange: this.handleIEP })
 	          ),
 	          _react2.default.createElement(
 	            'div',
@@ -30796,7 +30878,7 @@
 	              null,
 	              'Photo:'
 	            ),
-	            _react2.default.createElement('input', { type: 'text', className: 'form-control', onChange: this.handlePic })
+	            _react2.default.createElement('input', { type: 'text', className: 'form-control', value: this.state.pic, onChange: this.handlePic })
 	          ),
 	          _react2.default.createElement(
 	            'div',
