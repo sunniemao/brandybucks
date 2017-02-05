@@ -64,10 +64,11 @@ module.exports = React.createClass({
       <div className="row">
       <div className="col-md-8">
       <h1>Statistics</h1>
+      <div className="pullup">
       <VictoryChart
         domainPadding={20}
       >
-        <VictoryStack colorScale={"cool"} >
+        <VictoryStack colorScale={"qualitative"} >
           <VictoryBar
               name="area-1"
               data={this.state.data}
@@ -75,6 +76,7 @@ module.exports = React.createClass({
               y={(datum) => datum.contributions}/>
         </VictoryStack>
       </VictoryChart>
+      </div>
       </div>
       <div className="col-md-4"></div>
       </div>

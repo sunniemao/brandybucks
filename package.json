@@ -36,17 +36,18 @@
     "body-parser": "^1.16.0",
     "bookshelf": "^0.10.3",
     "bootstrap": "^3.3.7",
+    "chai": "^3.5.0",
     "express": "^4.14.0",
     "express-session": "^1.15.0",
     "knex": "^0.12.6",
+    "mocha": "^3.2.0",
     "mysql": "^2.13.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-router": "^3.0.2",
     "request": "^2.79.0",
-    "webpack": "^1.14.0",
-    "chai": "^3.5.0",
-    "mocha": "^3.2.0"
+    "victory": "^0.16.1",
+    "webpack": "^1.14.0"
   },
   "devDependencies": {
     "live-server": "^1.2.0",

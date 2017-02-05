@@ -11,6 +11,7 @@ import {IEP} from './IEP.jsx';
 import {MeetingNotes} from './MeetingNotes.jsx';
 import {ViewLogs} from './ViewLogs.jsx';
 import {StudentForm} from './StudentForm.jsx';
+import Charts from './Charts.jsx';
 
 export default (
   <Route path="/" component={App}>
@@ -23,5 +24,6 @@ export default (
     <Route path="creategoal" component={CreateGoal} />
     <Route path="viewlogs" component={ViewLogs} />
     <Route path="addstudent" component={StudentForm} />
+    <Route path="statistics" component={Charts} />
   </Route>
 )
