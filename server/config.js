@@ -45,6 +45,7 @@ bookshelf.knex.schema.hasTable('students').then(function(exists) {
       student.string('grade', 3);
       student.string('IEP', 100);
       student.string('pic', 100);
+      student.integer('logCount')
     }).then(function (table) {
     console.log('Created Table', table);
     });

@@ -60,7 +60,10 @@ module.exports = {
     },
 
     get: function(req, res) {
-      knex('students').select('*').then(function(data){
+      knex('students')
+      .join('logs', 'logs.types', '=', 3 )
+      .select('students.first_name', 'students.last_name', 'logs.types')
+      .then(function(data){
         res.send(data);
       })
     }
@@ -69,11 +72,18 @@ module.exports = {
   logs: {
 
     post: function(req,res) {
-      var author = req.body.author
-      var student_id = req.body.id
-      var log = req.body.log
-      var types = req.body.types
-      var other = req.body.other
+      var author = req.body.author;
+      var student_id = req.body.id;
+      var log = req.body.log;
+      var types = req.body.types;
+      var other = req.body.other;
+
+      knex('students')
+      .where('id', '=', student_id)
+      .increment('logCount', 1)
+      .then(function() {
+        console.log('info updated');
+      });
 
       var newLog = new Log({
         log: log,
@@ -81,7 +91,6 @@ module.exports = {
         student_id: student_id,
         types: types,
         other: other
-
       })
       newLog.save()
         .then(function() {
