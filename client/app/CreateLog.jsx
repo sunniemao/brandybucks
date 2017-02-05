@@ -10,7 +10,8 @@ module.exports = React.createClass({
       id: '',
       author: '',
       log: '',
-      types: 3
+      types: 3,
+      action: 'mailto:parent@example.com?subject=Update from llama&body='
     }
   },
 
@@ -42,6 +43,10 @@ module.exports = React.createClass({
     this.setState({
       log: e.target.value,
     });
+    var action = this.state.action.slice(0,57) + this.state.log;
+    this.setState({
+      action: action,
+    });
   },
 
   submitClick(e) {
@@ -62,7 +67,7 @@ module.exports = React.createClass({
     this.setState({
       author: '',
       log: ''
-    })
+    });
   },
 
   render: function() {
@@ -100,10 +105,15 @@ module.exports = React.createClass({
         </label>
         <input type="text" className="form-control" value={this.state.log} onChange={this.handleLog} required/>
         </div>
-        <div className="form-group">
-        <button className="btn search-btn">Add log</button>
+        <div className="form-group alignleft">
+        <button className="btn search-btn">Add log</button>&nbsp;&nbsp;&nbsp;
         </div>
       </form>
+      <div className="alignright2">
+      <form action={this.state.action} method="post" encType="text/plain">
+      <input type="submit" className="btn search-btn" value="Email parent" />
+      </form>
+      </div>
       </div>
       </div>
       </div>
