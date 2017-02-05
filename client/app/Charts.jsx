@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import {getAllStudents} from './helper/auth.js'
 import {addLog} from './helper/auth.js';
-import {VictoryBar, VictoryChart, VictoryTheme, VictoryStack} from 'victory';
+import {VictoryBar, VictoryChart, VictoryTheme, VictoryStack, VictoryAxis} from 'victory';
 
 module.exports = React.createClass({
   getInitialState: function() {
@@ -64,10 +64,12 @@ module.exports = React.createClass({
       <div className="row">
       <div className="col-md-8">
       <h1>Statistics</h1>
+      <div className="pullup">
       <VictoryChart
         domainPadding={20}
       >
-        <VictoryStack colorScale={"cool"} >
+        <VictoryStack colorScale={"qualitative"} >
+
           <VictoryBar
               name="area-1"
               data={this.state.data}
@@ -75,6 +77,7 @@ module.exports = React.createClass({
               y={(datum) => datum.contributions}/>
         </VictoryStack>
       </VictoryChart>
+      </div>
       </div>
       <div className="col-md-4"></div>
       </div>

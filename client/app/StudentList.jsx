@@ -57,9 +57,10 @@ class StudentList extends React.Component {
                     <thead>
                       <tr>
                         <th className="col-md-4">Photo</th>
-                        <th className="col-md-3">First Name</th>
-                        <th className="col-md-3">Last Name</th>
+                        <th className="col-md-2">First Name</th>
+                        <th className="col-md-2">Last Name</th>
                         <th className="col-md-2">Grade</th>
+                        <th className="col-md-2"># Logs</th>
                       </tr>
                     </thead>
                     <tbody>
