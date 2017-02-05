@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import {getAllStudents} from './helper/auth.js'
 import {addLog} from './helper/auth.js';
-import {VictoryBar, VictoryChart, VictoryTheme, VictoryStack} from 'victory';
+import {VictoryBar, VictoryChart, VictoryTheme, VictoryStack, VictoryAxis} from 'victory';
 
 module.exports = React.createClass({
   getInitialState: function() {
@@ -69,6 +69,13 @@ module.exports = React.createClass({
         domainPadding={20}
       >
         <VictoryStack colorScale={"qualitative"} >
+        <VictoryAxis
+          tickValues={["Jan", "Feb", "Mar", "April", "May", "June", "July", "Aug"]}
+        />
+        <VictoryAxis
+          dependentAxis
+        tickFormat={(x) => (`$${x/1000}k`)}
+        />
           <VictoryBar
               name="area-1"
               data={this.state.data}
