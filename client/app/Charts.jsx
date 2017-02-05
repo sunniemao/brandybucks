@@ -69,13 +69,7 @@ module.exports = React.createClass({
         domainPadding={20}
       >
         <VictoryStack colorScale={"qualitative"} >
-        <VictoryAxis
-          tickValues={["Jan", "Feb", "Mar", "April", "May", "June", "July", "Aug"]}
-        />
-        <VictoryAxis
-          dependentAxis
-        tickFormat={(x) => (`$${x/1000}k`)}
-        />
+
           <VictoryBar
               name="area-1"
               data={this.state.data}
