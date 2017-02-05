@@ -61,8 +61,7 @@ module.exports = {
 
     get: function(req, res) {
       knex('students')
-      .join('logs', 'logs.types', '=', 3 )
-      .select('students.first_name', 'students.last_name', 'logs.types')
+      .select('*')
       .then(function(data){
         res.send(data);
       })
