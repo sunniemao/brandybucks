@@ -1,81 +1,118 @@
 import React from 'react';
 import axios from 'axios';
-import {getAllStudents} from './helper/auth.js'
-import {addLog} from './helper/auth.js';
-import {VictoryBar, VictoryChart, VictoryTheme, VictoryStack, VictoryAxis} from 'victory';
+import {getAllLogs} from './helper/auth.js'
+import {VictoryBar, VictoryChart, VictoryTheme} from 'victory';
 
 module.exports = React.createClass({
   getInitialState: function() {
     return {
-      data: [
-                {
-                    id: 0,
-                    month: "Jan",
-                    contributions: 1200
-                }, {
-                    id: 1,
-                    month: "Feb",
-                    contributions: 3400
-                }, {
-                    id: 2,
-                    month: "Mar",
-                    contributions: 1700
-                }, {
-                    id: 3,
-                    month: "Apr",
-                    contributions: 4320
-                }, {
-                    id: 4,
-                    month: "May",
-                    contributions: 2313
-                }, {
-                    id: 5,
-                    month: "Jun",
-                    contributions: 1324
-                }, {
-                    id: 6,
-                    month: "Jul",
-                    contributions: 2325
-                }, {
-                    id: 7,
-                    month: "Aug",
-                    contributions: 2312
-                }
-            ]
+      logs: [],
+      studentName: '',
+      data: [{
+            id: 0,
+            x: "Logs",
+            contributions: 0
+        }, {
+            id: 1,
+            x: "Meeting Notes",
+            contributions: 0
+        }, {
+            id: 2,
+            x: "Goals",
+            contributions: 0
+        }],
+        data2: [{
+            id: 0,
+            x: "Not Started",
+            contributions: 0
+        }, {
+            id: 1,
+            x: "In Progress",
+            contributions: 0
+        }, {
+            id: 2,
+            x: "Complete",
+            contributions: 0
+        }]
     }  
   },
 
   componentWillMount() {
-    getAllStudents()
+    getAllLogs()
     .then((resp) => {
-      this.setState({
-        students: resp.data,
-      });
+      if (this.props.student_id === '') {
+        this.setState({
+          logs: resp.data,
+          data: [{
+              id: 0,
+              x: "Logs",
+              contributions: resp.data.filter((log) => {return log.types === 3}).length
+          }, {
+              id: 1,
+              x: "Meeting Notes",
+              contributions: resp.data.filter((log) => {return log.types === 2}).length
+          }, {
+              id: 2,
+              x: "Goals",
+              contributions: resp.data.filter((log) => {return log.types === 1}).length
+          }]
+        }); 
+      } else {
+        this.setState({
+          logs: resp.data.filter((log) => {return log.student_id === this.props.student_id}),
+          data: [{
+              id: 0,
+              x: "Logs",
+              contributions: resp.data.filter((log) => {return log.types === 3 && log.student_id === this.props.student_id}).length
+          }, {
+              id: 1,
+              x: "Meeting Notes",
+              contributions: resp.data.filter((log) => {return log.types === 2 && log.student_id === this.props.student_id}).length
+          }, {
+              id: 2,
+              x: "Goals",
+              contributions: resp.data.filter((log) => {return log.types === 1 && log.student_id === this.props.student_id}).length
+          }],
+          studentName: resp.data[0].first_name + ' ' + resp.data[0].last_name,
+          data2: [{
+              id: 0,
+              x: "Not Started",
+              contributions: resp.data.filter((log) => {return log.other === "Not Started" && log.types === 1 && log.student_id === this.props.student_id}).length
+          }, {
+              id: 1,
+              x: "In Progress",
+              contributions: resp.data.filter((log) => {return log.other === "In Progress" && log.types === 1 && log.student_id === this.props.student_id}).length
+          }, {
+              id: 2,
+              x: "Complete",
+              contributions: resp.data.filter((log) => {return log.other === "Complete" && log.types === 1 && log.student_id === this.props.student_id}).length
+          }]
+        }); 
+      }
     })
     .catch((err) => {
       console.log(err);
-    })
+    });
   },
 
   render: function() {
-    return (
+    return this.state.studentName.length === 0 ?
+    (
       <div id="wrapper">
       <div className="container-fluid">
       <div className="row">
       <div className="col-md-8">
       <h1>Statistics</h1>
+      <h3 className="goalTitle2">Total Entries</h3>
       <div className="pullup">
-      <VictoryChart
-        domainPadding={20}
-      >
-        <VictoryStack colorScale={"qualitative"} >
-
+      <VictoryChart domainPadding={20} animate={{ duration: 2000, easing: "bounce" }}>
           <VictoryBar
-              name="area-1"
-              data={this.state.data}
-              x="month"
-              y={(datum) => datum.contributions}/>
-        </VictoryStack>
+            name="area-1"
+            colorScale={"qualitative"}
+            data={this.state.data}
+            x="x"
+            y={(datum) => datum.contributions} 
+          />
       </VictoryChart>
       </div>
       </div>
@@ -83,6 +120,42 @@ module.exports = React.createClass({
       </div>
       </div>
       </div>
+    ) : (
+      <div id="wrapper">
+      <div className="container-fluid">
+      <div className="row">
+      <div className="col-md-8">
+      <h1>{this.state.studentName} Statistics</h1>
+      <h3 className="goalTitle2">Total Entries</h3>
+      <div className="pullup">
+      <VictoryChart domainPadding={20} animate={{ duration: 2000, easing: "bounce" }}>
+          <VictoryBar
+            name="area-1"
+            colorScale={"qualitative"}
+            data={this.state.data}
+            x="x"
+            y={(datum) => datum.contributions} 
+          />
+      </VictoryChart>
+      <h3 className="goalTitle">{this.state.studentName} Goals</h3>
+      <div className="pullup">
+      <VictoryChart domainPadding={20}  animate={{ duration: 2000, easing: "bounce" }}>
+          <VictoryBar
+            name="area-1"
+            colorScale={"qualitative"}
+            data={this.state.data2}
+            x="x"
+            y={(datum) => datum.contributions} 
+          />
+      </VictoryChart>
+      </div>
+      </div>
+      </div>
+      <div className="col-md-4"></div>
+      </div>
+      </div>
+      </div>
+
     );
   }
 })

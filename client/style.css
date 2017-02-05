@@ -143,3 +143,11 @@ object {
 .pullup {
   margin-top: -60px;
 }
+.goalTitle {
+  padding-left: 225px;
+  color: #000000 !important;
+}
+.goalTitle2 {
+  padding-left: 300px;
+  color: #000000 !important;
+}
