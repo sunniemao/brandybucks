@@ -42,7 +42,7 @@ class Nav extends React.Component {
     getStudentByName(name)
     .then((resp) => {
       if (typeof resp.data === 'string') {
-        alert(resp.data)
+        console.log(resp.data);
       } else {
         context.setState({
           studentName: resp.data.first_name + ' ' + resp.data.last_name,
@@ -123,6 +123,9 @@ class Nav extends React.Component {
             </li>
             <li>
               <Link to="/viewlogs">Updates / Logs</Link>
+            </li>
+            <li>
+              <Link to="/statistics">Statistics</Link>
             </li>
           </ul>
         </div>
