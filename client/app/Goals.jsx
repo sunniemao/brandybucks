@@ -42,9 +42,9 @@ class Goals extends React.Component {
                   <table className="table table-hover" >
                     <thead>
                       <tr>
-                        <th className="col-md-4">Student</th>
-                        <th className="col-md-4">Goal</th>
-                        <th className="col-md-4">Progress</th>
+                        <th className="col-md-3">Student</th>
+                        <th className="col-md-6">Goal</th>
+                        <th className="col-md-3">Progress</th>
                       </tr>
                     </thead>
                     <tbody>

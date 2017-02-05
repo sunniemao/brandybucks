@@ -29506,7 +29506,8 @@
 	      id: '',
 	      author: '',
 	      log: '',
-	      types: 3
+	      types: 3,
+	      action: 'mailto:parent@example.com?subject=Update from llama&body='
 	    };
 	  },
 	
@@ -29534,6 +29535,10 @@
 	  handleLog: function handleLog(e) {
 	    this.setState({
 	      log: e.target.value
+	    });
+	    var action = this.state.action.slice(0, 57) + this.state.log;
+	    this.setState({
+	      action: action
 	    });
 	  },
 	  submitClick: function submitClick(e) {
@@ -29629,12 +29634,22 @@
 	                ),
 	                _react2.default.createElement(
 	                  'div',
-	                  { className: 'form-group' },
+	                  { className: 'form-group alignleft' },
 	                  _react2.default.createElement(
 	                    'button',
 	                    { className: 'btn search-btn' },
 	                    'Add log'
-	                  )
+	                  ),
+	                  '\xA0\xA0\xA0'
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'alignright2' },
+	                _react2.default.createElement(
+	                  'form',
+	                  { action: this.state.action, method: 'post', encType: 'text/plain' },
+	                  _react2.default.createElement('input', { type: 'submit', className: 'btn search-btn', value: 'Email parent' })
 	                )
 	              )
 	            )
@@ -30109,17 +30124,17 @@
 	                    null,
 	                    _react2.default.createElement(
 	                      'th',
-	                      { className: 'col-md-4' },
+	                      { className: 'col-md-3' },
 	                      'Student'
 	                    ),
 	                    _react2.default.createElement(
 	                      'th',
-	                      { className: 'col-md-4' },
+	                      { className: 'col-md-6' },
 	                      'Goal'
 	                    ),
 	                    _react2.default.createElement(
 	                      'th',
-	                      { className: 'col-md-4' },
+	                      { className: 'col-md-3' },
 	                      'Progress'
 	                    )
 	                  )
@@ -30415,17 +30430,17 @@
 	                    null,
 	                    _react2.default.createElement(
 	                      'th',
-	                      { className: 'col-md-2' },
+	                      { className: 'col-md-3' },
 	                      'Student'
 	                    ),
 	                    _react2.default.createElement(
 	                      'th',
-	                      { className: 'col-md-2' },
+	                      { className: 'col-md-3' },
 	                      'Author'
 	                    ),
 	                    _react2.default.createElement(
 	                      'th',
-	                      { className: 'col-md-8' },
+	                      { className: 'col-md-6' },
 	                      'Notes'
 	                    )
 	                  )
@@ -30635,17 +30650,17 @@
 	                    null,
 	                    _react2.default.createElement(
 	                      'th',
-	                      { className: 'col-md-4' },
+	                      { className: 'col-md-3' },
 	                      'Student'
 	                    ),
 	                    _react2.default.createElement(
 	                      'th',
-	                      { className: 'col-md-4' },
+	                      { className: 'col-md-3' },
 	                      'Author'
 	                    ),
 	                    _react2.default.createElement(
 	                      'th',
-	                      { className: 'col-md-4' },
+	                      { className: 'col-md-6' },
 	                      'Log'
 	                    )
 	                  )

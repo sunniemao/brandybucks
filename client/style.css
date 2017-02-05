@@ -133,6 +133,9 @@ object {
   padding-right: 60px;
   padding-top: 10px;
 }
+.alignright {
+  float: right;
+}
 .formWidth {
   padding-top: 10px;
   width: 50%;

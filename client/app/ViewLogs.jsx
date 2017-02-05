@@ -42,9 +42,9 @@ class ViewLogs extends React.Component {
                   <table className="table table-hover" >
                     <thead>
                       <tr>
-                        <th className="col-md-4">Student</th>
-                        <th className="col-md-4">Author</th>
-                        <th className="col-md-4">Log</th>
+                        <th className="col-md-3">Student</th>
+                        <th className="col-md-3">Author</th>
+                        <th className="col-md-6">Log</th>
                       </tr>
                     </thead>
                     <tbody>
