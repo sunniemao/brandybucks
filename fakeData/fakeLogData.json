@@ -1,5 +1,5 @@
 [
-  {
+  { "id": 1,
     "log": "Hello! You have scored 25 % on your last midpoint assessment.",
     "user_id": 5,
     "user": "Ramos",
@@ -8,6 +8,7 @@
     "other": "In Progress"
   },
   {
+    "id": 2,
     "log": "Hello! You have scored 38 % on your last midpoint assessment.",
     "user_id": 10,
     "user": "Jenkins",
@@ -16,6 +17,7 @@
     "other": "Complete"
   },
   {
+    "id": 3,
     "log": "Hello! You have scored 71 % on your last midpoint assessment.",
     "user_id": 4,
     "user": "Savage",
@@ -24,6 +26,7 @@
     "other": "Not Started"
   },
   {
+    "id": 4,
     "log": "Hello! You have scored 43 % on your last midpoint assessment.",
     "user_id": 3,
     "user": "Skinner",
@@ -32,6 +35,7 @@
     "other": "Complete"
   },
   {
+    "id": 5,
     "log": "Hello! You have scored 62 % on your last midpoint assessment.",
     "user_id": 1,
     "user": "Russell",
@@ -40,6 +44,7 @@
     "other": "Complete"
   },
   {
+    "id": 6,
     "log": "Hello! You have scored 26 % on your last midpoint assessment.",
     "user_id": 2,
     "user": "Ryan",
@@ -48,6 +53,7 @@
     "other": "Complete"
   },
   {
+    "id": 7,
     "log": "Hello! You have scored 37 % on your last midpoint assessment.",
     "user_id": 5,
     "user": "Navarro",
