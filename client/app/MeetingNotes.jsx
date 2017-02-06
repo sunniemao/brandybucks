@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import {getAllLogs} from './helper/auth.js'
-import {LogEntry} from './LogEntry.jsx';
+import {NotesEntry} from './NotesEntry.jsx';
 import {Link} from 'react-router';
 
 class MeetingNotes extends React.Component {
@@ -43,15 +43,16 @@ class MeetingNotes extends React.Component {
                   <table className="table table-hover" >
                     <thead>
                       <tr>
-                        <th className="col-md-3">Student</th>
-                        <th className="col-md-3">Author</th>
-                        <th className="col-md-6">Notes</th>
+                        <th className="col-md-2">Date of Meeting</th>
+                        <th className="col-md-2">Student</th>
+                        <th className="col-md-3">IEP Members Present</th>
+                        <th className="col-md-5">Notes</th>
                       </tr>
                     </thead>
                     <tbody>
                       {this.state.logs.map((log, index) => {
                           return (
-                            <LogEntry eachLog={log} key={index} />
+                            <NotesEntry eachLog={log} key={index} />
                           )
                         })
                       }
