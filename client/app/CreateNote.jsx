@@ -9,7 +9,8 @@ module.exports = React.createClass({
       students: [],
       id: '',
       author: '',
-      log: '',
+      log: ["Meeting Notes: ", "Action Items: "],
+      other: new Date().toLocaleString().split(',')[0],
       types: 2
     }  
   },
@@ -26,6 +27,12 @@ module.exports = React.createClass({
     })
   },
 
+  handleDate(e) {
+    this.setState({
+      other: e.target.value,
+    });
+  },
+
   handleAuthor(e) {
     this.setState({
       author: e.target.value,
@@ -39,19 +46,36 @@ module.exports = React.createClass({
   },
 
   handleLog(e) {
+    var state = this.state.log;
+    state[0] = e.target.value;
     this.setState({
-      log: e.target.value,
+      log: state,
+    });
+  },
+
+
+  handleLog2(e) {
+    var state = this.state.log;
+    state[1] = e.target.value;
+    this.setState({
+      log: state,
     });
   },
 
   submitClick(e) {
     e.preventDefault();
+    var state = this.state.log;
+    state[0] = 'Meeting Notes: ' + state[0];
+    state[1] = 'Action Items: ' + state[1];
+    state = state.join('^');
     let log = {
+      other: this.state.other,
       id: this.state.id,
       author: this.state.author,
-      log: this.state.log,
+      log: state,
       types: this.state.types
     }
+    console.log(log);
     addLog(log)
       .then(function(resp) {
       console.log('log added');
@@ -72,7 +96,13 @@ module.exports = React.createClass({
       <form onSubmit={this.submitClick}>
         <div className="form-group">
         <label>
-        Author:
+        Date of Meeting:
+        </label>
+        <input type="text" className="form-control" onChange={this.handledate} placeholder={this.state.other} />
+        </div>
+        <div className="form-group">
+        <label>
+        IEP Team Members Present:
         </label>
         <input type="text" className="form-control" onChange={this.handleAuthor} required />
         </div>
@@ -94,7 +124,13 @@ module.exports = React.createClass({
         <label>
         Meeting Notes:
         </label>
-        <textarea type="text" className="form-control" onChange={this.handleLog} required/>
+        <textarea type="text" className="form-control" onChange={this.handleLog}/>
+        </div>
+        <div className="form-group">
+        <label>
+        Action Items:
+        </label>
+        <textarea type="text" className="form-control" onChange={this.handleLog2}/>
         </div>
         <div className="form-group">
         <button className="btn search-btn">Add meeting notes</button>

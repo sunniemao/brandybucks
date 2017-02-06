@@ -23,15 +23,15 @@ module.exports = React.createClass({
         }],
         data2: [{
             id: 0,
-            x: "Not Started",
+            x: "",
             contributions: 0
         }, {
             id: 1,
-            x: "In Progress",
+            x: "",
             contributions: 0
         }, {
             id: 2,
-            x: "Complete",
+            x: "",
             contributions: 0
         }]
     }  
@@ -59,15 +59,15 @@ module.exports = React.createClass({
           studentName: '',
           data2: [{
               id: 0,
-              x: "Not Started",
+              x: resp.data.filter((log) => {return log.other === "Not Started" && log.types === 1}).length > 0 ? "Not Started" : '',
               contributions: resp.data.filter((log) => {return log.other === "Not Started" && log.types === 1}).length
           }, {
               id: 1,
-              x: "In Progress",
+              x: resp.data.filter((log) => {return log.other === "In Progress" && log.types === 1}).length > 0 ? "In Progress" : '',
               contributions: resp.data.filter((log) => {return log.other === "In Progress" && log.types === 1}).length
           }, {
               id: 2,
-              x: "Complete",
+              x: resp.data.filter((log) => {return log.other === "Complete" && log.types === 1}).length > 0 ? "Complete" : '',
               contributions: resp.data.filter((log) => {return log.other === "Complete" && log.types === 1}).length
           }]
         }); 
@@ -90,15 +90,15 @@ module.exports = React.createClass({
           studentName: resp.data[0].first_name + ' ' + resp.data[0].last_name,
           data2: [{
               id: 0,
-              x: "Not Started",
+              x: resp.data.filter((log) => {return log.other === "Not Started" && log.types === 1 && log.student_id === this.props.student_id}).length > 0 ? "Not Started" : '',
               contributions: resp.data.filter((log) => {return log.other === "Not Started" && log.types === 1 && log.student_id === this.props.student_id}).length
           }, {
               id: 1,
-              x: "In Progress",
+              x: resp.data.filter((log) => {return log.other === "In Progress" && log.types === 1 && log.student_id === this.props.student_id}).length > 0 ? "In Progress" : '',
               contributions: resp.data.filter((log) => {return log.other === "In Progress" && log.types === 1 && log.student_id === this.props.student_id}).length
           }, {
               id: 2,
-              x: "Complete",
+              x: resp.data.filter((log) => {return log.other === "Complete" && log.types === 1 && log.student_id === this.props.student_id}).length > 0 ? "Complete" : '',
               contributions: resp.data.filter((log) => {return log.other === "Complete" && log.types === 1 && log.student_id === this.props.student_id}).length
           }]
         }); 
