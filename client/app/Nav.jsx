@@ -18,7 +18,16 @@ class Nav extends React.Component {
     this.searchStudent = this.searchStudent.bind(this);
     this.searchClicked = this.searchClicked.bind(this);
     this.logOut = this.logOut.bind(this);
+    this.choosePic = this.choosePic.bind(this);
+    this.chooseName = this.chooseName.bind(this);
   };
+
+  shouldComponentUpdate(nextState) {
+  if (this.state.studentObj !== nextState) {
+    return true;
+  }
+  return false
+  }
 
   //create handler method to extract search input box value.
   handleChangeSearch (e) {
@@ -84,6 +93,22 @@ class Nav extends React.Component {
     });
   };
 
+  choosePic() {
+    if (this.props.studentObj === '') {
+      return this.state.studentPic;
+    } else {
+      return this.props.studentObj.pic;
+    }
+  };
+
+  chooseName() {
+    if (this.props.studentObj === '') {
+      return this.state.studentName;
+    } else {
+      return `${this.props.studentObj.first_name} ${this.props.studentObj.last_name}`;
+    }
+  };
+
   render () {
     return(
       <div className="navbar navbar-inverse navbar-fixed-top">
@@ -110,7 +135,7 @@ class Nav extends React.Component {
         <div className="side-nav">
           <ul className="side-nav">
             <li className="studentInfo">
-              <img alt="Student Picture"src={this.state.studentPic} width="150" /><br />{this.state.studentName}<br />
+              <img alt="Student Picture"src={this.choosePic()} width="150" /><br />{this.chooseName()}<br />
             </li>
             <li>
               <Link to="/goals">Goals</Link>

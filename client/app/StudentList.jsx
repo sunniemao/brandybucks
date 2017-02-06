@@ -10,10 +10,10 @@ class StudentList extends React.Component {
 
     this.state = {
       students: [],
-      clickedStudent: {}
+      //clickedStudent: {}
     };
 
-    this.clickedStudent = this.clickedStudent.bind(this);
+    // this.clickedStudent = this.clickedStudent.bind(this);
   }
 
   //method to retrieve student from database once page load.
@@ -34,22 +34,6 @@ class StudentList extends React.Component {
     .catch((err) => {
       console.log(err);
     });
-  }
-
-  shouldComponentUpdate(nextState) {
-    if (this.state.clickedStudent !== nextState) {
-      return true;
-    }
-    return false
-  }
-
-  //method to handle click on student
-  clickedStudent(e) {
-    //console.log("student clicked", e.eachStudent);
-    this.setState({
-      clickedStudent: e.eachStudent
-    });
-    console.log("student clicked", this.state.clickedStudent);
   }
 
   render () {
@@ -73,7 +57,7 @@ class StudentList extends React.Component {
                     <tbody>
                       {this.state.students.map((student, index) => {
                           return (
-                            <StudentEntry clickedStudent={this.clickedStudent} eachStudent={student} key={index} />
+                            <StudentEntry clickedStudent={this.props.clickedStudent} eachStudent={student} key={index} />
                           )
                         })
                       }
