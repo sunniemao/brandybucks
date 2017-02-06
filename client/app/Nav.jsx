@@ -23,7 +23,7 @@ class Nav extends React.Component {
   };
 
   shouldComponentUpdate(nextState) {
-  if (this.state.studentObj !== nextState) {
+  if (this.props.studentObj !== nextState) {
     return true;
   }
   return false
