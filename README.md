@@ -61,7 +61,8 @@ create database myapp;
 
 ### Start server dev
 ```sh
-npm start
+npm run serverDev (to eliminate auth layer)
+npm run serverDevTestAuth (to include auth)
 ```
 
 ### Start front-end dev (new terminal tab)
