@@ -6,6 +6,7 @@ class IEP extends React.Component {
     super(props);
 
     this.state = {
+      logs: [],
       studentName: ''
     };
   }
@@ -13,8 +14,13 @@ class IEP extends React.Component {
   componentWillMount() {
     getAllLogs()
     .then((resp) => {
-      if (this.props.student_id.length !== '') {
+      if (this.props.student_id === '') {
         this.setState({
+          logs: [],
+        });
+      } else {
+        this.setState({
+          logs: resp.data.filter((log) => {return log.types === 1 && log.student_id === this.props.student_id}),
           studentName: resp.data[0].first_name + ' ' + resp.data[0].last_name
         });
       }
