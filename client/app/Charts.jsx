@@ -87,7 +87,7 @@ module.exports = React.createClass({
               x: "Goals",
               contributions: resp.data.filter((log) => {return log.types === 1 && log.student_id === this.props.student_id}).length
           }],
-          studentName: resp.data[0].first_name + ' ' + resp.data[0].last_name,
+          studentName: resp.data.filter((log) => {return log.student_id === this.props.student_id})[0].first_name + ' ' + resp.data.filter((log) => {return log.student_id === this.props.student_id})[0].last_name,
           data2: [{
               id: 0,
               x: resp.data.filter((log) => {return log.other === "Not Started" && log.types === 1 && log.student_id === this.props.student_id}).length > 0 ? "Not Started" : '',
@@ -117,7 +117,7 @@ module.exports = React.createClass({
       <div className="row">
       <div className="col-md-8">
       <h1>{this.state.studentName} Statistics</h1>
-      <h3 className="goalTitle2">Total Entries</h3>
+      <h3 className="goalTitle2">{this.state.studentName} Entries</h3>
       <div className="pullup">
       <VictoryChart domainPadding={20} animate={{ duration: 2000, easing: "bounce" }}>
           <VictoryBar
@@ -152,7 +152,7 @@ module.exports = React.createClass({
       <div className="row">
       <div className="col-md-8">
       <h1>{this.state.studentName} Statistics</h1>
-      <h3 className="goalTitle2">Total Entries</h3>
+      <h3 className="goalTitle2">{this.state.studentName} Entries</h3>
       <div className="pullup">
       <VictoryChart domainPadding={20} animate={{ duration: 2000, easing: "bounce" }}>
           <VictoryBar

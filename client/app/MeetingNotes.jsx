@@ -23,7 +23,7 @@ class MeetingNotes extends React.Component {
       } else {
         this.setState({
           logs: resp.data.filter((log) => {return log.types === 2 && log.student_id === this.props.student_id}),
-          studentName: resp.data[0].first_name + ' ' + resp.data[0].last_name
+          studentName: resp.data.filter((log) => {return log.student_id === this.props.student_id})[0].first_name + ' ' + resp.data.filter((log) => {return log.student_id === this.props.student_id})[0].last_name,
         });
       }
     })
